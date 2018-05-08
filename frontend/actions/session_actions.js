@@ -20,7 +20,7 @@ const logoutUser = () => {
 const receiveSessionErrors = (errors) => {
   return {
     type: RECEIVE_SESSION_ERRORS,
-    errors: errors
+    errors: errors.responseJSON.errors
   };
 };
 
