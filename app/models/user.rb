@@ -5,11 +5,11 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  before_initialize :ensure_session_token!
+  after_initialize :ensure_session_token!
 
-  def User.find_by_credentials(username, password)
-    user = User.find_by(username: username)
-    return user if user && is_password?(password)
+  def User.find_by_credentials(email, password)
+    user = User.find_by(email: email)
+    return user if user && user.is_password?(password)
   end
 
   def User.generate_session_token!
