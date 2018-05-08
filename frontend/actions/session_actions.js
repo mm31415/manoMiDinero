@@ -20,7 +20,7 @@ export const signup = (user) => {
   return (dispatch) => {
     return SessionApiUtil.signup(user).then(user => {
       return dispatch(receiveUser(user));
-    };
+    });
   };
 };
 
@@ -28,7 +28,7 @@ export const signin = (user) => {
   return (dispatch) => {
     return SessionApiUtil.signin(user).then(user => {
       return dispatch(receiveUser(user));
-    };
+    });
   };
 };
 
@@ -36,6 +36,6 @@ export const logout = () => {
   return (dispatch) => {
     return SessionApiUtil.logout().then(() => {
       return dispatch(logoutUser());
-    };
+    });
   };
 };
