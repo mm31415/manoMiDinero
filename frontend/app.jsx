@@ -8,6 +8,7 @@ export const App = () => {
   return (
     <div>
       <Route path="/" component={HeaderContainer} />
+      <br></br>
       <h1>You kinda got it guy</h1>
       <Route path="/signup" exact component={SignUpFormContainer} />
       <Route path="/login" exact component={LoginFormContainer} />

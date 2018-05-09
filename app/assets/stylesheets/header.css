@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  background: #03D7AC;
+  height: 50px;
+  border-bottom: 1px solid #0ABD99;
+  box-shadow: 0px 1px #B9B9B9;
+  color: white;
+}
+
+.header-nav {
+  display: inline-flex;
+  width: 300px;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.login-btn {
+  background: #03D7AC;
+  border: 1px solid #0ABD99;
+  box-shadow: 1px 1px #B9B9B9;
+  height: 50%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.signup-btn {
+  position: relative;
+  background: #E98C11;
+  border: 1px solid #0ABD99;
+  box-shadow: 1px 1px #B9B9B9;
+  height: 50%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.homepage-link {
+  margin-top: 15px;
+  letter-spacing: 5px;
+  font-size: 20px;
+}
