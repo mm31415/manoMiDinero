@@ -7,14 +7,14 @@ export const Header = (props) => {
     props.logout();
     props.history.push('/login');
   };
-  
+
   if (props.user === undefined) {
     return (
       <nav>
-        <Link to="/">SplitWiseClone</Link><br/>
-        <Link to="/login">Log in</Link><br/>
+        <Link to="/" onClick={props.resetSessionErrors}>SplitWiseClone</Link><br/>
+        <Link to="/login" onClick={props.resetSessionErrors}>Log in</Link><br/>
         or<br/>
-        <Link to="/signup">Sign up</Link><br/>
+        <Link to="/signup" onClick={props.resetSessionErrors}>Sign up</Link><br/>
       </nav>
     );
   } else {

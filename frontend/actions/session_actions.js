@@ -3,6 +3,7 @@ import * as SessionApiUtil from "../util/session_util";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const RESET_SESSION_ERRORS = "RESET_SESSION_ERRORS";
 
 const receiveUser = (user) => {
   return {
@@ -14,6 +15,12 @@ const receiveUser = (user) => {
 const logoutUser = () => {
   return {
     type: LOGOUT_USER,
+  };
+};
+
+export const resetSessionErrors = () => {
+  return {
+    type: RESET_SESSION_ERRORS
   };
 };
 
