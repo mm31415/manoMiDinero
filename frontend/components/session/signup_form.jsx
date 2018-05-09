@@ -1,4 +1,5 @@
 import React from "react";
+import SessionErrorsContainer from "../errors/session_errors_container";
 
 class SignUpForm extends React.Component {
 
@@ -31,9 +32,9 @@ class SignUpForm extends React.Component {
     return (
       <div>
         <h2>Hey Guy, you're at the {this.props.formType} form</h2>
-
         { (this.props.formType === "signup") ?
           <h3>Introduce Yourself</h3> : <h3>Welcome to SplitWiseClone</h3> }
+        <SessionErrorsContainer />
         <form onSubmit={this.handleSubmit}>
           {
             (this.props.formType === "signup") &&

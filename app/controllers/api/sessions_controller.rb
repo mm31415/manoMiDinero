@@ -12,7 +12,8 @@ class Api::SessionsController < ApplicationController
         login(@user)
         render json: { id: @user.id, name: @user.name, email: @user.email }, status: 200
       else
-        render json: { errors: ["Invalid Credentials"] }, status: 422
+        message = "Whoops! We couldn’t find an account for that email address and password."
+        render json: { errors: [message] }, status: 422
       end
     end
   end

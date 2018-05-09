@@ -27,16 +27,8 @@ const receiveSessionErrors = (errors) => {
 export const signup = (user) => {
   return (dispatch) => {
     return SessionApiUtil.signup(user).then(
-      (user) => {
-        debugger
-        debugger
-        return dispatch(receiveUser(user))
-      },
-      (errors) => {
-        debugger
-        debugger
-        return dispatch(receiveSessionErrors(errors))
-       }
+      (user) => { return dispatch(receiveUser(user)) },
+      (errors) => { return dispatch(receiveSessionErrors(errors)) }
     );
   };
 };
