@@ -14,23 +14,44 @@ class SignUpForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault();
-    this.props.signup(Object.assign({}, this.state));
+    if (this.props.formType === "signup") {
+      this.props.signup(Object.assign({}, this.state)).then(
+        () => this.setState({ name: '', email: '', password: '' }),
+        () => this.setState({ password: '' })
+      );
+    } else {
+      this.props.login(Object.assign({}, this.state)).then(
+        () => this.setState({ email: '', password: ''}),
+        () => this.setState({ password: '' })
+      );
+    }
   }
-
 
   render () {
     return (
       <div>
-        <h2>Hey Guy, you're at the sign up form</h2>
-        <h3>Introduce Yourself</h3>
+        <h2>Hey Guy, you're at the {this.props.formType} form</h2>
+
+        { (this.props.formType === "signup") ?
+          <h3>Introduce Yourself</h3> : <h3>Welcome to SplitWiseClone</h3> }
         <form onSubmit={this.handleSubmit}>
-          <h3>Hi there! My name is:</h3>
-          <input type="text" onChange={this.updateField('name')} value={this.state.name} />
-          <h3>Here's my email address:</h3>
+          {
+            (this.props.formType === "signup") &&
+            (
+            <div>
+              <h3>Hi there! My name is:</h3>
+              <input type="text" onChange={this.updateField('name')} value={this.state.name} />
+            </div>
+            )
+          }
+          { (this.props.formType === "signup") ?
+            <h3>Here's my email address:</h3> : <h3>Email address</h3> }
           <input type="text" onChange={this.updateField('email')} value={this.state.email} />
-          <h3>And here's my password:</h3>
+            { (this.props.formType === "signup") ?
+              <h3>And here's my password:</h3> : <h3>Password</h3> }
           <input type="password" onChange={this.updateField('password')} value={this.state.password} />
-          <button>Sign me up!</button>
+          { (this.props.formType === "signup") ?
+            <button>Sign me up!</button> : <button>Login</button> }
         </form>
       </div>
     );

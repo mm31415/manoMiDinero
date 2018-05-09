@@ -4,7 +4,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
-      render json: { name: @user.name, id: @user.id }, status: 200
+      render json: { id: @user.id, name: @user.name, email: @user.email }, status: 200
     else
       render json: { errors: @user.errors.full_messages }, status: 422
     end
