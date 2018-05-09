@@ -11,7 +11,8 @@ const mapStateToProps = state => {
       password: ''
     },
     errors: state.errors.session,
-    formType: "signup"
+    formType: "signup",
+    logged_in: state.session.id || false
   };
 };
 

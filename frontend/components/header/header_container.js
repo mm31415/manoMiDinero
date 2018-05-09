@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import { Header } from "./header";
 import { logout, resetSessionErrors } from "../../actions/session_actions";
+import { withRouter } from "react-router";
+
 
 const mapStateToProps = state => {
   if (state.session.id !== null) {
@@ -19,4 +21,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+const header = connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default withRouter(header);

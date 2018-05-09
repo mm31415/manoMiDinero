@@ -1,5 +1,6 @@
 import React from "react";
 import SessionErrorsContainer from "../errors/session_errors_container";
+import { Redirect } from "react-router-dom";
 
 class SignUpForm extends React.Component {
 
@@ -18,16 +19,16 @@ class SignUpForm extends React.Component {
     if (this.props.formType === "signup") {
       this.props.signup(Object.assign({}, this.state)).then(
         () => {
-          this.setState({ name: '', email: '', password: '' });
-          this.props.history.push("/");
+          // this.setState({ name: '', email: '', password: '' });
+          // this.props.history.push("/");
         },
         () => this.setState({ password: '' })
       );
     } else {
       this.props.login(Object.assign({}, this.state)).then(
         () => {
-          this.setState({ email: '', password: ''});
-          this.props.history.push("/");
+          // this.setState({ email: '', password: ''});
+          // this.props.history.push("/");
         },
         () => this.setState({ password: '' })
       );
@@ -35,6 +36,10 @@ class SignUpForm extends React.Component {
   }
 
   render () {
+
+    if (this.props.logged_in) {
+      return <Redirect to="/" />;
+    }
     return (
       <div>
         <h2>Hey Guy, you're at the {this.props.formType} form</h2>
