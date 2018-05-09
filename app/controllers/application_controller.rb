@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :require_login
+  helper_method :logged_in?
 
   def login(user)
     @current_user = user
