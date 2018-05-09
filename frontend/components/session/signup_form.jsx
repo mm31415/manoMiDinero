@@ -17,12 +17,18 @@ class SignUpForm extends React.Component {
     e.preventDefault();
     if (this.props.formType === "signup") {
       this.props.signup(Object.assign({}, this.state)).then(
-        () => this.setState({ name: '', email: '', password: '' }),
+        () => {
+          this.setState({ name: '', email: '', password: '' });
+          this.props.history.push("/");
+        },
         () => this.setState({ password: '' })
       );
     } else {
       this.props.login(Object.assign({}, this.state)).then(
-        () => this.setState({ email: '', password: ''}),
+        () => {
+          this.setState({ email: '', password: ''});
+          this.props.history.push("/");
+        },
         () => this.setState({ password: '' })
       );
     }
