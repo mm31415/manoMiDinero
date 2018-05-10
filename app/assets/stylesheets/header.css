@@ -32,13 +32,23 @@
 }
 
 .signup-btn {
-  position: relative;
   background: #E98C11;
-  border: 1px solid #0ABD99;
+  border: 1px solid #C69523;
   box-shadow: 1px 1px #B9B9B9;
   height: 50%;
   padding: 5px;
   border-radius: 5px;
+}
+
+.logout-btn {
+  background: #E98C11;
+  border: 1px solid #C69523;
+  box-shadow: 1px 1px #B9B9B9;
+  height: 50%;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  font-family: sans-serif;
 }
 
 .header-nav strong {

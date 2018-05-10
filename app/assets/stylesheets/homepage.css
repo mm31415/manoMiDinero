@@ -1,0 +1,65 @@
+.homepage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.homepage table tr {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.homepage h1 {
+  font-size: 70px;
+}
+
+.homepage h2 {
+  display: flex;
+  font-size: 21px;
+}
+
+.homepage h2 em {
+  display: flex;
+  font-weight: 700;
+}
+
+.homepage #logo {
+  margin-top: 5px;
+  height: 60px;
+  width: 65px;
+}
+
+.homepage #browser-img {
+  /* position: relative;
+  left: -50px; */
+  width: 787px;
+  height: 537px;
+}
+
+.homepage #mobile-img {
+  /* position: relative;
+  right: 20px; */
+  height: 537px;
+}
+
+.homepage #signup-btn {
+  width: 300px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.homepage #signup-btn {
+  background: #E98C11;
+  border: 1px solid #C69523;
+  box-shadow: 1px 1px #B9B9B9;
+  height: 50%;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.homepage #signup-btn strong {
+  font-size: 30px;
+}

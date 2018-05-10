@@ -1,7 +1,7 @@
 body, table, ul,
 ol, li, a, p, nav,
 h1, h2, h3, h4, h5,
-strong {
+strong, em, tr, td {
   display: block;
   margin: 0;
   padding: 0;
@@ -11,4 +11,12 @@ strong {
   color: inherit;
   font-weight: normal;
   border: 0;
+  font-style: normal;
+}
+
+button {
+  border: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
 }

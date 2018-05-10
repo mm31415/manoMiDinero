@@ -1,0 +1,37 @@
+.session-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+  height: 400px;
+}
+
+.session-form #logo {
+  padding-right: 20px;
+  width: 200px;
+  height: 200px;
+}
+
+.session-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.session-form h3 {
+  font-weight: 700;
+  font-size: 18px;
+  color: gray;
+}
+
+.session-form h2 {
+  font-size: 24px;
+}
+
+.session-form #submit-btn {
+  background: #E98C11;
+  border: 1px solid #C69523;
+  box-shadow: 1px 1px #B9B9B9;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+}

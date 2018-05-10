@@ -24,8 +24,8 @@ export const Header = (props) => {
       <nav className="header">
         <Link to="/" className="homepage-link" onClick={props.resetSessionErrors}>SPLITWISECLONE</Link>
           <nav className="header-nav">
-            Welcome {props.user.name}
-            <button onClick={handleLogout}>Logout</button>
+            <strong>{`Welcome ${props.user.name}`}</strong>
+            <Link to="/" className="logout-btn" onClick={handleLogout}>Logout</Link>
           </nav>
       </nav>
     );

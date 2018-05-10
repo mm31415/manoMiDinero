@@ -41,29 +41,29 @@ class SignUpForm extends React.Component {
       return <Redirect to="/" />;
     }
     return (
-      <div>
-        <h2>Hey Guy, you're at the {this.props.formType} form</h2>
-        { (this.props.formType === "signup") ?
-          <h3>Introduce Yourself</h3> : <h3>Welcome to SplitWiseClone</h3> }
+      <div className="session-form">
+        <img id="logo" src={window.staticImages.logo} />
         <SessionErrorsContainer />
         <form onSubmit={this.handleSubmit}>
+          { (this.props.formType === "signup") ?
+            <h3>Introduce Yourself</h3> : <h3>Welcome to SplitWiseClone</h3> }
           {
             (this.props.formType === "signup") &&
             (
             <div>
-              <h3>Hi there! My name is:</h3>
+              <h2>Hi there! My name is:</h2>
               <input type="text" onChange={this.updateField('name')} value={this.state.name} />
             </div>
             )
           }
           { (this.props.formType === "signup") ?
-            <h3>Here's my email address:</h3> : <h3>Email address</h3> }
+            <h2>Here's my email address:</h2> : <h2>Email address</h2> }
           <input type="text" onChange={this.updateField('email')} value={this.state.email} />
             { (this.props.formType === "signup") ?
-              <h3>And here's my password:</h3> : <h3>Password</h3> }
+              <h2>And here's my password:</h2> : <h2>Password</h2> }
           <input type="password" onChange={this.updateField('password')} value={this.state.password} />
           { (this.props.formType === "signup") ?
-            <button>Sign me up!</button> : <button>Login</button> }
+            <button id="submit-btn">Sign me up!</button> : <button id="submit-btn">Login</button> }
         </form>
       </div>
     );
