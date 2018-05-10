@@ -20,7 +20,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to :new unless logged_in?
+    unless logged_in?
+      render json: { errors: "Must Be Signed In" }, status: 401
+    end
   end
 
   def current_user
