@@ -1,7 +1,12 @@
 import React from "react";
 import { Redirect, Link } from "react-router-dom";
 
-export const Homepage = () => {
+export const Homepage = (props) => {
+
+  if (props.logged_in) {
+    return <Redirect to="/dashboard" />;
+  }
+  
   return (
     <div className="homepage">
       <table>
