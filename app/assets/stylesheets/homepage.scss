@@ -48,9 +48,6 @@
   width: 300px;
   text-align: center;
   padding-bottom: 10px;
-}
-
-.homepage #signup-btn {
   background: #E98C11;
   border: 1px solid #C69523;
   box-shadow: 1px 1px #B9B9B9;
@@ -59,6 +56,11 @@
   border-radius: 5px;
   color: white;
 }
+
+.homepage #signup-btn:hover {
+  background: darken(#E98C11, 2%);
+}
+
 
 .homepage #signup-btn strong {
   font-size: 30px;

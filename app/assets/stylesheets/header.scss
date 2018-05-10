@@ -51,6 +51,15 @@
   font-family: sans-serif;
 }
 
+.signup-btn:hover,
+.logout-btn:hover, {
+  background: darken(#E98C11, 2%);
+}
+
+.login-btn:hover {
+  background: darken(#03D7AC, 2%);
+}
+
 .header-nav strong {
   height: 50%;
   padding: 5px;
