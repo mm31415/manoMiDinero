@@ -6,5 +6,6 @@ export const Errors = (props) => {
     (error, idx) => { return <ErrorItem key={idx} error={error} />; }
     );
 
-  return <ul>{error_items}</ul>;
+  return <ul className="session-errors">{error_items}</ul>;
+  
 };

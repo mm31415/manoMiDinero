@@ -56,3 +56,10 @@
   padding: 5px;
   border-radius: 5px;
 }
+
+.header img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-right: -10px;
+}

@@ -62,4 +62,5 @@
 
 .homepage #signup-btn strong {
   font-size: 30px;
+  display: block;
 }
