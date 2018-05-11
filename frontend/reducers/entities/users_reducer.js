@@ -10,7 +10,6 @@ export const UsersReducer = (oldState = {}, action) => {
       action.friends.forEach((friend) => {
         tempState[friend.id] = friend;
       });
-      debugger
       return merge({}, oldState, tempState);
     case RECEIVE_USER:
       return merge({}, oldState, { [action.user.id]: action.user });

@@ -7,7 +7,6 @@ export const RECEIVE_FRIENDSHIP_ERRORS = "RECEIVE_FRIENDSHIP_ERRORS";
 export const RESET_FRIENDSHIP_ERRORS = "RESET_FRIENDSHIP_ERRORS";
 
 const receiveFriends = (friends) => {
-  debugger
   return {
     type: RECEIVE_FRIENDS,
     friends: friends
