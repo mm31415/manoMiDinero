@@ -5,7 +5,7 @@ export const REMOVE_FRIEND = "REMOVE_FRIEND";
 export const RECEIVE_FRIENDSHIP_ERRORS = "RECEIVE_FRIENDSHIP_ERRORS";
 export const RESET_FRIENDSHIP_ERRORS = "RESET_FRIENDSHIP_ERRORS";
 
-const receiveFriend = (friend) => {
+const receiveFriend = (currentUserId, friend) => {
   return {
     type: ADD_FRIEND,
     friend: friend
