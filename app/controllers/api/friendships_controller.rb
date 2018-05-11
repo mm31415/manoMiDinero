@@ -3,7 +3,10 @@ class Api::FriendshipsController < ApplicationController
   before_action :require_login
 
   def index
-    render json: { friends: [{ id: 400, name: "fakename", email: "fakeemail@fake.com"}] }, status: 200
+    render json: {
+      friends: [
+        { id: 400, name: "fakename", email: "fakeemail@fake.com"},
+        { id: 537, name: "fakename2", email: "fakeemail2@fake.com"}] }, status: 200
   end
 
   def create

@@ -14,13 +14,14 @@ class Friend extends React.Component {
     }
 
     return (
-      <div>
-        <nav className="nav-sidebar">
+      <div className="all-content">
+        <nav className="left-sidebar">
           <NavSidebarContainer />
         </nav>
-        <main>
+        <main className="main-content">
           <h1>Hey guy, you're at the friend dash</h1>
         </main>
+        <div className="right-sidebar"></div>
       </div>
     );
   }
