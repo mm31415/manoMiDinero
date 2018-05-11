@@ -72,3 +72,12 @@
   height: 30px;
   margin-right: -10px;
 }
+
+@media(max-width:446px){
+  .homepage-link {
+    margin-left: 5px;
+  }
+  .signup-btn {
+    margin-right: 5px;
+  }
+}

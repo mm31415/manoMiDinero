@@ -21,7 +21,6 @@
 }
 
 .homepage h2 em {
-  display: flex;
   font-weight: 700;
 }
 
@@ -65,4 +64,33 @@
 .homepage #signup-btn strong {
   font-size: 30px;
   display: block;
+}
+
+@media(max-width:869px){
+  .homepage h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 21px;
+    align-items: center;
+  }
+}
+
+@media(max-width:778px){
+  .homepage h1 {
+    font-size: 34px;
+  }
+  .homepage table tr {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media(max-width:500px){
+  .homepage #browser-img {
+    display: none;
+  }
 }
