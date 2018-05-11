@@ -1,5 +1,5 @@
 class Friendship < ApplicationRecord
-  validates :user_id1, :user_id2, presence: true
-  validates :user_id1, uniqueness: { scope: :user_id2 }
+  validates :user1_id, :user2_id, presence: true
+  validates :user1_id, uniqueness: { scope: :user2_id }
 
 end

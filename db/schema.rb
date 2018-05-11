@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510195651) do
+ActiveRecord::Schema.define(version: 20180510223500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "friendships", force: :cascade do |t|
-    t.integer "user_id1", null: false
-    t.integer "user_id2", null: false
+    t.integer "user1_id", null: false
+    t.integer "user2_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id1", "user_id2"], name: "index_friendships_on_user_id1_and_user_id2", unique: true
+    t.index ["user1_id", "user2_id"], name: "index_friendships_on_user1_id_and_user2_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
