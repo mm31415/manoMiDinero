@@ -1,10 +1,17 @@
 import { RECEIVE_USER, LOGOUT_USER } from "../../actions/session_actions";
-import { RECEIVE_FRIEND, REMOVE_FRIEND } from "../../actions/friendship_actions";
+import { RECEIVE_FRIENDS, RECEIVE_FRIEND, REMOVE_FRIEND } from "../../actions/friendship_actions";
 import merge from 'lodash/merge';
 
 export const UsersReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   switch(action.type) {
+    case RECEIVE_FRIENDS:
+      let tempState = {};
+      action.friends.forEach((friend) => {
+        tempState[friend.id] = friend;
+      });
+      debugger
+      return merge({}, oldState, tempState);
     case RECEIVE_USER:
       return merge({}, oldState, { [action.user.id]: action.user });
     case RECEIVE_FRIEND:

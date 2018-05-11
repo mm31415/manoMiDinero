@@ -1,3 +1,10 @@
+export const fetchFriends = () => {
+  return $.ajax({
+    method: "GET",
+    url: "api/friendships"
+  });
+};
+
 export const addFriend = (user1_id, friend_email) => {
   return $.ajax({
     method: "POST",

@@ -11,6 +11,7 @@ export const App = () => {
     <div>
       <Route path="/" component={HeaderContainer} />
       <br></br>
+
       <Route path="/" exact component={HomepageContainer} />
       <Route path="/dashboard" component={DashboardContainer} />
       <Route path="/signup" exact component={SignUpFormContainer} />

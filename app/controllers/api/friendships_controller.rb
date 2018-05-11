@@ -2,6 +2,10 @@ class Api::FriendshipsController < ApplicationController
 
   before_action :require_login
 
+  def index
+    render json: { friends: [{ id: 400, name: "fakename", email: "fakeemail@fake.com"}] }, status: 200
+  end
+
   def create
     friend = User.find_by(email: friendship_params[:friend_email])
     if friend.nil?

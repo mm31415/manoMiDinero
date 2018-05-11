@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { Dashboard } from "./dashboard";
+import Dashboard from "./dashboard";
+import { fetchFriends } from "../../actions/friendship_actions";
 
 const mapStateToProps = state => {
   return {
@@ -8,6 +9,12 @@ const mapStateToProps = state => {
   };
 };
 
-const dashboard = connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchFriends: () => dispatch(fetchFriends())
+  };
+};
+
+const dashboard = connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 export default withRouter(dashboard);

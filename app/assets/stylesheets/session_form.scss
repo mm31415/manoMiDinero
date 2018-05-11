@@ -82,3 +82,14 @@
     margin-left: 13px;
   }
 }
+
+@media(max-width:399px){
+  .session-form {
+    margin-top: 0px;
+  }
+  .session-form #logo {
+    padding-right: 20px;
+    width: 60px;
+    height: 60px;
+  }
+}
