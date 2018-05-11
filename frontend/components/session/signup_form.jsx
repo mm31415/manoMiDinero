@@ -1,6 +1,6 @@
 import React from "react";
 import SessionErrorsContainer from "../errors/session_errors_container";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class SignUpForm extends React.Component {
 
@@ -8,6 +8,7 @@ class SignUpForm extends React.Component {
     super(props);
     this.state = props.user;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   updateField (field) {
@@ -26,6 +27,15 @@ class SignUpForm extends React.Component {
         () => { },
         () => this.setState({ password: '' })
       );
+    }
+  }
+
+  demoLogin (e) {
+    e.preventDefault();
+    if (this.props.match.path !== "/login") {
+      this.props.history.push("/login");
+    } else {
+      this.setState({ email: 'guestemail@guest.com', password: 'guestlogin'});
     }
   }
 
@@ -56,6 +66,7 @@ class SignUpForm extends React.Component {
             { (this.props.formType === "signup") ?
               <h2>And here's my password:</h2> : <h2>Password</h2> }
           <input type="password" onChange={this.updateField('password')} value={this.state.password} />
+          <Link className="demoLogin" to="/" onClick={this.demoLogin}>Demo Login</Link>
           { (this.props.formType === "signup") ?
             <button id="submit-btn">Sign me up!</button> : <button id="submit-btn">Login</button> }
         </form>
