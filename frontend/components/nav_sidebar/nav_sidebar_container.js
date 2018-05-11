@@ -12,4 +12,5 @@ const mapStateToProps = state => {
 };
 
 const navSidebar = connect(mapStateToProps)(NavSidebar);
+
 export default withRouter(navSidebar);

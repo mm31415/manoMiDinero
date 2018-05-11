@@ -9,14 +9,13 @@ class Dashboard extends React.Component {
   }
 
   render() {
-
     if (!this.props.logged_in) {
       return <Redirect to="/" />;
     }
 
     return (
       <div>
-        <nav>
+        <nav className="nav-sidebar">
           <NavSidebarContainer />
         </nav>
         <main>

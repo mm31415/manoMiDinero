@@ -18,7 +18,7 @@ export const addFriend = (user1_id, friend_email) => {
 export const deleteFriend = (user1_id, user2_id) => {
   return $.ajax({
     method: "DELETE",
-    url: "api/friendships",
+    url: "api/friendship",
     data: {
       friendship: { user1_id: user1_id, user2_id: user2_id }
     }
