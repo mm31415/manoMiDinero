@@ -62,8 +62,7 @@
 
 .header-nav strong {
   height: 50%;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 5px 0px;
 }
 
 .header img {
@@ -76,6 +75,7 @@
 @media(max-width:446px){
   .homepage-link {
     margin-left: 5px;
+    letter-spacing: 3px;
   }
   .signup-btn {
     margin-right: 5px;
@@ -84,6 +84,9 @@
 
 @media(max-width:399px){
   .homepage-link {
-    letter-spacing: 3px;
+    letter-spacing: 0px;
+  }
+  .header-nav strong {
+    display: none;
   }
 }

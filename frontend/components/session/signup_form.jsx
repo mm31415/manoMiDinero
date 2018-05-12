@@ -46,7 +46,7 @@ class SignUpForm extends React.Component {
     }
     return (
       <div className="session-form">
-        <img id="logo" src={window.staticImages.logo} />
+        <img id="logo" src={window.staticImages.cLogo} />
         <form onSubmit={this.handleSubmit}>
           { (this.props.formType === "signup") ?
             <h3>Introduce Yourself</h3> : <h3>Welcome to SplitWiseClone</h3> }

@@ -15,13 +15,13 @@ export const MainNav = (props) => {
   return (
     <ul className="main-nav">
       <li className={checkIfSelected("/dashboard")}>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard"><img id="logo" src={window.staticImages.cLogo} />&nbsp;Dashboard</Link>
       </li>
       <li className={checkIfSelected("/activity")}>
-        <Link to="/activity"><i className="fa fa-flag-checkered"/>Recent activity</Link>
+        <Link to="/activity"><i className="fa fa-flag-checkered"/>&nbsp;Recent activity</Link>
       </li>
       <li className={checkIfSelected("/all")}>
-        <Link to="/all"><i className="fa fa-list"/>All expences</Link>
+        <Link to="/all"><i className="fa fa-list"/>&nbsp;All expences</Link>
       </li>
     </ul>
   );

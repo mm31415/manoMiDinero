@@ -1,5 +1,6 @@
 import React from "react";
 import { FriendItem } from "./friend_item";
+import { Link } from "react-router-dom";
 
 export const FriendNav = (props) => {
   const friendLis = props.friends.map((friend) => {
@@ -7,7 +8,7 @@ export const FriendNav = (props) => {
     });
   return (
     <ul className="friend-nav">
-      <li id="friendNav-header">Friends <i className="fa fa-plus" />add</li>
+      <li id="friendNav-header">Friends <Link to="/"><i className="fa fa-plus" />add</Link></li>
       {friendLis}
     </ul>
   );

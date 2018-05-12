@@ -1,4 +1,53 @@
 .left-sidebar {
-  width: 33%;
-  background: green;
+  display: block;
+  width: 150px;
+  color: #0ABD99;
+  font-family: sans-serif;
+  font-size: 14px;
 };
+
+.selected {
+  border-left: 5px solid #B9B9B9;
+  a {
+    font-weight: 700;
+  }
+}
+
+.main-nav {
+  margin-right: 15px;
+}
+
+.main-nav #logo {
+  width: 15px;
+  height: 15px;
+  display: inline;
+  margin-left: -1px;
+  margin-top: 1px;
+}
+
+
+.friend-nav {
+  margin-right: 15px;
+}
+
+#friendNav-header {
+  background: #EEEFEF;
+  border-bottom: 1px solid #E4E5E5;
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  a {
+    margin-right: 3px;
+  }
+}
+
+li {
+  padding: 1px 0px 1px 6px;
+  border-left: 5px solid white;
+}
+
+li:hover, #friendNav-header:hover {
+  background: lightgray;
+  color: darken(#0ABD99, 20%);
+}

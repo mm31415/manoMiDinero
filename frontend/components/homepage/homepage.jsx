@@ -6,14 +6,14 @@ export const Homepage = (props) => {
   if (props.logged_in) {
     return <Redirect to="/dashboard" />;
   }
-  
+
   return (
     <div className="homepage">
       <table>
         <tbody>
           <tr>
             <td>
-              <img id="logo" src={window.staticImages.logo} />
+              <img id="logo" src={window.staticImages.cLogo} />
             </td>
             <td>
               <h1>Split expenses with friends.</h1>
@@ -42,6 +42,7 @@ export const Homepage = (props) => {
         </tbody>
       </table>
       <Link id="signup-btn" to="/signup"><strong>Get Started Now</strong>(it's free!)</Link>
+      <div className="devo-link">Logo made with&nbsp;<a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo</a></div>
 
     </div>
   );

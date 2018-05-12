@@ -13,7 +13,7 @@ export const FriendItem = (props) => {
 
   return (
     <li className={checkIfSelected(props.friend.id)}>
-      <Link to={`/friends/${props.friend.id}`}><i className="fa fa-user" />{props.friend.name}</Link>
+      <Link to={`/friends/${props.friend.id}`}><i className="fa fa-user" />&nbsp;{props.friend.name}</Link>
     </li>
   );
 };

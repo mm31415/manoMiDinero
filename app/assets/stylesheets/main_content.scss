@@ -1,12 +1,12 @@
 .all-content {
   display: flex;
-  margin-top: 0px;
+  justify-content: center;
+  border-top: 1px solid #0ABD99;
 };
 
 .main-content {
-  width: 800px;
-  background: yellow;
-  border: 3px solid black;
+  width: 500px;
+  border: 1px solid #0ABD99;
   border-top: none;
   border-bottom: none;
 }
