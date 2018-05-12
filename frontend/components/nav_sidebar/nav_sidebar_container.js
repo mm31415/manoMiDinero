@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { NavSidebar } from "./nav_sidebar";
 import { withRouter } from "react-router";
+import { resetFriendshipErrors } from "../../actions/friendship_actions";
 import merge from 'lodash/merge';
 
 const mapStateToProps = state => {
@@ -11,6 +12,12 @@ const mapStateToProps = state => {
   };
 };
 
-const navSidebar = connect(mapStateToProps)(NavSidebar);
+const mapDispatchToProps = dispatch => {
+  return {
+    resetFriendshipErrors: () => dispatch(resetFriendshipErrors())
+  };
+};
+
+const navSidebar = connect(mapStateToProps, mapDispatchToProps)(NavSidebar);
 
 export default withRouter(navSidebar);

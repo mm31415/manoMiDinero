@@ -7,7 +7,8 @@ export const NavSidebar = (props) => {
   return (
     <div className="nav-sidebar">
       <MainNav location={props.history.location.pathname} />
-      <FriendNav checkPathId={props.match.params.friendId} friends={props.friends} />
+      <FriendNav checkPathId={props.match.params.friendId}
+        friends={props.friends} resetFriendshipErrors={props.resetFriendshipErrors} />
     </div>
   );
 };

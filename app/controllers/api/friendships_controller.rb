@@ -6,22 +6,24 @@ class Api::FriendshipsController < ApplicationController
     render json: {
       friends: [
         { id: 400, name: "fakename", email: "fakeemail@fake.com"},
-        { id: 537, name: "fakename2", email: "fakeemail2@fake.com"}] }, status: 200
+        { id: 537, name: "fakename2", email: "fakeemail2@fake.com"},
+        { id: 523, name: "fakename3", email: "fakeemail3@fake.com"}
+        ]}, status: 200
   end
 
   def create
     friend = User.find_by(email: friendship_params[:friend_email])
     if friend.nil?
-      render json: { errors: "Friend email does not exist in database" }, status: 422
+      render json: { errors: ["Friend email does not exist in database"] }, status: 422
     elsif (friend.id == current_user.id)
-      render json: { errors: "You can't add yourself" }, status: 422
+      render json: { errors: ["You can't add yourself"] }, status: 422
     else
       friendship = Friendship.new(user1_id: friendship_params[:user1_id], user2_id: friend[:id])
       friendship2 = Friendship.new(user1_id: friend[:id], user2_id: friendship_params[:user1_id])
       if friendship.save && friendship2.save
         render json: { id: friend.id, name: friend.name, email: friend.email }, status: 200
       else
-        render json: { errors: "Friend already exists" }, status: 422
+        render json: { errors: ["Friend already exists"] }, status: 422
       end
     end
   end
@@ -33,7 +35,7 @@ class Api::FriendshipsController < ApplicationController
         user2_id: friendship_params[:user1_id]
         )
     if friendship1.nil? || friendship2.nil?
-      render json: { errors: "Friendship does not exist" }, status: 422
+      render json: { errors: ["Friendship does not exist"] }, status: 422
     else
       friendship1.destroy
       friendship2.destroy
@@ -45,7 +47,7 @@ class Api::FriendshipsController < ApplicationController
   private
 
   def friendship_params
-    params.require(:friendship).permit(:user1_id, :friend_email, :user2_id);
+    params.require(:friendship).permit(:user1_id, :user2_id, :friend_email);
   end
 
 end

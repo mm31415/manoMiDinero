@@ -57,18 +57,6 @@
   cursor: pointer;
 }
 
-.session-errors {
-  background: #FE0144;
-  color: white;
-  width: 362px;
-}
-
-.session-errors li {
-  display: list-item;
-  list-style-type: disc;
-  margin: 5px;
-}
-
 @media(max-width:760px){
   .session-form {
     flex-direction: column;

@@ -12,6 +12,7 @@ tr, td {
   font-weight: normal;
   border: 0;
   font-style: normal;
+  list-style: none;
 }
 
 button {

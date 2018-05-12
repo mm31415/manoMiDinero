@@ -7,11 +7,13 @@ import ActivityContainer from "./components/activity/activity_container";
 import ExpenseContainer from "./components/expense/expense_container";
 import FriendContainer from "./components/friend/friend_container";
 import HomepageContainer from "./components/homepage/homepage_container";
+import FriendModalContainer from "./components/friend/friend_modal_container";
 import { Route } from "react-router-dom";
 
 export const App = () => {
   return (
     <div>
+      <Route path="/" component={FriendModalContainer} />
       <Route path="/" component={HeaderContainer} />
 
       <Route path="/" exact component={HomepageContainer} />
