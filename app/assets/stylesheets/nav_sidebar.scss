@@ -6,13 +6,6 @@
   font-size: 16px;
 };
 
-.selected {
-  border-left: 5px solid #B9B9B9;
-  a {
-    font-weight: 700;
-  }
-}
-
 .main-nav {
   margin-right: 15px;
 }
@@ -50,4 +43,11 @@
 .left-sidebar li:hover, #friendNav-header:hover {
   background: lightgray;
   color: darken(#0ABD99, 20%);
+}
+
+.left-sidebar .selected {
+  border-left: 5px solid #B9B9B9;
+  a {
+    font-weight: 700;
+  }
 }

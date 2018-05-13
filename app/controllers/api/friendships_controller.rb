@@ -17,7 +17,7 @@ class Api::FriendshipsController < ApplicationController
       friendship = Friendship.new(user1_id: friendship_params[:user1_id], user2_id: friend[:id])
       friendship2 = Friendship.new(user1_id: friend[:id], user2_id: friendship_params[:user1_id])
       if friendship.save && friendship2.save
-        render json: { id: friend.id, name: friend.name, email: friend.email }, status: 200
+        render json: { id: friend.id, email: friend.email, name: friend.name }, status: 200
       else
         render json: { errors: ["Friend already exists"] }, status: 422
       end
