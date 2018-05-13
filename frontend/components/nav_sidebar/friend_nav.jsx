@@ -7,8 +7,10 @@ export const FriendNav = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
     props.resetFriendshipErrors();
+    const modal_form = document.getElementById("add-friend-form");
     const modal = document.getElementById("add-friend-modal");
     modal.style.display = "block";
+    modal_form.classList.add("fade-in");
   }
 
   const friendLis = props.friends.map((friend) => {

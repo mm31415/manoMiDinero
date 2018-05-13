@@ -24,7 +24,10 @@ class FriendModal extends React.Component {
     e.preventDefault();
     const modal = document.getElementById("add-friend-modal");
     this.props.addFriend(this.props.user1_id, this.state.email).then(
-      () => { modal.style.display = "none"; },
+      () => {
+        this.setState({ email: '' });
+        modal.style.display = "none";
+      },
       () => { }
     );
   }
@@ -32,10 +35,17 @@ class FriendModal extends React.Component {
   render() {
 
     const modal = document.getElementById("add-friend-modal");
+    const modal_form = document.getElementById("add-friend-form");
     document.onclick = (e) => {
       if (e.target === modal) {
         this.handleState();
-        modal.style.display = "none";
+        modal_form.classList.toggle("fade-out");
+        setTimeout(function() {
+          modal.style.display = "none";
+        }, 400);
+        setTimeout(function() {
+          modal_form.classList.remove("fade-out");
+        }, 500);
       }
     };
 
