@@ -5,6 +5,19 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_many(
+    :friendships,
+    class_name: "Friendship",
+    foreign_key: :user1_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :friends,
+    through: :friendships,
+    source: :friend
+  )
+
   after_initialize :ensure_session_token!
 
   def User.find_by_credentials(email, password)
