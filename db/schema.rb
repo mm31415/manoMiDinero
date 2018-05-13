@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510223500) do
+ActiveRecord::Schema.define(version: 20180513201743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bill_splits", force: :cascade do |t|
+    t.float "amount", null: false
+    t.integer "bill_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bill_id", "user_id"], name: "index_bill_splits_on_bill_id_and_user_id", unique: true
+  end
+
+  create_table "bills", force: :cascade do |t|
+    t.float "amount", null: false
+    t.string "description", null: false
+    t.string "date", null: false
+    t.text "note"
+    t.integer "creator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_bills_on_creator_id"
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user1_id", null: false
@@ -21,6 +41,15 @@ ActiveRecord::Schema.define(version: 20180510223500) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user1_id", "user2_id"], name: "index_friendships_on_user1_id_and_user2_id", unique: true
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.float "amount", null: false
+    t.integer "bill_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bill_id", "user_id"], name: "index_payments_on_bill_id_and_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
