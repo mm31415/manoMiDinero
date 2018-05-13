@@ -51,7 +51,7 @@ class FriendModal extends React.Component {
           <h1>Here's my friend's email:</h1>
           <FriendshipErrorsContainer />
           <input type="text" placeholder="Email" onChange={this.updateEmail} value={this.state.email} />
-          <button id="submit-btn" onClick={this.handleSubmit}>Add Friend!</button>
+          <button id="add-friend-btn" onClick={this.handleSubmit}>Add Friend!</button>
         </form>
       </div>
     );
