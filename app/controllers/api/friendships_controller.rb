@@ -3,15 +3,8 @@ class Api::FriendshipsController < ApplicationController
   before_action :require_login
 
   def index
-    # friends = current_user.friends
-    @friends = [
-      { id: 400, name: "fakename", email: "fakeemail@fake.com"},
-      { id: 537, name: "fakename2", email: "fakeemail2@fake.com"},
-      { id: 523, name: "fakename3", email: "fakeemail3@fake.com"}
-      ]
-    # debugger
-    # debugger
-    render("api/users/users.json.jbuilder", users: @friends).html_safe
+    @friends = current_user.friends
+    render("api/users/users.json.jbuilder").html_safe
   end
 
   def create

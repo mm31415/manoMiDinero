@@ -13,9 +13,9 @@ const receiveFriends = (friends) => {
   };
 };
 
-const receiveFriend = (currentUserId, friend) => {
+const receiveFriend = (friend) => {
   return {
-    type: ADD_FRIEND,
+    type: RECEIVE_FRIEND,
     friend: friend
   };
 };
