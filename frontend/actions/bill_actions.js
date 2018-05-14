@@ -34,7 +34,7 @@ export const resetBillErros = () => {
   };
 };
 
-export const addBill = (bill, splits) => {
+export const addBill = (bill) => {
   return (dispatch) => {
     return BillUtil.addBill(bill).then(
       (bill) => { return dispatch(receiveBill(bill)); },
@@ -43,7 +43,7 @@ export const addBill = (bill, splits) => {
   };
 };
 
-export const updateBill = (bill, splits) => {
+export const updateBill = (bill) => {
   return (dispatch) => {
     return BillUtil.updateBill(bill).then(
       (bill) => { return dispatch(receiveBill(bill)); },
@@ -55,7 +55,8 @@ export const updateBill = (bill, splits) => {
 export const deleteBill = (id) => {
   return (dispatch) => {
     return BillUtil.deleteBill(id).then(
-      (id) => { return dispatch(removeBill(id)) }
+      (id) => { return dispatch(removeBill(id)); },
+      (errors) => { return dispatch(receiveBillErrors(errors)); }
     );
   };
 };

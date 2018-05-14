@@ -8,6 +8,7 @@ import ExpenseContainer from "./components/expense/expense_container";
 import FriendContainer from "./components/friend/friend_container";
 import HomepageContainer from "./components/homepage/homepage_container";
 import FriendModalContainer from "./components/friend/friend_modal_container";
+import CreateBillContainer from "./components/bill/create_bill_container";
 import { Route } from "react-router-dom";
 
 export const App = () => {
@@ -17,6 +18,7 @@ export const App = () => {
       <Route path="/" component={HeaderContainer} />
 
       <Route path="/" exact component={HomepageContainer} />
+      <Route pate="/" component={CreateBillContainer} />
       <Route path="/dashboard" component={DashboardContainer} />
       <Route path="/activity" component={ActivityContainer} />
       <Route path="/all" component={ExpenseContainer} />

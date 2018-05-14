@@ -1,25 +1,19 @@
-export const addBill = (bill, splits) => {
+export const addBill = (bill) => {
   return $.ajax({
     method: "POST",
     url: "api/bills",
     data: {
-      bill: bill,
-      bill_splits: {
-        splits: splits
-      }
+      bill: bill
     }
   });
 };
 
-export const updateBill = (bill, splits) => {
+export const updateBill = (bill) => {
   return $.ajax({
     method: "PATCH",
     url: `api/bills/${bill.id}`,
     data: {
-      bill: bill,
-      bill_splits: {
-        splits: splits
-      }
+      bill: bill
     }
   });
 };
@@ -31,13 +25,13 @@ export const deleteBill = (id) => {
   });
 };
 
-export const addPayment = (payment) => {
-  return $.ajax({
-    method: "POST",
-    url: "api/payments",
-    data: {  payment: payment }
-  });
-};
+// export const addPayment = (payment) => {
+//   return $.ajax({
+//     method: "POST",
+//     url: "api/payments",
+//     data: {  payment: payment }
+//   });
+// };
 
 // export const updatePayments = (payments) => {
 //   return $.ajax({

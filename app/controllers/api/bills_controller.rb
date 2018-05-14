@@ -7,7 +7,7 @@ class Api::BillsController < ApplicationController
     @bill.creator_id = current_user.id
 
     if @bill.save
-      @splits = split_params.map do |split|
+      @splits = bill_params[:splits].map do |split|
         BillSplit.create(split, bill_id: @bill.id)
       end
       render :show
@@ -21,13 +21,15 @@ class Api::BillsController < ApplicationController
 
     if @bill.nil?
       render json: { errors: "Bill does not exist" }, status: 422
-    else @bill.update(bill_params)
-      split_params.each do |split_update|
+    elsif @bill.update(bill_params)
+      bill_params[:splits].each do |split_update|
         split = BillSplit.find(split_update.id)
         split.update(split_update)
       end
       @splits = @bill.bill_splits
-      render :show, status: 200
+      render :show
+    else
+      render json: { errors: @bill.errors.full_messages }, status: 422
     end
   end
 
@@ -44,11 +46,7 @@ class Api::BillsController < ApplicationController
 
   def bill_params
     params.require(:bill).
-      permit(:amount, :description, :date, :note, :payer_id)
-  end
-
-  def split_params
-    params.require(:bill_splits).permit(:splits)
+      permit(:amount, :description, :date, :note, :payer_id, :splits)
   end
 
 end
