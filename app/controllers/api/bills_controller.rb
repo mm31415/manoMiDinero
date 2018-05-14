@@ -1,10 +1,10 @@
-class BillsController < ApplicationController
+class Api::BillsController < ApplicationController
 
   before_action :require_login
 
   def create
     bill = Bill.new(bill_params)
-    bill.creator_id = current_user.id 
+    bill.creator_id = current_user.id
 
     if bill.save
       render json: {
@@ -17,7 +17,7 @@ class BillsController < ApplicationController
   end
 
   def update
-    bill = Bill.find(bill_params[:id])
+    bill = Bill.find(params[:id])
 
     if bill.nil?
       render json: { errors: "Bill does not exist" }, status: 422
@@ -30,7 +30,7 @@ class BillsController < ApplicationController
   end
 
   def destroy
-    bill = Bill.find(bill_params[:id])
+    bill = Bill.find(params[:id])
     if bill.nil?
       render json: { errors: "Bill does not exist" }, status: 422
     else bill.destroy

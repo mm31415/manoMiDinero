@@ -12,15 +12,16 @@ class Bill < ApplicationRecord
     :bill_splits,
     class_name: "BillSplit",
     foreign_key: :bill_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
   )
 
   has_many(
     :payments,
     class_name: "Payment",
     foreign_key: :bill_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
   )
-
 
 end

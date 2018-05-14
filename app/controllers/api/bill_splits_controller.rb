@@ -1,4 +1,4 @@
-class BillSplitsController < ApplicationController
+class Api::BillSplitsController < ApplicationController
 
   before_action :require_login
 

@@ -18,16 +18,16 @@ const logoutUser = () => {
   };
 };
 
-export const resetSessionErrors = () => {
-  return {
-    type: RESET_SESSION_ERRORS
-  };
-};
-
 const receiveSessionErrors = (errors) => {
   return {
     type: RECEIVE_SESSION_ERRORS,
     errors: errors.responseJSON.errors
+  };
+};
+
+export const resetSessionErrors = () => {
+  return {
+    type: RESET_SESSION_ERRORS
   };
 };
 
