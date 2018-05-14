@@ -1,5 +1,5 @@
 class Bill < ApplicationRecord
-  validates :amount, :description, :date, :creator_id, presence: true
+  validates :amount, :description, :date, :creator_id, :payer_id, presence: true
 
   belongs_to(
     :creator,
@@ -11,14 +11,6 @@ class Bill < ApplicationRecord
   has_many(
     :bill_splits,
     class_name: "BillSplit",
-    foreign_key: :bill_id,
-    primary_key: :id,
-    dependent: :destroy
-  )
-
-  has_many(
-    :payments,
-    class_name: "Payment",
     foreign_key: :bill_id,
     primary_key: :id,
     dependent: :destroy

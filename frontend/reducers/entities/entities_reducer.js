@@ -1,5 +1,5 @@
 import { UsersReducer } from "./users_reducer";
-import BillsReducer from "./bills_reducer";
+import { BillsReducer } from "./bills_reducer";
 import { combineReducers } from "redux";
 
 

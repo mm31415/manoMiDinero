@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180513201743) do
+ActiveRecord::Schema.define(version: 20180514150933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,9 @@ ActiveRecord::Schema.define(version: 20180513201743) do
     t.integer "creator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payer_id", null: false
     t.index ["creator_id"], name: "index_bills_on_creator_id"
+    t.index ["payer_id"], name: "index_bills_on_payer_id"
   end
 
   create_table "friendships", force: :cascade do |t|

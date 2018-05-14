@@ -1,16 +1,26 @@
-export const addBill = (bill) => {
+export const addBill = (bill, splits) => {
   return $.ajax({
     method: "POST",
     url: "api/bills",
-    data: { bill: bill }
+    data: {
+      bill: bill,
+      bill_splits: {
+        splits: splits
+      }
+    }
   });
 };
 
-export const updateBill = (bill) => {
+export const updateBill = (bill, splits) => {
   return $.ajax({
     method: "PATCH",
     url: `api/bills/${bill.id}`,
-    data: { bill: bill }
+    data: {
+      bill: bill,
+      bill_splits: {
+        splits: splits
+      }
+    }
   });
 };
 
@@ -21,34 +31,34 @@ export const deleteBill = (id) => {
   });
 };
 
-export const addPayments = (payments) => {
+export const addPayment = (payment) => {
   return $.ajax({
     method: "POST",
     url: "api/payments",
-    data: {  payments: payments }
+    data: {  payment: payment }
   });
 };
 
-export const updatePayments = (payments) => {
-  return $.ajax({
-    method: "PATCH",
-    url: "api/payments",
-    data: { payments: payments }
-  });
-};
-
-export const addSplits = (splits) => {
-  return $.ajax({
-    method: "POST",
-    url: "api/bill_splits",
-    data: {  splits: splits }
-  });
-};
-
-export const updateSplits = (splits) => {
-  return $.ajax({
-    method: "PATCH",
-    url: "api/bill_splits",
-    data: { splits: splits }
-  });
-};
+// export const updatePayments = (payments) => {
+//   return $.ajax({
+//     method: "PATCH",
+//     url: "api/payments",
+//     data: { payments: payments }
+//   });
+// };
+//
+// export const addSplits = (splits) => {
+//   return $.ajax({
+//     method: "POST",
+//     url: "api/bill_splits",
+//     data: {  splits: splits }
+//   });
+// };
+//
+// export const updateSplits = (splits) => {
+//   return $.ajax({
+//     method: "PATCH",
+//     url: "api/bill_splits",
+//     data: { splits: splits }
+//   });
+// };
