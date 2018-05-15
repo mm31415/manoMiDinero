@@ -28,6 +28,7 @@ class BillModal extends React.Component {
     this.changePayer = this.changePayer.bind(this);
     this.addSplits = this.addSplits.bind(this);
     this.checkValidations = this.checkValidations.bind(this);
+    this.handleState = this.handleState.bind(this);
   }
 
 
@@ -137,6 +138,20 @@ class BillModal extends React.Component {
     return true;
   }
 
+  handleState(e) {
+    const defaultBillState = {
+      bill: {
+        amount: '',
+        description: '',
+        date: '',
+        payer_id: this.props.currentUserId,
+        splits: []
+      },
+      friend: { id: null, name: '' }
+    };
+    this.setState(defaultBillState);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     if (this.checkValidations()) {
@@ -147,6 +162,21 @@ class BillModal extends React.Component {
   }
 
   render() {
+
+    const modal = document.getElementById("add-bill-modal");
+    const modal_form = document.getElementById("add-bill-form");
+    document.onclick = (e) => {
+      if (e.target === modal) {
+        this.handleState();
+        modal_form.classList.toggle("fade-out");
+        setTimeout(function() {
+          modal.style.display = "none";
+        }, 400);
+        setTimeout(function() {
+          modal_form.classList.remove("fade-out");
+        }, 500);
+      }
+    };
 
     const selectOptions = this.props.friends_arr.map((friend) => {
       return <SelectFriendItem key={friend.id} friend={friend} setFriend={this.setFriend} />;
@@ -166,14 +196,14 @@ class BillModal extends React.Component {
     };
 
     return(
-      <div id="bill-modal">
-        <form id="main-bill">
-          <h3>With you and:</h3>
+      <div id="add-bill-modal">
+        <form id="add-bill-form">
+          <h1>With you and:</h1>
           <input type="hidden" id="friend-value"></input>
           <input type="text" placeholder="Friend Name"
             value={this.state.friend.name} onChange={updateList}></input>
 
-          <ul>
+          <ul id="friend-search">
             {selectOptions}
           </ul>
 
@@ -185,13 +215,13 @@ class BillModal extends React.Component {
             onChange={this.updateField("amount")}
             onBlur={this.displayAmount} placeholder="0.00"></input>
 
-          Date:<input type="date" id="datepicker"
+          <input type="date" id="datepicker"
             onBlur={this.updateField("date")}></input>
-          <p>(${`${(this.state.bill.amount / 2).toFixed(2)}`}/person)</p>
+          <h1>(${`${(this.state.bill.amount / 2).toFixed(2)}`}/person)</h1>
 
-          Paid by<button onClick={this.changePayer}>{`${this.displayPayer()}`}</button>and split equally.
+          <h1>Paid by<button id="change-payer-btn" onClick={this.changePayer}>{`${this.displayPayer()}`}</button>and split equally.</h1>
 
-          <button onClick={this.handleSubmit} onMouseOver={this.addSplits}>Add Bill</button>
+          <button id="add-bill-btn" onClick={this.handleSubmit} onMouseOver={this.addSplits}>Add Bill</button>
         </form>
       </div>
     );

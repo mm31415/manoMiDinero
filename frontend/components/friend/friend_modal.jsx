@@ -37,6 +37,7 @@ class FriendModal extends React.Component {
     const modal = document.getElementById("add-friend-modal");
     const modal_form = document.getElementById("add-friend-form");
     document.onclick = (e) => {
+      debugger
       if (e.target === modal) {
         this.handleState();
         modal_form.classList.toggle("fade-out");

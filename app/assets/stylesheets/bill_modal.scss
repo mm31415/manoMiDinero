@@ -1,0 +1,88 @@
+#add-bill-modal {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.2);
+  z-index: 1;
+  transition: all 2s ease-in;
+}
+
+#add-bill-form {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: 300px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 10%;
+    font-size: 24px;
+    font-family: sans-serif;
+    border: 1px solid black;
+    border-radius: 5px;
+
+  h1 {
+    margin: 3px 0px;
+  }
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: none;
+    height: 33px;
+    font-size: 18px;
+    border: 1px solid lightgray;
+    margin-top: 10px;
+    padding: 5px;
+  }
+}
+
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 1s;
+}
+
+.fade-out {
+  animation-name: fade-out;
+  animation-duration: 0.5s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0.0;
+  }
+
+  to {
+    opacity: 1.0;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1.0;
+  }
+
+  to {
+    opacity: 0.0;
+  }
+}
+
+
+
+#add-bill-btn #change-payer-btn {
+  background: #E98C11;
+  border: 1px solid #C69523;
+  box-shadow: 1px 1px #B9B9B9;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  width: 300px;
+  margin-top: 10px;
+}
+
+#add-bill-btn:hover, #change-payer-btn:hover {
+  background: darken(#E98C11, 2%);
+  cursor: pointer;
+}

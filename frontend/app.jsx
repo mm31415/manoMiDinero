@@ -15,10 +15,10 @@ export const App = () => {
   return (
     <div>
       <Route path="/" component={FriendModalContainer} />
+      <Route pate="/" component={CreateBillContainer} />
       <Route path="/" component={HeaderContainer} />
 
       <Route path="/" exact component={HomepageContainer} />
-      <Route pate="/" component={CreateBillContainer} />
       <Route path="/dashboard" component={DashboardContainer} />
       <Route path="/activity" component={ActivityContainer} />
       <Route path="/all" component={ExpenseContainer} />
