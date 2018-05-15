@@ -1,5 +1,10 @@
 import React from "react";
 
 export const SelectFriendItem = (props) => {
-  return <option value={props.friend.id}>{props.friend.name}</option>;
-}
+  return (
+    <li onClick={props.selectFriend} value={props.friend.id}
+    label={props.friend.name} className="name-li">
+    {props.friend.name}
+    </li>
+  );
+};

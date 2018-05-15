@@ -39,7 +39,6 @@ class BillModal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
     console.log(this.state);
   }
 
@@ -49,17 +48,28 @@ class BillModal extends React.Component {
       return <SelectFriendItem friend={friend} selectFriend={this.selectFriend} />;
     });
 
+    const updateList = (e) => {
+      const search = e.currentTarget.value;
+      const list = document.getElementsByClassName("name-li");
+      for (let i = 0; i < list.length; i++) {
+        if (!list[i].attributes.label.value.includes(search)) {
+          list[i].style.display = "none";
+        } else {
+          list[i].style.display = "inherit";
+        }
+      }
+    };
+
     return (
       <div id="bill-modal">
         <form id="main-bill">
           <h3>With you and: </h3>
-          <select onInput={this.selectFriend} id="select-friend">
+          <input type="hidden" id="friend-value" value="" />
+          <input type="text" placeholder="Friend Name" onChange={updateList} />
+          <ul>
             {selectOptions}
-          </select>
-          <input type="text" value={this.state.description}
-            onChange={this.updateField("description")} placeholder="Description" />
-          $<input type="text" value={this.state.amount}
-            onChange={this.updateField("amount")} placeholder="0.00"/>
+          </ul>
+
           <button onClick={this.handleSubmit}>Add Bill</button>
         </form>
       </div>
@@ -69,3 +79,13 @@ class BillModal extends React.Component {
 }
 
 export default BillModal;
+
+
+// e.currentTarget.attributes.value.value
+// e.currentTarget.attributes.label.value.includes("blah")
+// <li onClick={this.checkValue} value="ilikeCandy" label="yoman">SomeStuff</li>
+
+// <input type="text" value={this.state.description}
+//   onChange={this.updateField("description")} placeholder="Description" />
+// $<input type="text" value={this.state.amount}
+//   onChange={this.updateField("amount")} placeholder="0.00"/>
