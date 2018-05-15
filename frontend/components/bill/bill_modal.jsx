@@ -2,6 +2,8 @@ import React from "react";
 import { SelectFriendItem } from "./select_friend_item";
 import merge from "lodash/merge";
 
+
+
 const defaultBillState = {
   bill: {
     amount: '',
@@ -17,7 +19,6 @@ class BillModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.bill || defaultBillState;
-    debugger
     this.setFriend =  this.setFriend.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateField = this.updateField.bind(this);
@@ -33,10 +34,17 @@ class BillModal extends React.Component {
           that.setState({ friend: { [field]: e.currentTarget.value } });
         }
       );
+    } else if (field === "amount") {
+      return (
+        e => {
+          const newState = merge({}, that.state, { bill: { [field]: e.currentTarget.value }  });
+          that.setState(newState);
+        }
+      );
     } else {
       return (
         e => {
-          const newState = merge({}, that.state, { bill: { [field]: e.currentTarget.value } }); 
+          const newState = merge({}, that.state, { bill: { [field]: e.currentTarget.value } });
           that.setState(newState);
         }
       );
@@ -54,8 +62,21 @@ class BillModal extends React.Component {
 
   displayAmount (e) {
     const amount = this.state.bill.amount;
-    const newState = merge({}, this.state, { bill: { amount: parseFloat(amount).toFixed(2) } })
+    let newState;
+    if (amount) {
+      newState = merge({}, this.state, { bill: { amount: parseFloat(amount).toFixed(2) || "0.00" } });
+    } else {
+      newState = merge({}, this.state, { bill: { amount: "0.00" } })
+    }
     this.setState(newState);
+  }
+
+  dividedAmount () {
+    if (this.state.bill.amount) {
+      return (this.state.bill.amount / 2).toFixed(2)
+    } else {
+      return "0.00";
+    }
   }
 
   handleSubmit(e) {
@@ -82,17 +103,29 @@ class BillModal extends React.Component {
       }
     };
 
-    return (
+    return(
       <div id="bill-modal">
         <form id="main-bill">
-          <h3>With you and: </h3>
-          <input type="hidden" id="friend-value" />
-          <input type="text" placeholder="Friend Name" value={this.state.friend.name} onChange={updateList} />
+          <h3>With you and:</h3>
+          <input type="hidden" id="friend-value"></input>
+          <input type="text" placeholder="Friend Name"
+            value={this.state.friend.name} onChange={updateList}></input>
+
           <ul>
             {selectOptions}
           </ul>
-          <input type="text" value={this.state.bill.description} onChange={this.updateField("description")} placeholder="Description" />
-          $<input type="text" value={this.state.bill.amount} onChange={this.updateField("amount")} onBlur={this.displayAmount} placeholder="0.00" />
+
+          <input type="text" value={this.state.bill.description}
+            onChange={this.updateField("description")}
+            placeholder="Description"></input>
+
+          $<input type="text" value={this.state.bill.amount}
+            onChange={this.updateField("amount")}
+            onBlur={this.displayAmount} placeholder="0.00"></input>
+
+          Date:<input type="date" id="datepicker"
+            onBlur={this.updateField("date")}></input>
+          <p>(${`${(this.state.bill.amount / 2).toFixed(2)}`}/person)</p>
 
           <button onClick={this.handleSubmit}>Add Bill</button>
         </form>
