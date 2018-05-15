@@ -161,11 +161,24 @@ class BillModal extends React.Component {
     }
   }
 
+  fadeOut (e) {
+    if (e.target === modal) {
+      this.handleState();
+      modal_form.classList.toggle("fade-out");
+      setTimeout(function() {
+        modal.style.display = "none";
+      }, 400);
+      setTimeout(function() {
+        modal_form.classList.remove("fade-out");
+      }, 500);
+    }
+  };
+
   render() {
 
     const modal = document.getElementById("add-bill-modal");
     const modal_form = document.getElementById("add-bill-form");
-    document.onclick = (e) => {
+    const fadeOut = (e) => {
       if (e.target === modal) {
         this.handleState();
         modal_form.classList.toggle("fade-out");
@@ -196,7 +209,7 @@ class BillModal extends React.Component {
     };
 
     return(
-      <div id="add-bill-modal">
+      <div id="add-bill-modal" onClick={fadeOut}>
         <form id="add-bill-form">
           <h1>With you and:</h1>
           <input type="hidden" id="friend-value"></input>
