@@ -197,10 +197,10 @@ class BillModal extends React.Component {
 
     const updateList = (e) => {
       this.updateField("name")(e);
-      const search = e.currentTarget.value;
+      const search = e.currentTarget.value.toLowerCase();
       const list = document.getElementsByClassName("name-li");
       for (let i = 0; i < list.length; i++) {
-        if (!list[i].attributes.label.value.includes(search)) {
+        if (!list[i].attributes.label.value.toLowerCase().includes(search)) {
           list[i].style.display = "none";
         } else {
           list[i].style.display = "inherit";
