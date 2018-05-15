@@ -117,7 +117,6 @@ class BillModal extends React.Component {
       { bill: {
         splits: splits
       }});
-      debugger
     this.setState(newState);
   }
 
@@ -141,9 +140,10 @@ class BillModal extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.checkValidations()) {
-      console.log(this.state);
+      const bill = this.state.bill;
+      bill.amount = bill.amount - 0;
+      this.props.action(bill);
     }
-    console.log(this.state);
   }
 
   render() {

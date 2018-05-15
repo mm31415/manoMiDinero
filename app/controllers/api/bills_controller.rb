@@ -10,7 +10,7 @@ class Api::BillsController < ApplicationController
       @splits = bill_params[:splits].map do |split|
         BillSplit.create(split, bill_id: @bill.id)
       end
-      render :show
+      render json: { message: "Bill Created" }, status: 200
     else
       render json: { errors: @bill.errors.full_messages }, status: 422
     end
@@ -46,7 +46,7 @@ class Api::BillsController < ApplicationController
 
   def bill_params
     params.require(:bill).
-      permit(:amount, :description, :date, :note, :payer_id, :splits)
+      permit(:amount, :description, :date, :note, :payer_id, { :splits => [] })
   end
 
 end

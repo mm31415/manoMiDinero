@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import BillModal from "./bill_modal";
+import { addBill } from "../../actions/bill_actions";
 import merge from "lodash/merge";
 
 const mapStateToProps = state => {
@@ -14,7 +15,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addBill: (bill, splits) =>  dispatch(addBill(bill, splits))
+    action: (bill) =>  dispatch(addBill(bill))
   };
 };
 
