@@ -1,5 +1,6 @@
 import React from "react";
 import { SelectFriendItem } from "./select_friend_item";
+import merge from "lodash/merge";
 
 const defaultBillState = {
   bill: {
@@ -9,32 +10,52 @@ const defaultBillState = {
     payer_id: '',
     splits: []
   },
-  friend: { id: null }
+  friend: { id: null, name: '' }
 };
 
 class BillModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.bill || defaultBillState;
-    this.selectFriend =  this.selectFriend.bind(this);
+    debugger
+    this.setFriend =  this.setFriend.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateField = this.updateField.bind(this);
+    this.displayAmount = this.displayAmount.bind(this);
   }
 
   updateField (field) {
-    if (field === "amount") {
-      return e => this.setState({ bill: { [field]: parseFloat(e.currentTarget.value).toFixed(2) } });
+    const that = this;
+    if (field === "name") {
+      return (
+        e => {
+          const newState = merge({}, that.state, { friend: { [field]: e.currentTarget.value } });
+          that.setState({ friend: { [field]: e.currentTarget.value } });
+        }
+      );
     } else {
-      return e => this.setState({ bill: { [field]: e.currentTarget.value } });
+      return (
+        e => {
+          const newState = merge({}, that.state, { bill: { [field]: e.currentTarget.value } }); 
+          that.setState(newState);
+        }
+      );
     }
-
-
-
   }
 
-  selectFriend (e) {
-    debugger
-    this.setState({ friend: { id: parseInt(e.currentTarget.value) } });
+  setFriend (e) {
+    this.setState({
+      friend: {
+        id: parseInt(e.currentTarget.value),
+        name: this.props.friends_obj[parseInt(e.currentTarget.value)].name
+      }
+    });
+  }
+
+  displayAmount (e) {
+    const amount = this.state.bill.amount;
+    const newState = merge({}, this.state, { bill: { amount: parseFloat(amount).toFixed(2) } })
+    this.setState(newState);
   }
 
   handleSubmit(e) {
@@ -44,11 +65,12 @@ class BillModal extends React.Component {
 
   render() {
 
-    const selectOptions = this.props.friends.map((friend) => {
-      return <SelectFriendItem friend={friend} selectFriend={this.selectFriend} />;
+    const selectOptions = this.props.friends_arr.map((friend) => {
+      return <SelectFriendItem friend={friend} setFriend={this.setFriend} />;
     });
 
     const updateList = (e) => {
+      this.updateField("name")(e);
       const search = e.currentTarget.value;
       const list = document.getElementsByClassName("name-li");
       for (let i = 0; i < list.length; i++) {
@@ -64,11 +86,13 @@ class BillModal extends React.Component {
       <div id="bill-modal">
         <form id="main-bill">
           <h3>With you and: </h3>
-          <input type="hidden" id="friend-value" value="" />
-          <input type="text" placeholder="Friend Name" onChange={updateList} />
+          <input type="hidden" id="friend-value" />
+          <input type="text" placeholder="Friend Name" value={this.state.friend.name} onChange={updateList} />
           <ul>
             {selectOptions}
           </ul>
+          <input type="text" value={this.state.bill.description} onChange={this.updateField("description")} placeholder="Description" />
+          $<input type="text" value={this.state.bill.amount} onChange={this.updateField("amount")} onBlur={this.displayAmount} placeholder="0.00" />
 
           <button onClick={this.handleSubmit}>Add Bill</button>
         </form>
