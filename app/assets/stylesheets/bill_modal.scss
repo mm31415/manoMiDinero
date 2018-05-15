@@ -1,5 +1,5 @@
 #add-bill-modal {
-  display: none;
+  // display: none;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -9,34 +9,78 @@
 }
 
 #add-bill-form {
+    position: relative;
     display: flex;
     flex-direction: column;
     background: white;
-    width: 300px;
-    padding: 20px;
+    width: 325px;
     margin: auto;
-    margin-top: 10%;
+    top: 50px;
     font-size: 24px;
     font-family: sans-serif;
-    border: 1px solid black;
+    border: 1px solid #0ABD99;
     border-radius: 5px;
 
-  h1 {
-    margin: 3px 0px;
-  }
+  // input {
+  //   box-sizing: border-box;
+  //   // width: 90%;
+  //   border-radius: 5px;
+  //   box-shadow: none;
+  //   // height: 33px;
+  //   // font-size: 18px;
+  //   border: 1px solid lightgray;
+  //   margin-top: 10px;
+  //   padding: 10px;
+  // }
 
-  input {
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 5px;
-    box-shadow: none;
-    height: 33px;
-    font-size: 18px;
-    border: 1px solid lightgray;
-    margin-top: 10px;
-    padding: 5px;
+  #add-bill-header {
+    display: flex;
+    justify-content: space-between;
+    background: #03D7AC;
+    padding: 10px;
+    color: white;
   }
 }
+
+#enter-name {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #E4E5E5;
+  input {
+    margin-left: 5px;
+    font-size: 13px;
+    border: none;
+    padding: 0px;
+  }
+  input:focus {
+    outline: none;
+    #friend-search {
+      display: block;
+    }
+  }
+  input: {
+
+  }
+  h1 {
+    font-size: 16px;
+  }
+  em {
+    font-weight: 700;
+  }
+}
+
+#friend-search{
+  // display: none;
+  position: relative;
+
+  margin: auto;
+  top: 250px;
+  width: 325px;
+  z-index: 5;
+  background: white;
+}
+
+
 
 .fade-in {
   animation-name: fade-in;

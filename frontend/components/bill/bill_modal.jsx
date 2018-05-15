@@ -210,15 +210,19 @@ class BillModal extends React.Component {
 
     return(
       <div id="add-bill-modal" onClick={fadeOut}>
+        <ul id="friend-search">
+          {selectOptions}
+        </ul>
         <form id="add-bill-form">
-          <h1>With you and:</h1>
-          <input type="hidden" id="friend-value"></input>
-          <input type="text" placeholder="Friend Name"
-            value={this.state.friend.name} onChange={updateList}></input>
-
-          <ul id="friend-search">
-            {selectOptions}
-          </ul>
+          <header id="add-bill-header">
+            Add Bill<i class="fa fa-close"></i>
+          </header>
+          <span id="enter-name">
+            <h1>With <em>you</em> and:</h1>
+            <input type="hidden" id="friend-value"></input>
+            <input type="text" placeholder="Friend Name"
+              value={this.state.friend.name} onChange={updateList}></input>
+          </span>
 
           <input type="text" value={this.state.bill.description}
             onChange={this.updateField("description")}
