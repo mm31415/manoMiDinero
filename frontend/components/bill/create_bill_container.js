@@ -7,7 +7,8 @@ const mapStateToProps = state => {
   delete friends[state.session.id];
   return {
     friends_arr: Object.values(friends),
-    friends_obj: friends
+    friends_obj: friends,
+    currentUserId: state.session.id
   };
 };
 

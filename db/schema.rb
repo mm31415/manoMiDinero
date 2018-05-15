@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514150933) do
+ActiveRecord::Schema.define(version: 20180515143703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bill_splits", force: :cascade do |t|
-    t.float "amount", null: false
+    t.decimal "amount", precision: 16, scale: 2, null: false
     t.integer "bill_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180514150933) do
   end
 
   create_table "bills", force: :cascade do |t|
-    t.float "amount", null: false
+    t.decimal "amount", precision: 16, scale: 2, null: false
     t.string "description", null: false
     t.string "date", null: false
     t.text "note"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180514150933) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.float "amount", null: false
+    t.decimal "amount", precision: 16, scale: 2, null: false
     t.integer "bill_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false

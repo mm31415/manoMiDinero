@@ -4,33 +4,40 @@ import merge from "lodash/merge";
 
 
 
-const defaultBillState = {
-  bill: {
-    amount: '',
-    description: '',
-    date: '',
-    payer_id: '',
-    splits: []
-  },
-  friend: { id: null, name: '' }
-};
+
 
 class BillModal extends React.Component {
   constructor(props) {
     super(props);
+    const defaultBillState = {
+      bill: {
+        amount: '',
+        description: '',
+        date: '',
+        payer_id: props.currentUserId,
+        splits: []
+      },
+      friend: { id: null, name: '' }
+    };
     this.state = props.bill || defaultBillState;
     this.setFriend =  this.setFriend.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateField = this.updateField.bind(this);
     this.displayAmount = this.displayAmount.bind(this);
+    this.displayPayer = this.displayPayer.bind(this);
+    this.changePayer = this.changePayer.bind(this);
+    this.addSplits = this.addSplits.bind(this);
+    this.checkValidations = this.checkValidations.bind(this);
   }
+
+
 
   updateField (field) {
     const that = this;
     if (field === "name") {
       return (
         e => {
-          const newState = merge({}, that.state, { friend: { [field]: e.currentTarget.value } });
+          const newState = merge({}, that.state, { friend: { id: null, [field]: e.currentTarget.value } });
           that.setState({ friend: { [field]: e.currentTarget.value } });
         }
       );
@@ -52,12 +59,13 @@ class BillModal extends React.Component {
   }
 
   setFriend (e) {
-    this.setState({
-      friend: {
+    const newState = merge({}, this.state,
+      { bill: { payer_id: this.props.currentUserId } },
+      { friend: {
         id: parseInt(e.currentTarget.value),
         name: this.props.friends_obj[parseInt(e.currentTarget.value)].name
-      }
-    });
+      }});
+    this.setState(newState);
   }
 
   displayAmount (e) {
@@ -79,15 +87,69 @@ class BillModal extends React.Component {
     }
   }
 
+  displayPayer (e) {
+    if (this.state.bill.payer_id === this.state.friend.id) {
+      return `${this.state.friend.name}`;
+    } else {
+      return "you";
+    }
+  }
+
+  changePayer (e) {
+    e.preventDefault();
+    let newState;
+    if (this.state.bill.payer_id === this.state.friend.id) {
+      newState = merge({}, this.state, { bill: { payer_id: this.props.currentUserId } });
+    } else {
+      newState = merge({}, this.state, { bill: { payer_id: this.state.friend.id || this.props.currentUserId } });
+    }
+    this.setState(newState);
+  }
+
+  addSplits() {
+    const amount1 = this.state.bill.amount - (this.state.bill.amount / 2).toFixed(2);
+    const amount2 = this.state.bill.amount - amount1;
+    const splits = [
+      { [this.props.currentUserId]: amount1 },
+      { [this.state.friend.id]: amount2 }
+    ];
+    const newState = merge({}, this.state,
+      { bill: {
+        splits: splits
+      }});
+      debugger
+    this.setState(newState);
+  }
+
+  checkValidations() {
+    if (!this.state.friend.id) {
+      alert("Add a friend");
+      return false;
+    } else if (this.state.bill.description === "") {
+      alert("Add a description");
+      return false;
+    } else if (this.state.bill.amount === "" || this.state.bill.amount === "0.00"  ) {
+      alert("Add an amount");
+      return false;
+    } else if (this.state.bill.date === "") {
+      alert("Add a date");
+      return false;
+    }
+    return true;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
+    if (this.checkValidations()) {
+      console.log(this.state);
+    }
     console.log(this.state);
   }
 
   render() {
 
     const selectOptions = this.props.friends_arr.map((friend) => {
-      return <SelectFriendItem friend={friend} setFriend={this.setFriend} />;
+      return <SelectFriendItem key={friend.id} friend={friend} setFriend={this.setFriend} />;
     });
 
     const updateList = (e) => {
@@ -127,7 +189,9 @@ class BillModal extends React.Component {
             onBlur={this.updateField("date")}></input>
           <p>(${`${(this.state.bill.amount / 2).toFixed(2)}`}/person)</p>
 
-          <button onClick={this.handleSubmit}>Add Bill</button>
+          Paid by<button onClick={this.changePayer}>{`${this.displayPayer()}`}</button>and split equally.
+
+          <button onClick={this.handleSubmit} onMouseOver={this.addSplits}>Add Bill</button>
         </form>
       </div>
     );
