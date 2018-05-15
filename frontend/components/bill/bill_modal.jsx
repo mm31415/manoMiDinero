@@ -110,8 +110,8 @@ class BillModal extends React.Component {
     const amount1 = this.state.bill.amount - (this.state.bill.amount / 2).toFixed(2);
     const amount2 = this.state.bill.amount - amount1;
     const splits = [
-      { [this.props.currentUserId]: amount1 },
-      { [this.state.friend.id]: amount2 }
+      { user_id: this.props.currentUserId, amount: amount1 },
+      { user_id: this.state.friend.id, amount: amount2 }
     ];
     const newState = merge({}, this.state,
       { bill: {
