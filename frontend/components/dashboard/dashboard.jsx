@@ -28,15 +28,8 @@ class Dashboard extends React.Component {
     }
 
     return (
-      <div className="all-content">
-        <nav className="left-sidebar">
-          <NavSidebarContainer />
-        </nav>
-        <main className="main-content">
-          <ContentHeader />
+      <div className="dashboard">
           <h1>Hey guy, you're at the dashboard</h1>
-        </main>
-        <div className="right-sidebar"></div>
       </div>
     );
   }

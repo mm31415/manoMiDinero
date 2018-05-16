@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import MainContent from "./main";
+import MainContent from "./main_content";
 import { fetchFriends } from "../../actions/friendship_actions";
 
 const mapStateToProps = state => {

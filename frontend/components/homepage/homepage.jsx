@@ -4,7 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 export const Homepage = (props) => {
 
   if (props.logged_in) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="main/dashboard" />;
   }
 
   return (

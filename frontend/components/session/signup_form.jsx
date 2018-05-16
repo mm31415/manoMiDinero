@@ -44,7 +44,7 @@ class SignUpForm extends React.Component {
   render () {
 
     if (this.props.logged_in) {
-      return <Redirect to="/" />;
+      return <Redirect to="/main/dashboard" />;
     }
     return (
       <div className="session-form">

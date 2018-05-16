@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import NavSidebarContainer from "../nav_sidebar/nav_sidebar_container";
 import { ContentHeader } from "../content_header/content_header";
 import DashboardContainer from "../dashboard/dashboard_container";
+import { Route } from "react-router-dom";
 
 
 class MainContent extends React.Component {
@@ -17,10 +18,8 @@ class MainContent extends React.Component {
   render() {
     if (!this.props.logged_in) {
       return <Redirect to="/" />;
-    } else if (this.props.logged_in) {
-      this.props.history.push("/dashboard");
     }
-
+    
     return (
       <div className="all-content">
         <nav className="left-sidebar">
