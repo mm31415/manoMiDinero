@@ -20,18 +20,6 @@
     border: 1px solid #0ABD99;
     border-radius: 5px;
 
-  // input {
-  //   box-sizing: border-box;
-  //   // width: 90%;
-  //   border-radius: 5px;
-  //   box-shadow: none;
-  //   // height: 33px;
-  //   // font-size: 18px;
-  //   border: 1px solid lightgray;
-  //   margin-top: 10px;
-  //   padding: 10px;
-  // }
-
   #add-bill-header {
     display: flex;
     justify-content: space-between;
@@ -89,6 +77,8 @@
   z-index: 5;
   background: white;
   font-size: 14px;
+  border-bottom: 1px solid #E4E5E5;
+  cursor: pointer;
   img {
     border-radius: 50%;
     height: 25px;
@@ -109,53 +99,75 @@
   }
 }
 
-
-
-.fade-in {
-  animation-name: fade-in;
-  animation-duration: 1s;
-}
-
-.fade-out {
-  animation-name: fade-out;
-  animation-duration: 0.5s;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0.0;
+#description-amount {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  img {
+    padding: 2px;
+    border: 1px solid #03D7AC;
   }
-
-  to {
-    opacity: 1.0;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1.0;
-  }
-
-  to {
-    opacity: 0.0;
+  #bill-inputs {
+    margin-left: 20px;
+    li {
+      border-bottom: 3px dashed #E4E5E5;
+      margin-top: 3px;
+      font-size: 18px;
+    }
+    input {
+      height: 32px;
+      font-size: 18px;
+      border: none;
+      outline: none;
+    }
   }
 }
 
-
-
-#add-bill-btn #change-payer-btn {
-  background: #E98C11;
-  border: 1px solid #C69523;
-  box-shadow: 1px 1px #B9B9B9;
-  padding: 5px;
-  border-radius: 5px;
-  color: white;
-  font-size: 20px;
-  width: 300px;
+#dynamic-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   margin-top: 10px;
+  font-size: 16px;
+  button {
+    font-size: 16px;
+    border-radius: 14px;
+    border: 2px dashed #E4E5E5;
+    background: #f2f3f3;
+    cursor: pointer;
+    padding: 5px;
+    box-sizing: content-box;
+  }
+  h1 {
+    margin-bottom: 3px;
+  }
 }
 
-#add-bill-btn:hover, #change-payer-btn:hover {
-  background: darken(#E98C11, 2%);
-  cursor: pointer;
+#date-submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
+  #datepicker {
+    width: 125px;
+    border-radius: 5px;
+  }
+  #add-bill-btn {
+    margin-top: 9px;
+    margin-bottom: 19px;
+    width: 200px;
+    background: #03D7AC;
+    border: 1px solid #0ABD99;
+    box-shadow: 1px 1px #B9B9B9;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+  }
+  #add-bill-btn:hover {
+    background: darken(#03D7AC, 2%);
+  }
 }

@@ -165,9 +165,11 @@ class BillModal extends React.Component {
 
     const modal = document.getElementById("add-bill-modal");
     const modalForm = document.getElementById("add-bill-form");
+    const searchBox = document.getElementById("friend-search");
     const fadeOut = (e) => {
       if (e.target === modal) {
         this.handleState();
+        searchBox.style.display = "none";
         modalForm.classList.toggle("fade-out");
         setTimeout(function() {
           modal.style.display = "none";
@@ -181,6 +183,7 @@ class BillModal extends React.Component {
     const closeModal = e => {
       e.preventDefault();
       this.handleState();
+      searchBox.style.display = "none";
       modalForm.classList.toggle("fade-out");
       setTimeout(function() {
         modal.style.display = "none";
@@ -196,7 +199,10 @@ class BillModal extends React.Component {
 
     const updateList = (e) => {
       this.updateField("name")(e);
-      const searchBox = document.getElementById("friend-search");
+      if (e.currentTarget.value === "") {
+        searchBox.style.display = "none";
+        return false;
+      }
       searchBox.style.display = "initial";
       const searchTerm = e.currentTarget.value.toLowerCase();
       const list = document.getElementsByClassName("name-li");
@@ -215,6 +221,7 @@ class BillModal extends React.Component {
           <header id="add-bill-header">
             Add Bill<button id="close-btn" onClick={closeModal}><i className="fa fa-close"></i></button>
           </header>
+
           <span id="enter-name">
             <h1>With <em>you</em> and:</h1>
             <input type="hidden" id="friend-value"></input>
@@ -227,21 +234,32 @@ class BillModal extends React.Component {
             {selectOptions}
           </ul>
 
-          <input type="text" value={this.state.bill.description}
-            onChange={this.updateField("description")}
-            placeholder="Description"></input>
+          <span id="description-amount">
+            <img src={window.staticImages.bill} />
+            <ul id="bill-inputs">
+              <li>
+                &nbsp;<input type="text" value={this.state.bill.description}
+                  onChange={this.updateField("description")}
+                  placeholder="Enter a description"></input>
+              </li>
+              <li>
+                $<input type="text" value={this.state.bill.amount}
+                  onChange={this.updateField("amount")}
+                  onBlur={this.displayAmount} placeholder="0.00"></input>
+              </li>
+            </ul>
+          </span>
 
-          $<input type="text" value={this.state.bill.amount}
-            onChange={this.updateField("amount")}
-            onBlur={this.displayAmount} placeholder="0.00"></input>
+          <span id="dynamic-info">
+            <h1>Paid by&nbsp;<button id="change-payer-btn" onClick={this.changePayer}>{`${this.displayPayer()}`}</button>&nbsp;and split equally.</h1>
+            <h1>(${`${(this.state.bill.amount / 2).toFixed(2)}`}/person)</h1>
+          </span>
 
+          <span id="date-submit">
           <input type="date" id="datepicker"
             onBlur={this.updateField("date")}></input>
-          <h1>(${`${(this.state.bill.amount / 2).toFixed(2)}`}/person)</h1>
-
-          <h1>Paid by<button id="change-payer-btn" onClick={this.changePayer}>{`${this.displayPayer()}`}</button>and split equally.</h1>
-
           <button id="add-bill-btn" onClick={this.handleSubmit} onMouseOver={this.addSplits}>Add Bill</button>
+          </span>
         </form>
       </div>
     );

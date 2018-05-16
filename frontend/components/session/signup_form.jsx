@@ -32,11 +32,13 @@ class SignUpForm extends React.Component {
 
   demoLogin (e) {
     e.preventDefault();
-    if (this.props.match.path !== "/login") {
-      this.props.history.push("/login");
-    } else {
-      this.setState({ email: 'guestemail@guest.com', password: 'guestlogin'});
-    }
+    this.props.login({ email: "guestemail@guest.com", password: "guestlogin" });
+    // if (this.props.match.path !== "/login") {
+    //   this.props.login({ email: "guestemail@guest.com", password: "guestlogin" });
+    // } else {
+    //   this.setState({ email: 'guestemail@guest.com', password: 'guestlogin'});
+    //   this.props.login(this.state);
+    // }
   }
 
   render () {
