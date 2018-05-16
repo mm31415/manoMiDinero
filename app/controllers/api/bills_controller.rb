@@ -2,6 +2,12 @@ class Api::BillsController < ApplicationController
 
   before_action :require_login
 
+  def index
+    bills = current_user.bills
+    @return_bills = bills.map { |bill| bill.to_h.merge({ splits: bill.splits }) }
+    render :bills
+  end
+
   def create
     @bill = Bill.new(bill_params)
     @bill.creator_id = current_user.id
@@ -11,7 +17,12 @@ class Api::BillsController < ApplicationController
         split[:bill_id] = @bill.id
         @splits.push(BillSplit.create(split))
       end
-      render json: { message: "Bill Created" }, status: 200
+      render json: {
+        id: @bill.id, amount: @bill.amount,
+        description: @bill.description, date: @bill.date,
+        note: @bill.note, payerId: @bill.payer_id,
+        splits: @splits
+        }, status: 200
     else
       render json: { errors: @bill.errors.full_messages }, status: 422
     end

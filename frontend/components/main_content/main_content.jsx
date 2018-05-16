@@ -16,6 +16,7 @@ class MainContent extends React.Component {
 
   componentDidMount() {
     this.props.fetchFriends();
+    this.props.fetchBills();
   }
 
   render() {
@@ -29,7 +30,7 @@ class MainContent extends React.Component {
           <NavSidebarContainer />
         </nav>
         <main className="main-content">
-          <ContentHeader />
+          <ContentHeader location={this.props.location.pathname} />
           <Route path="/main/dashboard" component={DashboardContainer} />
           <Route path="/main/activity" component={ActivityContainer} />
           <Route path="/main/all" component={ExpenseContainer} />

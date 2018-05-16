@@ -9,11 +9,24 @@ class Bill < ApplicationRecord
   )
 
   has_many(
-    :bill_splits,
+    :splits,
     class_name: "BillSplit",
     foreign_key: :bill_id,
     primary_key: :id,
     dependent: :destroy
   )
+
+  def to_h
+    {
+      id: self.id,
+      amount: self.amount,
+      description: self.description,
+      date: self.date,
+      creatorId: self.creator_id,
+      payerId: self.payer_id,
+      note: self.note,
+      splits: []
+    }
+  end
 
 end

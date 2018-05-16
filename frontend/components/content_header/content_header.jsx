@@ -18,9 +18,21 @@ export const ContentHeader = (props) => {
     // modal_form.classList.add("fade-in");
   };
 
+  const header = () => {
+    if (props.location === "/main/dashboard") {
+      return "Dashboard";
+    } else if (props.location === "/main/activity") {
+      return "Recent activity";
+    } else if (props.location === "/main/all") {
+      return "All expenses";
+    } else {
+      return "Friend Name";
+    }
+  }
+
   return (
     <div className="content-header">
-      <h1>Hey Guy this is the main header</h1>
+      <h1>{header()}</h1>
       <Link to="/" onClick={handleAddBill}>Add Bill</Link>
       <Link to="/" onClick={handleSettleUp}>Settle Up</Link>
     </div>

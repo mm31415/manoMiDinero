@@ -152,13 +152,16 @@ class BillModal extends React.Component {
     this.setState(defaultBillState);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.checkValidations()) {
-      const bill = this.state.bill;
-      bill.amount = bill.amount - 0;
-      this.props.action(bill);
-    }
+  handleSubmit(closeModal) {
+    return (e => {
+      e.preventDefault();
+      if (this.checkValidations()) {
+        const bill = this.state.bill;
+        bill.amount = bill.amount - 0;
+        this.props.action(bill);
+        closeModal(e);
+      }
+    });
   }
 
   render() {
@@ -169,6 +172,7 @@ class BillModal extends React.Component {
     const fadeOut = (e) => {
       if (e.target === modal) {
         this.handleState();
+        document.getElementById("datepicker").value = "";
         searchBox.style.display = "none";
         modalForm.classList.toggle("fade-out");
         setTimeout(function() {
@@ -183,6 +187,7 @@ class BillModal extends React.Component {
     const closeModal = e => {
       e.preventDefault();
       this.handleState();
+      document.getElementById("datepicker").value = "";
       searchBox.style.display = "none";
       modalForm.classList.toggle("fade-out");
       setTimeout(function() {
@@ -258,7 +263,7 @@ class BillModal extends React.Component {
           <span id="date-submit">
           <input type="date" id="datepicker"
             onBlur={this.updateField("date")}></input>
-          <button id="add-bill-btn" onClick={this.handleSubmit} onMouseOver={this.addSplits}>Add Bill</button>
+          <button id="add-bill-btn" onClick={this.handleSubmit(closeModal)} onMouseOver={this.addSplits}>Add Bill</button>
           </span>
         </form>
       </div>

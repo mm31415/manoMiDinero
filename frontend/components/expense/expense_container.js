@@ -5,6 +5,7 @@ import { fetchFriends } from "../../actions/friendship_actions";
 
 const mapStateToProps = state => {
   return {
+    bills: Object.values(state.entities.bills),
     logged_in: state.session.id || false
   };
 };

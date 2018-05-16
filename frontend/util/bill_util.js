@@ -25,6 +25,13 @@ export const deleteBill = (id) => {
   });
 };
 
+export const fetchBills = () => {
+  return $.ajax({
+    method: "GET",
+    url: "api/bills"
+  });
+};
+
 // export const addPayment = (payment) => {
 //   return $.ajax({
 //     method: "POST",

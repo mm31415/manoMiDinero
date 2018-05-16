@@ -1,11 +1,16 @@
 import * as BillUtil from "../util/bill_util";
-
+export const RECEIVE_BILLS = "RECEIVE_BILLS";
 export const RECEIVE_BILL = "RECEIVE_BILL";
 export const REMOVE_BILL = "REMOVE_BILL";
-// export const RECEIVE_SPLITS = "RECEIVE_SPLITS";
-// export const RECEIVE_PAYMENTS = "RECEIVE_PAYMENTS";
 export const RECEIVE_BILL_ERRORS = "RECEIVE_BILL_ERRORS";
 export const RESET_BILL_ERRORS = "RESET_BILL_ERRORS";
+
+const receiveBills = (bills) => {
+  return {
+    type: RECEIVE_BILLS,
+    bills: bills
+  };
+};
 
 const receiveBill = (bill) => {
   return {
@@ -31,6 +36,14 @@ const receiveBillErrors = (errors) => {
 export const resetBillErros = () => {
   return {
     type: RESET_BILL_ERRORS
+  };
+};
+
+export const fetchBills = () => {
+  return (dispath) => {
+    return BillUtil.fetchBills().then(({ bills }) => {
+      return dispatch(receiveBills(bills));
+    });
   };
 };
 
