@@ -1,6 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import NavSidebarContainer from "../nav_sidebar/nav_sidebar_container";
+import { ContentHeader } from "../content_header/content_header";
+
 
 class Activity extends React.Component {
 
@@ -19,6 +21,7 @@ class Activity extends React.Component {
           <NavSidebarContainer />
         </nav>
         <main className="main-content">
+          <ContentHeader />
           <h1>Hey guy, you're at the activity dash</h1>
         </main>
         <div className="right-sidebar"></div>

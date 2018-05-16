@@ -1,30 +1,24 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import NavSidebarContainer from "../nav_sidebar/nav_sidebar_container";
-import { Link } from "react-router-dom";
+import { ContentHeader } from "../content_header/content_header";
+import DashboardContainer from "../dashboard/dashboard_container";
+
 
 class MainContent extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchFriends();
-    this.props.fetchBills();
-  }
-
-  handleClick (e) {
-    e.preventDefault();
-    const modal_form = document.getElementById("add-bill-form");
-    const modal = document.getElementById("add-bill-modal");
-    modal.style.display = "block";
-    modal_form.classList.add("fade-in");
   }
 
   render() {
     if (!this.props.logged_in) {
       return <Redirect to="/" />;
+    } else if (this.props.logged_in) {
+      this.props.history.push("/dashboard");
     }
 
     return (
@@ -33,10 +27,8 @@ class MainContent extends React.Component {
           <NavSidebarContainer />
         </nav>
         <main className="main-content">
-          <header id="main-header">
-            <h1>Hey Guy this is the main header</h1>
-            <Link to="/" onClick={this.handleClick}>Add Bill</Link>
-          </header>
+          <ContentHeader />
+          <Route path="/main/dashboard" component={DashboardContainer} />
         </main>
         <div className="right-sidebar"></div>
       </div>
