@@ -6,8 +6,8 @@ import { FriendNav } from "./friend_nav";
 export const NavSidebar = (props) => {
   return (
     <div className="nav-sidebar">
-      <MainNav location={props.history.location.pathname} />
-      <FriendNav checkPathId={props.match.params.friendId}
+      <MainNav location={props.location.pathname} />
+      <FriendNav location={props.location.pathname}
         friends={props.friends} resetFriendshipErrors={props.resetFriendshipErrors} />
     </div>
   );

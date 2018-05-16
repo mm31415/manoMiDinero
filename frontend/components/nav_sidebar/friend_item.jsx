@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 export const FriendItem = (props) => {
 
-  const checkIfSelected = (id) => {
-    if (props.checkPathId == id) {
+  const checkIfSelected = (path) => {
+    if (props.location === path) {
       return "selected";
     } else {
       return "";
@@ -12,8 +12,8 @@ export const FriendItem = (props) => {
   };
 
   return (
-    <li className={checkIfSelected(props.friend.id)}>
-      <Link to={`/friends/${props.friend.id}`}><i className="fa fa-user" />&nbsp;{props.friend.name}</Link>
+    <li className={checkIfSelected(`/main/friends/${props.friend.id}`)}>
+      <Link to={`/main/friends/${props.friend.id}`}><i className="fa fa-user" />&nbsp;{props.friend.name}</Link>
     </li>
   );
 };

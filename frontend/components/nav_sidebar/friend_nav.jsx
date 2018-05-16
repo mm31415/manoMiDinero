@@ -14,7 +14,7 @@ export const FriendNav = (props) => {
   }
 
   const friendLis = props.friends.map((friend) => {
-    return <FriendItem checkPathId={props.checkPathId} key={friend.id} friend={friend} />;
+    return <FriendItem location={props.location} key={friend.id} friend={friend} />;
     });
   return (
     <ul className="friend-nav">
