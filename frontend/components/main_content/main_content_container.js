@@ -5,9 +5,19 @@ import { fetchFriends } from "../../actions/friendship_actions";
 import { fetchBills } from "../../actions/bill_actions";
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
+  const name = () => {
+    const path = ownProps.location.pathname.split("/");
+    const pathId = path[path.length - 1];
+    const friend = state.entities.users[pathId]
+    if (friend === undefined) {
+      return '';
+    } else {
+      return friend.name
+    }
+  };
   return {
-    logged_in: state.session.id || false
+    logged_in: state.session.id || false,
+    friendName: name()
   };
 };
 

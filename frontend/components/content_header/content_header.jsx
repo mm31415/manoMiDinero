@@ -26,7 +26,7 @@ export const ContentHeader = (props) => {
     } else if (props.location === "/main/all") {
       return "All expenses";
     } else {
-      return "Friend Name";
+      return props.friendName;
     }
   }
 

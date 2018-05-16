@@ -30,7 +30,7 @@ class MainContent extends React.Component {
           <NavSidebarContainer />
         </nav>
         <main className="main-content">
-          <ContentHeader location={this.props.location.pathname} />
+          <ContentHeader location={this.props.location.pathname} friendName={this.props.friendName} />
           <Route path="/main/dashboard" component={DashboardContainer} />
           <Route path="/main/activity" component={ActivityContainer} />
           <Route path="/main/all" component={ExpenseContainer} />
