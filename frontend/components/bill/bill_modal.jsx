@@ -161,34 +161,33 @@ class BillModal extends React.Component {
     }
   }
 
-  fadeOut (e) {
-    if (e.target === modal) {
-      this.handleState();
-      modal_form.classList.toggle("fade-out");
-      setTimeout(function() {
-        modal.style.display = "none";
-      }, 400);
-      setTimeout(function() {
-        modal_form.classList.remove("fade-out");
-      }, 500);
-    }
-  };
-
   render() {
 
     const modal = document.getElementById("add-bill-modal");
-    const modal_form = document.getElementById("add-bill-form");
+    const modalForm = document.getElementById("add-bill-form");
     const fadeOut = (e) => {
       if (e.target === modal) {
         this.handleState();
-        modal_form.classList.toggle("fade-out");
+        modalForm.classList.toggle("fade-out");
         setTimeout(function() {
           modal.style.display = "none";
         }, 400);
         setTimeout(function() {
-          modal_form.classList.remove("fade-out");
+          modalForm.classList.remove("fade-out");
         }, 500);
       }
+    };
+
+    const closeModal = e => {
+      e.preventDefault();
+      this.handleState();
+      modalForm.classList.toggle("fade-out");
+      setTimeout(function() {
+        modal.style.display = "none";
+      }, 400);
+      setTimeout(function() {
+        modalForm.classList.remove("fade-out");
+      }, 500);
     };
 
     const selectOptions = this.props.friends_arr.map((friend) => {
@@ -197,32 +196,36 @@ class BillModal extends React.Component {
 
     const updateList = (e) => {
       this.updateField("name")(e);
-      const search = e.currentTarget.value.toLowerCase();
+      const searchBox = document.getElementById("friend-search");
+      searchBox.style.display = "initial";
+      const searchTerm = e.currentTarget.value.toLowerCase();
       const list = document.getElementsByClassName("name-li");
       for (let i = 0; i < list.length; i++) {
-        if (!list[i].attributes.label.value.toLowerCase().includes(search)) {
+        if (!list[i].attributes.label.value.toLowerCase().includes(searchTerm)) {
           list[i].style.display = "none";
         } else {
-          list[i].style.display = "inherit";
+          list[i].style.display = "flex";
         }
       }
     };
 
     return(
       <div id="add-bill-modal" onClick={fadeOut}>
-        <ul id="friend-search">
-          {selectOptions}
-        </ul>
         <form id="add-bill-form">
           <header id="add-bill-header">
-            Add Bill<i class="fa fa-close"></i>
+            Add Bill<button id="close-btn" onClick={closeModal}><i className="fa fa-close"></i></button>
           </header>
           <span id="enter-name">
             <h1>With <em>you</em> and:</h1>
             <input type="hidden" id="friend-value"></input>
             <input type="text" placeholder="Friend Name"
-              value={this.state.friend.name} onChange={updateList}></input>
+              value={this.state.friend.name}
+              onChange={updateList}></input>
           </span>
+
+          <ul id="friend-search">
+            {selectOptions}
+          </ul>
 
           <input type="text" value={this.state.bill.description}
             onChange={this.updateField("description")}
