@@ -20,21 +20,40 @@ export const ContentHeader = (props) => {
 
   const header = () => {
     if (props.location === "/main/dashboard") {
-      return "Dashboard";
+      return (
+        <span id="content-page-name">
+          <h1>Dashboard</h1>
+        </span>
+      );
     } else if (props.location === "/main/activity") {
-      return "Recent activity";
+      return (
+        <span id="content-page-name">
+          <h1>Recent Activity</h1>
+        </span>
+      );
     } else if (props.location === "/main/all") {
-      return "All expenses";
+      return (
+        <span id="content-page-name">
+          <h1>All expenses</h1>
+        </span>
+      );
     } else {
-      return props.friendName;
+      return (
+        <span id="content-page-name">
+          <img src={window.staticImages.avatar} />
+          <h1>{props.friendName}</h1>
+        </span>
+      );
     }
   }
 
   return (
     <div className="content-header">
-      <h1>{header()}</h1>
-      <Link to="/" onClick={handleAddBill}>Add Bill</Link>
-      <Link to="/" onClick={handleSettleUp}>Settle Up</Link>
+      {header()}
+      <span id="content-btns">
+        <Link id="add-bill-btn" to="/" onClick={handleAddBill}>Add Bill</Link>
+        <Link id="settle-up-btn" to="/" onClick={handleSettleUp}>Settle Up</Link>
+      </span>
     </div>
   );
 };

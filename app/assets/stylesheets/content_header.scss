@@ -1,0 +1,57 @@
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px;
+  font-family: sans-serif;
+  background: #EEEFEF;
+  border-bottom: 1px solid #E4E5E5;
+}
+
+#content-page-name{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  h1{
+    font-weight: 700;
+    margin-left: 4px;
+  }
+  img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 1px solid #0ABD99;
+    margin-top: -5px;
+    margin-bottom: -5px;
+  }
+}
+
+#content-btns {
+  display: flex;
+  color: white;
+  font-family: sans-serif;
+  #add-bill-btn {
+    background: #E98C11;
+    border: 1px solid #C69523;
+    box-shadow: 1px 1px #B9B9B9;
+    height: 50%;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 7px;
+  }
+  #add-bill-btn:hover {
+    background: darken(#E98C11, 2%);
+  }
+  #settle-up-btn {
+    background: #03D7AC;
+    border: 1px solid #0ABD99;
+    box-shadow: 1px 1px #B9B9B9;
+    height: 50%;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  #settle-up-btn:hover {
+    background: darken(#03D7AC, 2%);
+  }
+}
