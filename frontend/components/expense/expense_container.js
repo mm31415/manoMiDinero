@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Expense } from "./expense";
 import { fetchFriends } from "../../actions/friendship_actions";
+import { deleteBill } from "../../actions/bill_actions";
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchFriends: () => dispatch(fetchFriends())
+    fetchFriends: () => dispatch(fetchFriends()),
+    deleteBill: (id) => dispatch(deleteBill(id))
   };
 };
 

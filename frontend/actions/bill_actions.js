@@ -68,7 +68,7 @@ export const updateBill = (bill) => {
 export const deleteBill = (id) => {
   return (dispatch) => {
     return BillUtil.deleteBill(id).then(
-      (id) => { return dispatch(removeBill(id)); },
+      ({ id }) => { return dispatch(removeBill(id)); },
       (errors) => { return dispatch(receiveBillErrors(errors)); }
     );
   };

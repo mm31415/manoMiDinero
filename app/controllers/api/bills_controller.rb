@@ -50,7 +50,7 @@ class Api::BillsController < ApplicationController
     if bill.nil?
       render json: { errors: "Bill does not exist" }, status: 422
     else bill.destroy
-      render json: { message: "Bill Destroyed" }, status: 200
+      render json: { id: bill.id }, status: 200
     end
   end
 

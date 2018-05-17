@@ -53,7 +53,7 @@ export const Expense = (props) => {
       const payer = payerInfo(bill, secondUser);
       const ower = owerInfo(bill, payer, secondUser);
       return <ExpenseItem key={bill.id} bill={bill} payer={payer}
-        ower={ower} />;
+        ower={ower}  deleteBill={props.deleteBill} />;
     });
 
     const emptyPage = () => {

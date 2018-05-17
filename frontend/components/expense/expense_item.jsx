@@ -34,12 +34,19 @@ const oweInfo = (props) => {
   }
 };
 
-const deleteExpense = (e) => {
-  e.preventDefault();
-}
-
 export const ExpenseItem = (props) => {
+
+  const deleteExpense = (bill) => {
+    return (
+      e => {
+        e.preventDefault();
+        props.deleteBill(bill.id)
+      }
+    );
+  };
+
   const date = dateParse(props.bill.date.split("-"));
+  
   return (
     <li id="expense-item">
       <div id="expense-item-left">
@@ -56,7 +63,7 @@ export const ExpenseItem = (props) => {
           <div id="paid">${parseFloat(props.bill.amount).toFixed(2)}</div>
         </li>
         {oweInfo(props)}
-        <Link to="/" id="delete-expense-btn" onClick={deleteExpense}><i className="fa fa-close"></i></Link>
+        <Link to="/" id="delete-expense-btn" onClick={deleteExpense(props.bill)}><i className="fa fa-close"></i></Link>
       </ul>
     </li>
   );

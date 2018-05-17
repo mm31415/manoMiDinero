@@ -16,7 +16,7 @@ export const BillsReducer = (oldState = {}, action) => {
       return merge({}, oldState, { [action.bill.id]: action.bill });
     case REMOVE_BILL:
       const newState = merge({}, oldState);
-      delete newState[action.bill.id]
+      delete newState[action.billId]
       return newState;
     default:
       return oldState;
