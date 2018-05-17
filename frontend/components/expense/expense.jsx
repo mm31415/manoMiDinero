@@ -11,6 +11,7 @@ export const Expense = (props) => {
       if (bill.payerId === props.logged_in) {
         return {
           name: "you",
+          id: props.logged_in
         };
       } else {
         return secondUser;
