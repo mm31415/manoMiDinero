@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MONTHS = {
   "01": "JAN", "02": "FEB", "03": "MAR",
@@ -18,20 +19,24 @@ const dateParse = (dateArr) => {
 const oweInfo = (props) => {
   if (props.payer.name === "you") {
     return (
-      <li>
+      <li id="owe-li">
         <h1>you lent {props.ower.name.toLowerCase()}</h1>
-        <div id="lender">${props.ower.amount}</div>
+        <div id="lender">${parseFloat(props.ower.amount).toFixed(2)}</div>
       </li>
     );
   } else {
     return (
-      <li>
+      <li id="owe-li">
         <h1>{props.payer.name.toLowerCase()} lent you</h1>
-        <div id="ower">${props.ower.amount}</div>
+        <div id="ower">${parseFloat(props.ower.amount).toFixed(2)}</div>
       </li>
     );
   }
 };
+
+const deleteExpense = (e) => {
+  e.preventDefault();
+}
 
 export const ExpenseItem = (props) => {
   const date = dateParse(props.bill.date.split("-"));
@@ -43,14 +48,15 @@ export const ExpenseItem = (props) => {
           <li id="day">{date.day}</li>
         </ul>
         <img src={window.staticImages.bill} />
-        <h1>{props.bill.description}</h1>
+        <h1 id="description">{props.bill.description}</h1>
       </div>
       <ul id="expense-item-right">
-        <li>
+        <li id="paid-li">
           <h1>{props.payer.name.toLowerCase()} paid</h1>
-          <div id="paid">${props.bill.amount}</div>
+          <div id="paid">${parseFloat(props.bill.amount).toFixed(2)}</div>
         </li>
         {oweInfo(props)}
+        <Link to="/" id="delete-expense-btn" onClick={deleteExpense}><i className="fa fa-close"></i></Link>
       </ul>
     </li>
   );

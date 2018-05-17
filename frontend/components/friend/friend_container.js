@@ -1,11 +1,20 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import Friend from "./friend";
+import { Expense } from "../expense/expense";
 import { fetchFriends } from "../../actions/friendship_actions";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const friendId = ownProps.match.params.friendId;
+  const friendBills = [];
+  Object.values(state.entities.bills).forEach((value) => {
+    if (value.splits[0].user_id == friendId || value.splits[1].user_id == friendId) {
+      friendBills.push(value);
+    }
+  });
   return {
-    logged_in: state.session.id || false
+    bills: friendBills,
+    logged_in: state.session.id || false,
+    users: state.entities.users
   };
 };
 
@@ -15,6 +24,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const friend = connect(mapStateToProps, mapDispatchToProps)(Friend);
+const friendExpense = connect(mapStateToProps, mapDispatchToProps)(Expense);
 
-export default withRouter(friend);
+export default withRouter(friendExpense);

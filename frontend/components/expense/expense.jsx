@@ -56,8 +56,23 @@ export const Expense = (props) => {
         ower={ower} />;
     });
 
+    const emptyPage = () => {
+      if (props.bills.length < 1) {
+        return (
+          <div id="empty-page">
+            <img src={window.staticImages.empty} />
+            <ul>
+              <h1>You have not added any expenses yet</h1>
+              <h2>To add a new expense, click the orange “Add a bill” button.</h2>
+            </ul>
+          </div>
+        );
+      }
+    };
+
     return (
       <div className="all-expenses">
+        {emptyPage()}
         <ul id="epense-list">
           {expenseItems}
         </ul>
