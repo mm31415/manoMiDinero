@@ -234,9 +234,10 @@ class BillModal extends React.Component {
         }
         break;
       }
-      if (friendUlChild !== null) {
+      if (friendUlChild !== "null") {
         friendUlChild.style.background = "lightgray";
       }
+
       searchBox.style.display = "initial";
       const searchTerm = e.currentTarget.value.toLowerCase();
       const list = document.getElementsByClassName("name-li");
