@@ -59,14 +59,24 @@ class BillModal extends React.Component {
     }
   }
 
-  setFriend (e) {
-    const newState = merge({}, this.state,
-      { bill: { payer_id: this.props.currentUserId } },
-      { friend: {
-        id: parseInt(e.currentTarget.value),
-        name: this.props.friends_obj[parseInt(e.currentTarget.value)].name
-      }});
-    this.setState(newState);
+  setFriend (e, friendUlChild) {
+    if (e.which === 13) {
+      const newState = merge({}, this.state,
+        { bill: { payer_id: this.props.currentUserId } },
+        { friend: {
+          id: parseInt(friendUlChild.value),
+          name: this.props.friends_obj[parseInt(friendUlChild.value)].name
+        }});
+      this.setState(newState);
+    } else {
+      const newState = merge({}, this.state,
+        { bill: { payer_id: this.props.currentUserId } },
+        { friend: {
+          id: parseInt(e.currentTarget.value),
+          name: this.props.friends_obj[parseInt(e.currentTarget.value)].name
+        }});
+      this.setState(newState);
+    }
   }
 
   displayAmount (e) {
@@ -164,6 +174,11 @@ class BillModal extends React.Component {
     });
   }
 
+  hideSearch (e) {
+    const searchBox = document.getElementById("friend-search");
+    searchBox.style.display = "none";
+  }
+
   render() {
 
     const modal = document.getElementById("add-bill-modal");
@@ -208,6 +223,20 @@ class BillModal extends React.Component {
         searchBox.style.display = "none";
         return false;
       }
+      let friendUlChild = document.getElementById("friend-search").firstChild;
+      while (true) {
+        if (friendUlChild === null) {
+          break;
+        } else if (friendUlChild.style.display === "none") {
+          friendUlChild.style.removeProperty("background");
+          friendUlChild = friendUlChild.nextSibling;
+          continue;
+        }
+        break;
+      }
+      if (friendUlChild !== null) {
+        friendUlChild.style.background = "lightgray";
+      }
       searchBox.style.display = "initial";
       const searchTerm = e.currentTarget.value.toLowerCase();
       const list = document.getElementsByClassName("name-li");
@@ -218,72 +247,77 @@ class BillModal extends React.Component {
           list[i].style.display = "flex";
         }
       }
-      let friendUlChild = document.getElementById("friend-search").firstChild;
-      while (true) {
-        if (friendUlChild === null) {
-          break;
-        } else if (friendUlChild.style.display === "none") {
-          friendUlChild = friendUlChild.nextSibling;
-          continue;
-        }
-        break;
-      }
-      if (friendUlChild !== null) {
-        friendUlChild.style.background = "lightgray";
-      }
     };
 
     const handleKeyPress = (e) => {
-      let friendUlChildSelected = document.getElementById("friend-search").firstChild;
+      let friendUlChild = document.getElementById("friend-search").firstChild;
       if (e.which === 13) {
         e.preventDefault();
-        return false;
-      } else if (e.which === 8) {
         while (true) {
-          if (friendUlChildSelected === null) {
+          if (friendUlChild === null) {
+            break;
+          } else if (friendUlChild.style.background === "lightgray") {
+            this.setFriend(e, friendUlChild);
+            this.hideSearch(e);
             break;
           } else {
-            friendUlChildSelected.style.background = "transparent";
-            friendUlChildSelected = friendUlChildSelected.nextSibling;
+            friendUlChild = friendUlChild.nextSibling;
+            continue;
+          }
+        }
+      } else if (e.which === 8) {
+        while (true) {
+          if (friendUlChild === null) {
+            break;
+          } else {
+            friendUlChild.style.removeProperty("background");
+            friendUlChild = friendUlChild.nextSibling;
             continue;
           }
         }
       } else if (e.which === 40) {
         e.preventDefault();
         while (true) {
-          if (friendUlChildSelected === null) {
+          if (friendUlChild === null) {
             break;
-          } else if (friendUlChildSelected.style.background === "lightgray") {
-            let nextUlChild = friendUlChildSelected.nextSibling;
-            if (nextUlChild !== null) {
-              friendUlChildSelected.style.background = "transparent";
+          } else if (friendUlChild.style.background === "lightgray") {
+            let nextUlChild = friendUlChild.nextSibling;
+            if (nextUlChild !== null && nextUlChild.style.display !== "none") {
+              friendUlChild.style.removeProperty("background");
               nextUlChild.style.background = "lightgray";
             }
             break;
           } else {
-            friendUlChildSelected = friendUlChildSelected.nextSibling;
+            friendUlChild = friendUlChild.nextSibling;
             continue;
           }
         }
       } else if (e.which === 38) {
         e.preventDefault();
         while (true) {
-          if (friendUlChildSelected === null) {
+          if (friendUlChild === null) {
             break;
-          } else if (friendUlChildSelected.style.background === "lightgray") {
-            let previousUlChild = friendUlChildSelected.previousSibling;
-            if (previousUlChild !== null) {
-              friendUlChildSelected.style.background = "transparent";
+          } else if (friendUlChild.style.background === "lightgray") {
+            let previousUlChild = friendUlChild.previousSibling;
+            if (previousUlChild !== null && previousUlChild.style.display !== "none") {
+              friendUlChild.style.removeProperty("background");
               previousUlChild.style.background = "lightgray";
             }
             break;
           } else {
-            friendUlChildSelected = friendUlChildSelected.nextSibling;
+            friendUlChild = friendUlChild.nextSibling;
             continue;
           }
         }
       }
     };
+
+    // const toggleId = (e) => {
+    //   debugger
+    //   const friendSearchChange = document.getElementById("friend-search");
+    //   friendSearchChange.removeAttribute("id");
+    //   friendSearchChange.addAttribute("id", "friend-search-focus");
+    // };
 
     return(
       <div id="add-bill-modal" onClick={fadeOut}>

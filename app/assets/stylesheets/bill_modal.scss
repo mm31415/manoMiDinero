@@ -96,6 +96,10 @@
   }
   li:hover {
     background: lightgray;
+
+  }
+  li:not(:hover) {
+    background: transparent;
   }
 }
 
