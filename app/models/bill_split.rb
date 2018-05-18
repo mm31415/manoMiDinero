@@ -6,7 +6,8 @@ class BillSplit < ApplicationRecord
     :bill,
     class_name: "Bill",
     foreign_key: :bill_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
   )
-  
+
 end

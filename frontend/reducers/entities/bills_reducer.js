@@ -11,7 +11,7 @@ export const BillsReducer = (oldState = {}, action) => {
       action.bills.forEach((bill) => {
         tempState[bill.id] = bill;
       });
-      return merge({}, oldState, tempState);
+      return tempState;
     case RECEIVE_BILL:
       return merge({}, oldState, { [action.bill.id]: action.bill });
     case REMOVE_BILL:

@@ -218,6 +218,71 @@ class BillModal extends React.Component {
           list[i].style.display = "flex";
         }
       }
+      let friendUlChild = document.getElementById("friend-search").firstChild;
+      while (true) {
+        if (friendUlChild === null) {
+          break;
+        } else if (friendUlChild.style.display === "none") {
+          friendUlChild = friendUlChild.nextSibling;
+          continue;
+        }
+        break;
+      }
+      if (friendUlChild !== null) {
+        friendUlChild.style.background = "lightgray";
+      }
+    };
+
+    const handleKeyPress = (e) => {
+      let friendUlChildSelected = document.getElementById("friend-search").firstChild;
+      if (e.which === 13) {
+        e.preventDefault();
+        return false;
+      } else if (e.which === 8) {
+        while (true) {
+          if (friendUlChildSelected === null) {
+            break;
+          } else {
+            friendUlChildSelected.style.background = "transparent";
+            friendUlChildSelected = friendUlChildSelected.nextSibling;
+            continue;
+          }
+        }
+      } else if (e.which === 40) {
+        e.preventDefault();
+        while (true) {
+          if (friendUlChildSelected === null) {
+            break;
+          } else if (friendUlChildSelected.style.background === "lightgray") {
+            let nextUlChild = friendUlChildSelected.nextSibling;
+            if (nextUlChild !== null) {
+              friendUlChildSelected.style.background = "transparent";
+              nextUlChild.style.background = "lightgray";
+            }
+            break;
+          } else {
+            friendUlChildSelected = friendUlChildSelected.nextSibling;
+            continue;
+          }
+        }
+      } else if (e.which === 38) {
+        e.preventDefault();
+        while (true) {
+          if (friendUlChildSelected === null) {
+            break;
+          } else if (friendUlChildSelected.style.background === "lightgray") {
+            let previousUlChild = friendUlChildSelected.previousSibling;
+            if (previousUlChild !== null) {
+              friendUlChildSelected.style.background = "transparent";
+              previousUlChild.style.background = "lightgray";
+            }
+            break;
+          } else {
+            friendUlChildSelected = friendUlChildSelected.nextSibling;
+            continue;
+          }
+        }
+      }
     };
 
     return(
@@ -232,7 +297,7 @@ class BillModal extends React.Component {
             <input type="hidden" id="friend-value"></input>
             <input type="text" placeholder="Friend Name"
               value={this.state.friend.name}
-              onChange={updateList}></input>
+              onChange={updateList} onKeyDown={handleKeyPress} ></input>
           </span>
 
           <ul id="friend-search">

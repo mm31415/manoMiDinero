@@ -9,4 +9,19 @@ class Friendship < ApplicationRecord
     primary_key: :id
   )
 
+  belongs_to(
+    :user,
+    class_name: "User",
+    foreign_key: :user1_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :friend_splits,
+    through: :user,
+    source: :splits,
+    foreign_key: :user_id,
+    primary_key: :user1_id
+  )
+
 end
