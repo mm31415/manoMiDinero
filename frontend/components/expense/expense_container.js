@@ -7,7 +7,8 @@ import { combineDate } from "../../util/function_util";
 
 const mapStateToProps = state => {
   return {
-    bills: Object.values(state.entities.bills).sort((a,b) => combineDate(b.date) - combineDate(a.date)),
+    bills: Object.values(state.entities.bills).
+      sort((a,b) => combineDate(b.date) - combineDate(a.date)),
     logged_in: state.session.id || false,
     users: state.entities.users
   };
