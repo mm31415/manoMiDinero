@@ -17,10 +17,8 @@ class Api::BillsController < ApplicationController
         split[:bill_id] = @bill.id
         @splits.push(BillSplit.create(split))
       end
-      debugger
       friendship = Friendship.find_by(user1_id: current_user.id, user2_id: friend_params[:id])
       SharedBill.create(bill_id: @bill.id, friendship_id: friendship.id)
-      debugger
       render json: {
         id: @bill.id, amount: @bill.amount,
         description: @bill.description, date: @bill.date,

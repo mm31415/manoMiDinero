@@ -1,5 +1,4 @@
 export const addBill = (bill, friend) => {
-  debugger
   return $.ajax({
     method: "POST",
     url: "api/bills",

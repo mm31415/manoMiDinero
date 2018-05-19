@@ -16,18 +16,18 @@ class Friendship < ApplicationRecord
     primary_key: :id
   )
 
+  has_one(
+    :pair_friendship,
+    class_name: "Friendship",
+    foreign_key: :user2_id,
+    primary_key: :user1_id,
+  )
+
   has_many(
     :shared_bills,
     class_name: "SharedBill",
     foreign_key: :friendship_id,
     primary_key: :id,
-    dependent: :destroy
-  )
-
-  has_many(
-    :bills,
-    through: :shared_bills,
-    source: :bill,
     dependent: :destroy
   )
 
