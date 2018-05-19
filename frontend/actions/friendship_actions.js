@@ -22,7 +22,7 @@ const receiveFriend = (friend) => {
 
 const removeFriend = (resp) => {
   return {
-    type: DELETE_FRIEND,
+    type: REMOVE_FRIEND,
     friendId: resp.friendId
   };
 };
@@ -40,18 +40,18 @@ export const resetFriendshipErrors = () => {
   };
 };
 
-export const addFriend = (user1_id, friend_email) => {
+export const addFriend = (email) => {
   return (dispatch) => {
-    return FriendshipUtil.addFriend(user1_id, friend_email).then(
+    return FriendshipUtil.addFriend(email).then(
       (friend) => { return dispatch(receiveFriend(friend)) },
       (errors) => { return dispatch(receiveFriendshipErrors(errors)) }
     );
   };
 };
 
-export const deleteFriend = (user1_id, user2_id) => {
+export const deleteFriend = (friendId) => {
   return (dispatch) => {
-    return FriendshipUtil.deleteFriend(user1_id, user2_id).then(
+    return FriendshipUtil.deleteFriend(friendId).then(
       (resp) => { return dispatch(removeFriend(resp)) },
       (errors) => { return dispatch(receiveFriendshipErrors(errors)) }
     );

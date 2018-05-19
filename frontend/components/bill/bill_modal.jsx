@@ -167,8 +167,10 @@ class BillModal extends React.Component {
       e.preventDefault();
       if (this.checkValidations()) {
         const bill = this.state.bill;
+        const friend = this.state.friend;
+        debugger
         bill.amount = bill.amount - 0;
-        this.props.action(bill);
+        this.props.action(bill, friend);
         closeModal(e);
       }
     });

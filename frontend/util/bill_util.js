@@ -1,9 +1,11 @@
-export const addBill = (bill) => {
+export const addBill = (bill, friend) => {
+  debugger
   return $.ajax({
     method: "POST",
     url: "api/bills",
     data: {
-      bill: bill
+      bill: bill,
+      friend: friend
     }
   });
 };

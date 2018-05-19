@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    action: (bill) =>  dispatch(addBill(bill))
+    action: (bill, friend) =>  dispatch(addBill(bill, friend))
   };
 };
 

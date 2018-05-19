@@ -5,22 +5,22 @@ export const fetchFriends = () => {
   });
 };
 
-export const addFriend = (user1_id, friend_email) => {
+export const addFriend = (email) => {
   return $.ajax({
     method: "POST",
     url: "api/friendships",
     data: {
-      friendship: { user1_id: user1_id, friend_email: friend_email }
+      friendship: { friend_email: email }
     }
   });
 };
 
-export const deleteFriend = (user1_id, user2_id) => {
+export const deleteFriend = (friendId) => {
   return $.ajax({
     method: "DELETE",
     url: "api/friendship",
     data: {
-      friendship: { user1_id: user1_id, user2_id: user2_id }
+      friendship: { friend_id: friendId }
     }
   });
 };

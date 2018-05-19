@@ -16,6 +16,14 @@ class Bill < ApplicationRecord
     dependent: :destroy
   )
 
+  has_one(
+    :shared_bill,
+    class_name: "SharedBill",
+    foreign_key: :bill_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
+
   def to_h
     {
       id: self.id,

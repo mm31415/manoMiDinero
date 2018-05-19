@@ -17,7 +17,7 @@ export const UsersReducer = (oldState = {}, action) => {
       return merge({}, oldState, { [action.friend.id]: action.friend });
     case REMOVE_FRIEND:
       const newState = merge({}, oldState);
-      delete newState[action.friend.id];
+      delete newState[action.friendId];
       return newState;
     case LOGOUT_USER:
       return {};

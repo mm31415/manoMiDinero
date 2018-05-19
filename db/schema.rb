@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515143703) do
+ActiveRecord::Schema.define(version: 20180519145404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 20180515143703) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bill_id", "user_id"], name: "index_payments_on_bill_id_and_user_id", unique: true
+  end
+
+  create_table "shared_bills", force: :cascade do |t|
+    t.integer "bill_id", null: false
+    t.integer "friendship_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bill_id", "friendship_id"], name: "index_shared_bills_on_bill_id_and_friendship_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

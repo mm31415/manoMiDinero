@@ -3,11 +3,9 @@ import { withRouter } from "react-router";
 import { Expense } from "./expense";
 import { fetchFriends } from "../../actions/friendship_actions";
 import { deleteBill } from "../../actions/bill_actions";
+import { combineDate } from "../../util/function_util";
 
 const mapStateToProps = state => {
-  const combineDate = (date) => {
-    return date.split("-").reduce((acc, curr) => acc + curr);
-  };
   return {
     bills: Object.values(state.entities.bills).sort((a,b) => combineDate(b.date) - combineDate(a.date)),
     logged_in: state.session.id || false,

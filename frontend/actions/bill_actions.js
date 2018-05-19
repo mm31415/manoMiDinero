@@ -47,9 +47,9 @@ export const fetchBills = () => {
   };
 };
 
-export const addBill = (bill) => {
+export const addBill = (bill, friend) => {
   return (dispatch) => {
-    return BillUtil.addBill(bill).then(
+    return BillUtil.addBill(bill, friend).then(
       (bill) => { return dispatch(receiveBill(bill)); },
       (errors) => { return dispatch(receiveBillErrors(errors)); }
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import NavSidebarContainer from "../nav_sidebar/nav_sidebar_container";
+import InfoSidebarContainer from "../info_sidebar/info_sidebar_container";
 import { ContentHeader } from "../content_header/content_header";
 import DashboardContainer from "../dashboard/dashboard_container";
 import ActivityContainer from "../activity/activity_container";
@@ -36,7 +37,9 @@ class MainContent extends React.Component {
           <Route path="/main/all" component={ExpenseContainer} />
           <Route path="/main/friends/:friendId" component={FriendContainer} />
         </main>
-        <div className="right-sidebar"></div>
+        <nav className="right-sidebar">
+          <InfoSidebarContainer />
+        </nav>
       </div>
     );
   }

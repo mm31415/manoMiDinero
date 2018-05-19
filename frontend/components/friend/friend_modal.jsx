@@ -23,7 +23,7 @@ class FriendModal extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
     const modal = document.getElementById("add-friend-modal");
-    this.props.addFriend(this.props.user1_id, this.state.email).then(
+    this.props.addFriend(this.state.email).then(
       () => {
         this.setState({ email: '' });
         modal.style.display = "none";
@@ -49,7 +49,7 @@ class FriendModal extends React.Component {
       }
     };
 
-    if (this.props.user1_id === null) {
+    if (this.props.logged_in === null) {
       if (modal !== null) {
         modal.style.display = "none";
       }

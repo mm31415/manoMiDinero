@@ -3,13 +3,12 @@ import { withRouter } from "react-router";
 import { Expense } from "../expense/expense";
 import { fetchFriends } from "../../actions/friendship_actions";
 import { deleteBill } from "../../actions/bill_actions";
+import { combineDate } from "../../util/function_util";
+
 
 const mapStateToProps = (state, ownProps) => {
   const friendId = ownProps.match.params.friendId;
   const friendBills = [];
-  const combineDate = (date) => {
-    return date.split("-").reduce((acc, curr) => acc + curr);
-  };
   Object.values(state.entities.bills).forEach((value) => {
     if (value.splits[0].user_id == friendId || value.splits[1].user_id == friendId) {
       friendBills.push(value);
