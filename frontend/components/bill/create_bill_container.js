@@ -7,7 +7,9 @@ const mapStateToProps = state => {
   const friends = merge({}, state.entities.users);
   delete friends[state.session.id];
   return {
-    friends_arr: Object.values(friends),
+    friends_arr: Object.values(friends).sort(
+      (a,b) => a.name.toLowerCase() > b.name.toLowerCase()
+    ),
     friends_obj: friends,
     currentUserId: state.session.id
   };
