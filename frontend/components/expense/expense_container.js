@@ -5,8 +5,11 @@ import { fetchFriends } from "../../actions/friendship_actions";
 import { deleteBill } from "../../actions/bill_actions";
 
 const mapStateToProps = state => {
+  const combineDate = (date) => {
+    return date.split("-").reduce((acc, curr) => acc + curr);
+  };
   return {
-    bills: Object.values(state.entities.bills),
+    bills: Object.values(state.entities.bills).sort((a,b) => combineDate(b.date) - combineDate(a.date)),
     logged_in: state.session.id || false,
     users: state.entities.users
   };

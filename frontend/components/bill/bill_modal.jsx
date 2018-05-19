@@ -227,12 +227,22 @@ class BillModal extends React.Component {
       while (true) {
         if (friendUlChild === null) {
           break;
-        } else if (friendUlChild.style.display === "none") {
+        } else {
           friendUlChild.style.removeProperty("background");
           friendUlChild = friendUlChild.nextSibling;
           continue;
         }
-        break;
+      }
+      friendUlChild = document.getElementById("friend-search").firstChild;
+      while (true) {
+        if (friendUlChild === null) {
+          break;
+        } else if (friendUlChild.style.display === "none") {
+          friendUlChild = friendUlChild.nextSibling;
+          continue;
+        } else {
+          break;
+        }
       }
       if (friendUlChild !== "null") {
         friendUlChild.style.background = "lightgray";
