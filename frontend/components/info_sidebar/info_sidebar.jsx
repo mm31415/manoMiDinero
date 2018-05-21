@@ -16,6 +16,9 @@ export const InfoSidebar = (props) => {
   };
 
   const balanceDisplay = () => {
+    if (props.balance === 0) {
+      return <h1>You are all settled up</h1>;
+    }
     if (friendId) {
       if ((props.balance) < 0) {
         return(
