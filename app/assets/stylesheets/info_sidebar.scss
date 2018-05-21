@@ -1,4 +1,34 @@
 .right-sidebar {
   width: 200px;
-  height: 100%;
+  font-family: sans-serif;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+#info-header{
+  color: #0ABD99;
+  font-weight: 700;
+}
+
+#balance-settled{
+  color: #0ABD99;
+  margin-top: 5px;
+}
+
+#balance-owed{
+  color: red;
+  margin-top: 5px;
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+  }
+}
+
+#balance-lent{
+  color: #0ABD99;
+  margin-top: 5px;
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+  }
 }
