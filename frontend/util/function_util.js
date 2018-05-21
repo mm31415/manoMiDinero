@@ -12,3 +12,22 @@ export const mapAndSortFriendBills = (bills_obj, friendId) => {
 
   return friendBills.sort((a,b) => combineDate(b.date) - combineDate(a.date));
 };
+
+export const balance = (bills, userId) => {
+  let balance = 0.0;
+
+  bills.forEach((bill) => {
+    let amount;
+    if (bill.splits[0].user_id === bill.payerId) {
+      amount = bill.splits[0].amount;
+    } else {
+      amount = bill.splits[1].amount;
+    }
+    if (bill.payerId === userId) {
+      balance += (amount - 0);
+    } else {
+      balance -= (amount - 0);
+    }
+  });
+  return balance;
+};
