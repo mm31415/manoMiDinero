@@ -33,7 +33,10 @@ class Api::FriendshipsController < ApplicationController
       user1_id: current_user.id,
       user2_id: friendship_params[:friend_id]
       )
-    friendship2 = friendship1.pair_friendship
+    friendship2 = Friendship.find_by(
+      user1_id: friendship_params[:friend_id],
+      user2_id: current_user.id
+      )
     bill_ids = friendship1.shared_bills.map { |share| share.bill_id }
     if friendship1.nil? || friendship2.nil?
       render json: { errors: ["Friendship does not exist"] }, status: 422

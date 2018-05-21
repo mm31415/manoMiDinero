@@ -16,12 +16,14 @@ class Friendship < ApplicationRecord
     primary_key: :id
   )
 
-  has_one(
-    :pair_friendship,
-    class_name: "Friendship",
-    foreign_key: :user2_id,
-    primary_key: :user1_id,
-  )
+  # has_one(
+  #   :pair_friendship,
+  #   class_name: "Friendship",
+  #   foreign_key: :user1_id,
+  #   primary_key: :user2_id,
+  #   where ->
+  #
+  # )
 
   has_many(
     :shared_bills,
