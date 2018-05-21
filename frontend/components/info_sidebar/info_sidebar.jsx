@@ -4,16 +4,14 @@ import React from "react";
 export const InfoSidebar = (props) => {
   const friendId = props.location.pathname.split("/")[3] - 0;
 
-  const handleDelete = (friendId) => {
-    return e => {
-      props.deleteFriend(friendId);
-      props.history.push("/");
-    };
+  const handleDelete = () => {
+    props.deleteFriend(friendId);
+    props.history.push("/");
   };
 
   const deleteFriendButton = () => {
     if (friendId) {
-      return <button onClick={handleDelete(friendId)}>Delete Friend</button>;
+      return <button onClick={handleDelete}>Delete Friend</button>;
     }
   };
 

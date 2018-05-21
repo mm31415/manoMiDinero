@@ -23,7 +23,8 @@ const receiveFriend = (friend) => {
 const removeFriend = (resp) => {
   return {
     type: REMOVE_FRIEND,
-    friendId: resp.friendId
+    friendId: resp.friendId,
+    billIds: resp.billIds
   };
 };
 
