@@ -32,7 +32,6 @@ class BillModal extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // debugger
     if (this.props.bill) {
       let friendId;
       if (this.props.bill.splits[0].user_id === this.props.currentUserId) {
