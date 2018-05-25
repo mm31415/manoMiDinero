@@ -32,6 +32,7 @@ class BillModal extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // debugger
     if (this.props.bill) {
       let friendId;
       if (this.props.bill.splits[0].user_id === this.props.currentUserId) {
@@ -40,6 +41,7 @@ class BillModal extends React.Component {
         friendId = this.props.bill.splits[0].user_id;
       }
       if (prevProps.bill !== this.props.bill) {
+
         this.setState({
           bill: this.props.bill,
           friend: {
@@ -189,6 +191,7 @@ class BillModal extends React.Component {
     const fadeOut = (e) => {
       if (e.target === modal) {
         this.handleState();
+        this.props.removeEditBillId();
         document.getElementById("datepicker").value = "";
         searchBox.style.display = "none";
         modalForm.classList.toggle("fade-out");
@@ -203,6 +206,7 @@ class BillModal extends React.Component {
 
     const closeModal = e => {
       e.preventDefault();
+      this.props.removeEditBillId();
       this.handleState();
       document.getElementById("datepicker").value = "";
       searchBox.style.display = "none";
