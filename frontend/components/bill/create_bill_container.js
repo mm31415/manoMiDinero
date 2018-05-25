@@ -11,7 +11,8 @@ const mapStateToProps = state => {
       (a,b) => a.name.toLowerCase() > b.name.toLowerCase()
     ),
     friends_obj: friends,
-    currentUserId: state.session.id
+    currentUserId: state.session.id,
+    bill: state.entities.bills[state.entities.edit.billId]
   };
 };
 

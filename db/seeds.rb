@@ -13,5 +13,15 @@ User.create(name: "Paul", email: "paulemail@paul.com", password: "paullogin");
 User.create(name: "Jahan", email: "jahanemail@jahan.com", password: "jahanlogin");
 User.create(name: "Alicia", email: "aliciaemail@alicia.com", password: "alicialogin");
 User.create(name: "Brian", email: "brianemail@brian.com", password: "brianlogin");
+User.create(name: "David", email: "davidemail@david.com", password: "davidlogin");
 
 Friendship.destroy_all
+
+guest_user = User.first
+
+User.all[1..-1].each do |user|
+  Friendship.create(user1_id: guest_user.id, user2_id: user.id)
+  Friendship.create(user1_id: user.id, user2_id: guest_user.id)
+end
+
+Bill.destroy_all

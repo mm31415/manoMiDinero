@@ -45,10 +45,18 @@ export const ExpenseItem = (props) => {
     );
   };
 
+  const handleEditBill = (e) => {
+    props.addEditBillId(e.currentTarget.value);
+    const modal_form = document.getElementById("add-bill-form");
+    const modal = document.getElementById("add-bill-modal");
+    modal.style.display = "block";
+    modal_form.classList.add("fade-in");
+  };
+
   const date = dateParse(props.bill.date.split("-"));
-  
+
   return (
-    <li id="expense-item">
+    <li id="expense-item" value={props.bill.id} onClick={handleEditBill} >
       <div id="expense-item-left">
         <ul id="bill-date">
           <li id="month">{date.month}</li>

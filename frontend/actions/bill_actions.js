@@ -4,6 +4,7 @@ export const RECEIVE_BILL = "RECEIVE_BILL";
 export const REMOVE_BILL = "REMOVE_BILL";
 export const RECEIVE_BILL_ERRORS = "RECEIVE_BILL_ERRORS";
 export const RESET_BILL_ERRORS = "RESET_BILL_ERRORS";
+export const ADD_EDIT_BILL_ID = "ADD_EDIT_BILL_ID";
 
 const receiveBills = (bills) => {
   return {
@@ -22,6 +23,13 @@ const receiveBill = (bill) => {
 const removeBill = (id) => {
   return {
     type: REMOVE_BILL,
+    billId: id
+  };
+};
+
+export const addEditBillId = (id) => {
+  return {
+    type: ADD_EDIT_BILL_ID,
     billId: id
   };
 };

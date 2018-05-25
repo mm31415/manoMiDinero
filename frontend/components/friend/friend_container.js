@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Expense } from "../expense/expense";
 import { fetchFriends } from "../../actions/friendship_actions";
-import { deleteBill } from "../../actions/bill_actions";
+import { deleteBill, addEditBillId } from "../../actions/bill_actions";
 import { mapAndSortFriendBills } from "../../util/function_util";
 
 
@@ -20,7 +20,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchFriends: () => dispatch(fetchFriends()),
-    deleteBill: (id) => dispatch(deleteBill(id))
+    deleteBill: (id) => dispatch(deleteBill(id)),
+    addEditBillId: (id) => dispatch(addEditBillId(id))
   };
 };
 

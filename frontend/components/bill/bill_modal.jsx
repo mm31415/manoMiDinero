@@ -31,7 +31,25 @@ class BillModal extends React.Component {
     this.handleState = this.handleState.bind(this);
   }
 
-
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.bill) {
+      let friendId;
+      if (this.props.bill.splits[0].user_id === this.props.currentUserId) {
+        friendId = this.props.bill.splits[1].user_id;
+      } else {
+        friendId = this.props.bill.splits[0].user_id;
+      }
+      if (prevProps.bill !== this.props.bill) {
+        this.setState({
+          bill: this.props.bill,
+          friend: {
+            id: friendId,
+            name: this.props.friends_obj[friendId].name
+          }
+        });
+      }
+    }
+  }
 
   updateField (field) {
     const that = this;
@@ -59,24 +77,14 @@ class BillModal extends React.Component {
     }
   }
 
-  setFriend (e, friendUlChild) {
-    if (e.which === 13) {
-      const newState = merge({}, this.state,
-        { bill: { payer_id: this.props.currentUserId } },
-        { friend: {
-          id: parseInt(friendUlChild.value),
-          name: this.props.friends_obj[parseInt(friendUlChild.value)].name
-        }});
-      this.setState(newState);
-    } else {
-      const newState = merge({}, this.state,
-        { bill: { payer_id: this.props.currentUserId } },
-        { friend: {
-          id: parseInt(e.currentTarget.value),
-          name: this.props.friends_obj[parseInt(e.currentTarget.value)].name
-        }});
-      this.setState(newState);
-    }
+  setFriend (e) {
+    const newState = merge({}, this.state,
+      { bill: { payer_id: this.props.currentUserId } },
+      { friend: {
+        id: parseInt(e.currentTarget.value),
+        name: this.props.friends_obj[parseInt(e.currentTarget.value)].name
+      }});
+    this.setState(newState);
   }
 
   displayAmount (e) {
@@ -107,7 +115,6 @@ class BillModal extends React.Component {
   }
 
   changePayer (e) {
-    e.preventDefault();
     let newState;
     if (this.state.bill.payer_id === this.state.friend.id) {
       newState = merge({}, this.state, { bill: { payer_id: this.props.currentUserId } });
@@ -175,13 +182,7 @@ class BillModal extends React.Component {
     });
   }
 
-  hideSearch (e) {
-    const searchBox = document.getElementById("friend-search");
-    searchBox.style.display = "none";
-  }
-
   render() {
-
     const modal = document.getElementById("add-bill-modal");
     const modalForm = document.getElementById("add-bill-form");
     const searchBox = document.getElementById("friend-search");
@@ -224,30 +225,6 @@ class BillModal extends React.Component {
         searchBox.style.display = "none";
         return false;
       }
-      let friendUlChild = document.getElementById("friend-search").firstChild;
-      while (true) {
-        if (friendUlChild === null) {
-          break;
-        } else {
-          friendUlChild.style.removeProperty("background");
-          friendUlChild = friendUlChild.nextSibling;
-          continue;
-        }
-      }
-      friendUlChild = document.getElementById("friend-search").firstChild;
-      while (true) {
-        if (friendUlChild === null) {
-          break;
-        } else if (friendUlChild.style.display === "none") {
-          friendUlChild = friendUlChild.nextSibling;
-          continue;
-        } else {
-          break;
-        }
-      }
-      if (friendUlChild !== "null") {
-        friendUlChild.style.background = "lightgray";
-      }
 
       searchBox.style.display = "initial";
       const searchTerm = e.currentTarget.value.toLowerCase();
@@ -261,76 +238,6 @@ class BillModal extends React.Component {
       }
     };
 
-    const handleKeyPress = (e) => {
-      let friendUlChild = document.getElementById("friend-search").firstChild;
-      if (e.which === 13) {
-        e.preventDefault();
-        while (true) {
-          if (friendUlChild === null) {
-            break;
-          } else if (friendUlChild.style.background === "lightgray") {
-            this.setFriend(e, friendUlChild);
-            this.hideSearch(e);
-            break;
-          } else {
-            friendUlChild = friendUlChild.nextSibling;
-            continue;
-          }
-        }
-      } else if (e.which === 8) {
-        while (true) {
-          if (friendUlChild === null) {
-            break;
-          } else {
-            friendUlChild.style.removeProperty("background");
-            friendUlChild = friendUlChild.nextSibling;
-            continue;
-          }
-        }
-      } else if (e.which === 40) {
-        e.preventDefault();
-        while (true) {
-          if (friendUlChild === null) {
-            break;
-          } else if (friendUlChild.style.background === "lightgray") {
-            let nextUlChild = friendUlChild.nextSibling;
-            if (nextUlChild !== null && nextUlChild.style.display !== "none") {
-              friendUlChild.style.removeProperty("background");
-              nextUlChild.style.background = "lightgray";
-            }
-            break;
-          } else {
-            friendUlChild = friendUlChild.nextSibling;
-            continue;
-          }
-        }
-      } else if (e.which === 38) {
-        e.preventDefault();
-        while (true) {
-          if (friendUlChild === null) {
-            break;
-          } else if (friendUlChild.style.background === "lightgray") {
-            let previousUlChild = friendUlChild.previousSibling;
-            if (previousUlChild !== null && previousUlChild.style.display !== "none") {
-              friendUlChild.style.removeProperty("background");
-              previousUlChild.style.background = "lightgray";
-            }
-            break;
-          } else {
-            friendUlChild = friendUlChild.nextSibling;
-            continue;
-          }
-        }
-      }
-    };
-
-    // const toggleId = (e) => {
-    //   debugger
-    //   const friendSearchChange = document.getElementById("friend-search");
-    //   friendSearchChange.removeAttribute("id");
-    //   friendSearchChange.addAttribute("id", "friend-search-focus");
-    // };
-
     return(
       <div id="add-bill-modal" onClick={fadeOut}>
         <form id="add-bill-form">
@@ -343,7 +250,7 @@ class BillModal extends React.Component {
             <input type="hidden" id="friend-value"></input>
             <input type="text" placeholder="Friend Name"
               value={this.state.friend.name}
-              onChange={updateList} onKeyDown={handleKeyPress} ></input>
+              onChange={updateList}></input>
           </span>
 
           <ul id="friend-search">
@@ -373,8 +280,8 @@ class BillModal extends React.Component {
 
           <span id="date-submit">
           <input type="date" id="datepicker"
-            onBlur={this.updateField("date")}></input>
-          <button id="add-bill-btn" onClick={this.handleSubmit(closeModal)} onMouseOver={this.addSplits}>Add Bill</button>
+            onChange={this.updateField("date")} value={this.state.bill.date}></input>
+          <button id="add-bill-btn" onClick={this.handleSubmit(closeModal)} onMouseOver={this.addSplits}>Save Bill</button>
           </span>
         </form>
       </div>
@@ -384,13 +291,3 @@ class BillModal extends React.Component {
 }
 
 export default BillModal;
-
-
-// e.currentTarget.attributes.value.value
-// e.currentTarget.attributes.label.value.includes("blah")
-// <li onClick={this.checkValue} value="ilikeCandy" label="yoman">SomeStuff</li>
-
-// <input type="text" value={this.state.description}
-//   onChange={this.updateField("description")} placeholder="Description" />
-// $<input type="text" value={this.state.amount}
-//   onChange={this.updateField("amount")} placeholder="0.00"/>

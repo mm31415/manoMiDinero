@@ -5,6 +5,7 @@ import HeaderContainer from "./components/header/header_container";
 import HomepageContainer from "./components/homepage/homepage_container";
 import FriendModalContainer from "./components/friend/friend_modal_container";
 import CreateBillContainer from "./components/bill/create_bill_container";
+import EditBillContainer from "./components/bill/edit_bill_container";
 import MainContentContainer from "./components/main_content/main_content_container";
 import { Route } from "react-router-dom";
 
