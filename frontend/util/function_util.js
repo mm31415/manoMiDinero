@@ -5,7 +5,8 @@ export const combineDate = (date) => {
 export const mapAndSortFriendBills = (bills_obj, friendId) => {
   const friendBills = [];
   Object.values(bills_obj).forEach((value) => {
-    if (value.splits[0].user_id == friendId || value.splits[1].user_id == friendId) {
+    if (value.splits[0].user_id == friendId ||
+      value.splits[1].user_id == friendId) {
       friendBills.push(value);
     }
   });
@@ -15,15 +16,14 @@ export const mapAndSortFriendBills = (bills_obj, friendId) => {
 
 export const balance = (bills, userId) => {
   let balance = 0.0;
-
   bills.forEach((bill) => {
     let amount;
-    if (bill.splits[0].user_id === bill.payerId) {
+    if (bill.splits[0].user_id === bill.payer_id) {
       amount = bill.splits[0].amount;
     } else {
       amount = bill.splits[1].amount;
     }
-    if (bill.payerId === userId) {
+    if (bill.payer_id === userId) {
       balance += (amount - 0);
     } else {
       balance -= (amount - 0);

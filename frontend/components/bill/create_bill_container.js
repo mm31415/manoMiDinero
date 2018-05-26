@@ -1,10 +1,9 @@
 import { connect } from "react-redux";
 import BillModal from "./bill_modal";
-import { addBill, removeEditBillId } from "../../actions/bill_actions";
+import { addBill, removeEditBillId, updateBill } from "../../actions/bill_actions";
 import merge from "lodash/merge";
 
 const mapStateToProps = state => {
-  // debugger
   const friends = merge({}, state.entities.users);
   delete friends[state.session.id];
   return {
@@ -13,13 +12,16 @@ const mapStateToProps = state => {
     ),
     friends_obj: friends,
     currentUserId: state.session.id,
-    bill: state.entities.bills[state.entities.edit.billId]
+    bill: state.entities.bills[state.entities.edit.billId],
+    formType: state.entities.bills[
+      state.entities.edit.billId] ? "editBill" : "addBill"
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    action: (bill, friend) =>  dispatch(addBill(bill, friend)),
+    addBill: (bill, friend) =>  dispatch(addBill(bill, friend)),
+    updateBill: (bill) => dispatch(updateBill(bill)),
     removeEditBillId: () => dispatch(removeEditBillId())
   };
 };

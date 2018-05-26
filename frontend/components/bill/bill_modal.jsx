@@ -116,6 +116,7 @@ class BillModal extends React.Component {
   }
 
   changePayer (e) {
+    e.preventDefault();
     let newState;
     if (this.state.bill.payer_id === this.state.friend.id) {
       newState = merge({}, this.state, { bill: { payer_id: this.props.currentUserId } });
@@ -177,7 +178,11 @@ class BillModal extends React.Component {
         const bill = this.state.bill;
         const friend = this.state.friend;
         bill.amount = bill.amount - 0;
-        this.props.action(bill, friend);
+        if (this.props.formType !== "addBill") {
+          this.props.updateBill(bill);
+        } else {
+          this.props.addBill(bill, friend);
+        }
         closeModal(e);
       }
     });
@@ -242,10 +247,12 @@ class BillModal extends React.Component {
     };
 
     return(
-      <div id="add-bill-modal" onClick={fadeOut}>
-        <form id="add-bill-form">
+      <div id={"add-bill-modal"} onClick={fadeOut}>
+        <form id={"add-bill-form"}>
           <header id="add-bill-header">
-            Add Bill<button id="close-btn" onClick={closeModal}><i className="fa fa-close"></i></button>
+            {this.props.formType === "addBill" ? "Add Bill" : "Edit Bill"}
+            <button id="close-btn" onClick={closeModal}>
+              <i className="fa fa-close"></i></button>
           </header>
 
           <span id="enter-name">
@@ -277,7 +284,7 @@ class BillModal extends React.Component {
           </span>
 
           <span id="dynamic-info">
-            <h1>Paid by&nbsp;<button id="change-payer-btn" onClick={this.changePayer}>{`${this.displayPayer()}`}</button>&nbsp;and split equally.</h1>
+            <h1>Paid by&nbsp;<button id="change-payer-btn" onClick={this.changePayer}>{this.displayPayer()}</button>&nbsp;and split equally.</h1>
             <h1>(${`${(this.state.bill.amount / 2).toFixed(2)}`}/person)</h1>
           </span>
 

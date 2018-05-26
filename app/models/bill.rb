@@ -31,7 +31,7 @@ class Bill < ApplicationRecord
       description: self.description,
       date: self.date,
       creatorId: self.creator_id,
-      payerId: self.payer_id,
+      payer_id: self.payer_id,
       note: self.note,
       splits: []
     }

@@ -22,7 +22,7 @@ class Api::BillsController < ApplicationController
       render json: {
         id: @bill.id, amount: @bill.amount,
         description: @bill.description, date: @bill.date,
-        note: @bill.note, payerId: @bill.payer_id,
+        note: @bill.note, payer_id: @bill.payer_id,
         splits: @splits
         }, status: 200
     else
@@ -36,12 +36,18 @@ class Api::BillsController < ApplicationController
     if @bill.nil?
       render json: { errors: "Bill does not exist" }, status: 422
     elsif @bill.update(bill_params)
-      split_params.each do |split_update|
-        split = BillSplit.find(split_update.id)
+      @splits = [];
+      split_params[:splits].values.each do |split_update|
+        split = BillSplit.find(split_update[:id])
         split.update(split_update)
+        @splits.push(split)
       end
-      @splits = @bill.bill_splits
-      render :show
+      render json: {
+        id: @bill.id, amount: @bill.amount,
+        description: @bill.description, date: @bill.date,
+        note: @bill.note, payer_id: @bill.payer_id,
+        splits: @splits
+        }, status: 200
     else
       render json: { errors: @bill.errors.full_messages }, status: 422
     end
@@ -65,7 +71,7 @@ class Api::BillsController < ApplicationController
 
   def split_params
     params.require(:bill).
-      permit(:splits => [:user_id, :amount])
+      permit(:splits => [:id, :user_id, :amount])
   end
 
   def friend_params
