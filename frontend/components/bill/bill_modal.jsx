@@ -40,9 +40,8 @@ class BillModal extends React.Component {
         friendId = this.props.bill.splits[0].user_id;
       }
       if (prevProps.bill !== this.props.bill) {
-
         this.setState({
-          bill: this.props.bill,
+          bill: merge({}, this.props.bill, { amount: parseFloat(this.props.bill.amount).toFixed(2) }),
           friend: {
             id: friendId,
             name: this.props.friends_obj[friendId].name
