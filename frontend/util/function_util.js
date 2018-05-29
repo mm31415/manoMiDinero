@@ -18,15 +18,17 @@ export const balance = (bills, userId) => {
   let balance = 0.0;
   bills.forEach((bill) => {
     let amount;
-    if (bill.splits[0].user_id === bill.payer_id) {
-      amount = bill.splits[1].amount;
-    } else {
-      amount = bill.splits[0].amount;
-    }
-    if (bill.payer_id === userId) {
-      balance += (amount - 0);
-    } else {
-      balance -= (amount - 0);
+    if (bill.splits.length !== 0) {
+      if (bill.splits[0].user_id === bill.payer_id) {
+        amount = bill.splits[1].amount;
+      } else {
+        amount = bill.splits[0].amount;
+      }
+      if (bill.payer_id === userId) {
+        balance += (amount - 0);
+      } else {
+        balance -= (amount - 0);
+      }
     }
   });
   return balance;
