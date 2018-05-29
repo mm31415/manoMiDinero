@@ -41,7 +41,7 @@ SharedBill.destroy_all
   friendship_id = Friendship.find_by(user1_id: guest_user.id, user2_id: friend_id)
 
   bill = Bill.create(
-    amount: ,
+    amount: amount,
     description: Faker::Food.dish,
     date: "#{d.to_s}",
     creator_id: creator_id,

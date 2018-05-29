@@ -19,9 +19,9 @@ export const balance = (bills, userId) => {
   bills.forEach((bill) => {
     let amount;
     if (bill.splits[0].user_id === bill.payer_id) {
-      amount = bill.splits[0].amount;
-    } else {
       amount = bill.splits[1].amount;
+    } else {
+      amount = bill.splits[0].amount;
     }
     if (bill.payer_id === userId) {
       balance += (amount - 0);
