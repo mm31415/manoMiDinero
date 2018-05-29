@@ -11,7 +11,7 @@ export const InfoSidebar = (props) => {
 
   const deleteFriendButton = () => {
     if (friendId) {
-      return <button onClick={handleDelete}>Delete Friend</button>;
+      return <button id="delete-friend-btn" onClick={handleDelete}>Delete Friend</button>;
     }
   };
 

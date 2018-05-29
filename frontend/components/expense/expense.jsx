@@ -65,7 +65,7 @@ export const Expense = (props) => {
             <img src={window.staticImages.empty} />
             <ul>
               <h1>You have not added any expenses yet</h1>
-              <h2>To add a new expense, click the orange “Add a bill” button.</h2>
+              <h2>To add a new expense, click the orange “Add Bill” button.</h2>
             </ul>
           </div>
         );

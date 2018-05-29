@@ -32,7 +32,6 @@ class Bill < ApplicationRecord
       date: self.date,
       creatorId: self.creator_id,
       payer_id: self.payer_id,
-      note: self.note,
       splits: []
     }
   end

@@ -22,8 +22,7 @@ class Api::BillsController < ApplicationController
       render json: {
         id: @bill.id, amount: @bill.amount,
         description: @bill.description, date: @bill.date,
-        note: @bill.note, payer_id: @bill.payer_id,
-        splits: @splits
+        payer_id: @bill.payer_id, splits: @splits
         }, status: 200
     else
       render json: { errors: @bill.errors.full_messages }, status: 422
@@ -45,8 +44,7 @@ class Api::BillsController < ApplicationController
       render json: {
         id: @bill.id, amount: @bill.amount,
         description: @bill.description, date: @bill.date,
-        note: @bill.note, payer_id: @bill.payer_id,
-        splits: @splits
+        payer_id: @bill.payer_id, splits: @splits
         }, status: 200
     else
       render json: { errors: @bill.errors.full_messages }, status: 422
@@ -66,7 +64,7 @@ class Api::BillsController < ApplicationController
 
   def bill_params
     params.require(:bill).
-      permit(:amount, :description, :date, :note, :payer_id)
+      permit(:amount, :description, :date, :payer_id)
   end
 
   def split_params

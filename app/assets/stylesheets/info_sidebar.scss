@@ -32,3 +32,20 @@
     font-weight: 700;
   }
 }
+
+#delete-friend-btn {
+  color: white;
+  background: #E98C11;
+  border: 1px solid #C69523;
+  box-shadow: 1px 1px #B9B9B9;
+  height: 50%;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 7px;
+}
+
+#delete-friend-btn:hover {
+  background: darken(#E98C11, 2%);
+  cursor: pointer;
+}
