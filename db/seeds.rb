@@ -38,14 +38,19 @@ SharedBill.destroy_all
   while (friend_id == guest_user.id) do
     friend_id = User.all.shuffle.first.id
   end
-  friendship_id = Friendship.find_by(user1_id: guest_user.id, user2_id: friend_id)
-
+  friendship_id = Friendship.find_by(user1_id: guest_user.id, user2_id: friend_id).id
+  
   bill = Bill.create(
     amount: amount,
     description: Faker::Food.dish,
     date: "#{d.to_s}",
     creator_id: creator_id,
     payer_id: payer_id,
+  )
+
+  SharedBill.create(
+    bill_id: bill.id,
+    friendship_id: friendship_id
   )
 
   BillSplit.create(
@@ -59,8 +64,5 @@ SharedBill.destroy_all
     user_id: (payer_id == guest_user.id ? friend_id : guest_user.id)
   )
 
-  SharedBill.create(
-    bill_id: bill.id,
-    friendship_id: friendship_id
-  )
+
 end
