@@ -14,6 +14,14 @@ class User < ApplicationRecord
   )
 
   has_many(
+    :pair_friendships,
+    class_name: "Friendship",
+    foreign_key: :user2_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
+
+  has_many(
     :friends,
     through: :friendships,
     source: :friend
@@ -31,6 +39,18 @@ class User < ApplicationRecord
     through: :splits,
     source: :bill,
     dependent: :destroy
+  )
+
+  has_many(
+    :payer_payments,
+    through: :friendships,
+    source: :payments
+  )
+
+  has_many(
+    :payee_payments,
+    through: :pair_friendships,
+    source: :payments
   )
 
   after_initialize :ensure_session_token!

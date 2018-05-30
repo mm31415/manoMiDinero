@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528185529) do
+ActiveRecord::Schema.define(version: 20180530132905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,10 @@ ActiveRecord::Schema.define(version: 20180528185529) do
 
   create_table "payments", force: :cascade do |t|
     t.decimal "amount", precision: 16, scale: 2, null: false
-    t.integer "bill_id", null: false
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bill_id", "user_id"], name: "index_payments_on_bill_id_and_user_id", unique: true
+    t.integer "friendship_id", null: false
+    t.index ["friendship_id"], name: "index_payments_on_friendship_id"
   end
 
   create_table "shared_bills", force: :cascade do |t|

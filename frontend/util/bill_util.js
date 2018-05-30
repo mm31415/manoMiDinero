@@ -32,35 +32,3 @@ export const fetchBills = () => {
     url: "api/bills"
   });
 };
-
-// export const addPayment = (payment) => {
-//   return $.ajax({
-//     method: "POST",
-//     url: "api/payments",
-//     data: {  payment: payment }
-//   });
-// };
-
-// export const updatePayments = (payments) => {
-//   return $.ajax({
-//     method: "PATCH",
-//     url: "api/payments",
-//     data: { payments: payments }
-//   });
-// };
-//
-// export const addSplits = (splits) => {
-//   return $.ajax({
-//     method: "POST",
-//     url: "api/bill_splits",
-//     data: {  splits: splits }
-//   });
-// };
-//
-// export const updateSplits = (splits) => {
-//   return $.ajax({
-//     method: "PATCH",
-//     url: "api/bill_splits",
-//     data: { splits: splits }
-//   });
-// };

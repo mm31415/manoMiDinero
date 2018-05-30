@@ -1,5 +1,11 @@
 class Payment < ApplicationRecord
-  validates :amount, :bill_id, :user_id, presence: true
-  validates :bill_id, uniqueness: { scope: :user_id }
-  
+  validates :amount, :friendship_id, presence: true
+
+  belongs_to(
+    :friendship,
+    class_name: "Friendship",
+    foreign_key: :friendship_id,
+    primary_key: :id
+  )  
+
 end
