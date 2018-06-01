@@ -2,7 +2,7 @@ export const addPayment = (payment) => {
   return $.ajax({
     method: "POST",
     url: "api/payments",
-    data: payment
+    data: { payment: payment }
   });
 };
 

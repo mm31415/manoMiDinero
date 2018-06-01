@@ -17,14 +17,18 @@ const receivePayments = (payments) => {
   };
 };
 
-export const addPayment = dispatch => {
-  return PaymentUtil.addPayment(payment).then((payment) => {
-      return dispatch(receivePayment(payment))
-  });
+export const addPayment = payment => {
+  return (dispatch) => {
+    return PaymentUtil.addPayment(payment).then((payment) => {
+      return dispatch(receivePayment(payment));
+    });
+  };
 };
 
-export const fetchPayments = dispatch => {
-  return PaymentUtil.fetchPayments().then((payments) => {
-    return dispatch(receivePayments(payments));
-  });
+export const fetchPayments = () => {
+  return (dispatch) => {
+    return PaymentUtil.fetchPayments().then((payment) => {
+      return dispatch(receivePayments(payments));
+    });
+  };
 };

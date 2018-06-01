@@ -12,10 +12,10 @@ export const ContentHeader = (props) => {
 
   const handleSettleUp = (e) => {
     e.preventDefault();
-    // const modal_form = document.getElementById("add-bill-form");
-    // const modal = document.getElementById("add-bill-modal");
-    // modal.style.display = "block";
-    // modal_form.classList.add("fade-in");
+    const modal_form = document.getElementById("add-payment-form");
+    const modal = document.getElementById("add-payment-modal");
+    modal.style.display = "block";
+    modal_form.classList.add("fade-in");
   };
 
   const header = () => {

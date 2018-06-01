@@ -6,7 +6,7 @@ class PaymentModal extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      payment: { amount: '', payer_id: '', payee_id: '', date: '' },
+      payment: { amount: '', payer_id: this.props.currentUserId, payee_id: '', date: '' },
       friend: { friend_id: '', name: '' }
     };
     this.setFriend =  this.setFriend.bind(this);
@@ -47,7 +47,7 @@ class PaymentModal extends React.Component{
 
   setFriend (e) {
     const newState = merge({}, this.state,
-      { payment: { payer_id: this.props.currentUserId } },
+      { payment: { payee_id: parseInt(e.currentTarget.value) || this.props.currentUserId } },
       { friend: {
         id: parseInt(e.currentTarget.value),
         name: this.props.friends_obj[parseInt(e.currentTarget.value)].name
@@ -56,12 +56,12 @@ class PaymentModal extends React.Component{
   }
 
   displayAmount (e) {
-    const amount = this.state.payment.amount;
+    const amount = parseFloat(this.state.payment.amount);
     let newState;
-    if (amount) {
-      newState = merge({}, this.state, { payment: { amount: parseFloat(amount).toFixed(2) || "0.00" } });
+    if (amount === amount) {
+      newState = merge({}, this.state, { payment: { amount: amount.toFixed(2) || "" } });
     } else {
-      newState = merge({}, this.state, { payment: { amount: "0.00" } })
+      newState = merge({}, this.state, { payment: { amount: "" } })
     }
     this.setState(newState);
   }
@@ -73,7 +73,7 @@ class PaymentModal extends React.Component{
       return "you";
     }
   }
-  
+
   displayPayee (e) {
     if (this.state.payment.payee_id === this.state.friend.id) {
       return `${this.state.friend.name}`;
@@ -86,9 +86,15 @@ class PaymentModal extends React.Component{
     e.preventDefault();
     let newState;
     if (this.state.payment.payer_id === this.state.friend.id) {
-      newState = merge({}, this.state, { payment: { payer_id: this.props.currentUserId } });
+      newState = merge({}, this.state,
+         { payment: { payer_id: this.props.currentUserId,
+           payee_id: this.state.friend.id } }
+       );
     } else {
-      newState = merge({}, this.state, { payment: { payer_id: this.state.friend.id || this.props.currentUserId } });
+      newState = merge({}, this.state, { payment: {
+        payer_id: this.state.friend.id || this.props.currentUserId,
+        payee_id: this.props.currentUserId } }
+      );
     }
     this.setState(newState);
   }
@@ -109,7 +115,8 @@ class PaymentModal extends React.Component{
 
   handleState(e) {
     const defaultPaymentState = {
-      amount: '', payer_id: '', payee_id: '', date: ''
+      payment: { amount: '', payer_id: this.props.currentUserId, payee_id: '', date: '' },
+      friend: { friend_id: '', name: '' }
     };
     this.setState(defaultPaymentState);
   }
@@ -121,11 +128,7 @@ class PaymentModal extends React.Component{
         const payment = this.state.payment;
         const friend = this.state.friend;
         payment.amount = payment.amount - 0;
-        if (this.props.formType !== "addPayment") {
-          this.props.updatePayment(payment);
-        } else {
-          this.props.addPayment(payment, friend);
-        }
+        this.props.addPayment(payment);
         closeModal(e);
       }
     });
@@ -138,7 +141,6 @@ class PaymentModal extends React.Component{
     const fadeOut = (e) => {
       if (e.target === modal) {
         this.handleState();
-        // this.props.removeEditPaymentId();
         document.getElementById("datepicker").value = "";
         searchBox.style.display = "none";
         modalForm.classList.toggle("fade-out");
@@ -153,7 +155,6 @@ class PaymentModal extends React.Component{
 
     const closeModal = e => {
       e.preventDefault();
-      // this.props.removeEditPaymentId();
       this.handleState();
       document.getElementById("datepicker").value = "";
       searchBox.style.display = "none";
@@ -171,13 +172,11 @@ class PaymentModal extends React.Component{
     });
 
     const updateList = (e) => {
-      debugger
       this.updateField("name")(e);
       if (e.currentTarget.value === "") {
         searchBox.style.display = "none";
         return false;
       }
-      debugger
       searchBox.style.display = "initial";
       const searchTerm = e.currentTarget.value.toLowerCase();
       const list = document.getElementsByClassName("name-li");
@@ -224,7 +223,7 @@ class PaymentModal extends React.Component{
           <span id="payment-date-submit">
           <input type="date" id="payment-datepicker"
             onChange={this.updateField("date")} value={this.state.payment.date}></input>
-          <button id="add-payment-btn" onClick={this.handleSubmit(closeModal)} onMouseOver={this.addSplits}>Save Payment</button>
+          <button id="add-payment-btn" onClick={this.handleSubmit(closeModal)} >Save Payment</button>
           </span>
         </form>
       </div>

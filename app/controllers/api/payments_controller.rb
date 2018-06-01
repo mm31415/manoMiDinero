@@ -20,12 +20,14 @@ class Api::PaymentsController < ApplicationController
     )
     payment = Payment.new(
       amount: payment_params[:amount],
-      friendship_id: friendship.id
+      friendship_id: friendship.id,
+      date: payment_params[:date]
     )
     if payment.save
       render json: {
-        id: payment.id, amount: payment.amount
-        payer_id: friendship.user1_id
+        id: payment.id, amount: payment.amount,
+        payer_id: friendship.user1_id,
+        date: payment.date
       }, status: 200
     else
       render json: { errors: "Payment failed" }, status: 422
@@ -35,7 +37,7 @@ class Api::PaymentsController < ApplicationController
   private
 
   def payment_params
-    params.require(:payment).permit(:amount, :payer_id, :payee_id)
+    params.require(:payment).permit(:amount, :payer_id, :payee_id, :date)
   end
 
 end
