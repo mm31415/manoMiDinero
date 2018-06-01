@@ -8,6 +8,7 @@ class Api::PaymentsController < ApplicationController
       friendship = Friendship.find(payment.friendship_id)
       temp = payment.to_h
       temp[:payer_id] = friendship.user1_id
+      temp[:payee_id] = friendship.user2_id
       temp
     end
     render :payments
