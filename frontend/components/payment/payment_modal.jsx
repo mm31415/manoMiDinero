@@ -1,4 +1,4 @@
-paymentimport React from "react";
+import React from "react";
 import { SelectFriendItem } from "./select_friend_item";
 import merge from "lodash/merge";
 
@@ -9,6 +9,14 @@ class PaymentModal extends React.Component{
       payment: { amount: '', payer_id: '', payee_id: '', date: '' },
       friend: { friend_id: '', name: '' }
     };
+    this.setFriend =  this.setFriend.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateField = this.updateField.bind(this);
+    this.displayAmount = this.displayAmount.bind(this);
+    this.displayPayer = this.displayPayer.bind(this);
+    this.changePayer = this.changePayer.bind(this);
+    this.checkValidations = this.checkValidations.bind(this);
+    this.handleState = this.handleState.bind(this);
   }
 
   updateField (field) {
@@ -60,6 +68,14 @@ class PaymentModal extends React.Component{
 
   displayPayer (e) {
     if (this.state.payment.payer_id === this.state.friend.id) {
+      return `${this.state.friend.name}`;
+    } else {
+      return "you";
+    }
+  }
+  
+  displayPayee (e) {
+    if (this.state.payment.payee_id === this.state.friend.id) {
       return `${this.state.friend.name}`;
     } else {
       return "you";
@@ -118,11 +134,11 @@ class PaymentModal extends React.Component{
   render() {
     const modal = document.getElementById("add-payment-modal");
     const modalForm = document.getElementById("add-payment-form");
-    const searchBox = document.getElementById("friend-search");
+    const searchBox = document.getElementById("payment-friend-search");
     const fadeOut = (e) => {
       if (e.target === modal) {
         this.handleState();
-        this.props.removeEditPaymentId();
+        // this.props.removeEditPaymentId();
         document.getElementById("datepicker").value = "";
         searchBox.style.display = "none";
         modalForm.classList.toggle("fade-out");
@@ -137,7 +153,7 @@ class PaymentModal extends React.Component{
 
     const closeModal = e => {
       e.preventDefault();
-      this.props.removeEditPaymentId();
+      // this.props.removeEditPaymentId();
       this.handleState();
       document.getElementById("datepicker").value = "";
       searchBox.style.display = "none";
@@ -155,12 +171,13 @@ class PaymentModal extends React.Component{
     });
 
     const updateList = (e) => {
+      debugger
       this.updateField("name")(e);
       if (e.currentTarget.value === "") {
         searchBox.style.display = "none";
         return false;
       }
-
+      debugger
       searchBox.style.display = "initial";
       const searchTerm = e.currentTarget.value.toLowerCase();
       const list = document.getElementsByClassName("name-li");
@@ -190,22 +207,22 @@ class PaymentModal extends React.Component{
               onChange={updateList}></input>
           </span>
 
-          <ul id="friend-search">
+          <ul id="payment-friend-search">
             {selectOptions}
           </ul>
 
           <span id="dynamic-info">
-            <h1><button id="change-payer-btn" onClick={this.changePayer}>{this.displayPayer()}</button>paid&nbsp;{this.displayPayee()}</h1>
+            <h1><button id="change-payer-btn" onClick={this.changePayer}>{this.displayPayer()}</button>&nbsp;paid&nbsp;{this.displayPayee()}</h1>
           </span>
 
-          <div id="amount">
+          <div id="payment-amount">
             $<input type="text" value={this.state.payment.amount}
             onChange={this.updateField("amount")}
             onBlur={this.displayAmount} placeholder="0.00"></input>
           </div>
 
-          <span id="date-submit">
-          <input type="date" id="datepicker"
+          <span id="payment-date-submit">
+          <input type="date" id="payment-datepicker"
             onChange={this.updateField("date")} value={this.state.payment.date}></input>
           <button id="add-payment-btn" onClick={this.handleSubmit(closeModal)} onMouseOver={this.addSplits}>Save Payment</button>
           </span>
