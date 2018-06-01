@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import MainContent from "./main_content";
 import { fetchFriends } from "../../actions/friendship_actions";
 import { fetchBills } from "../../actions/bill_actions";
+import { fetchPayments } from "../../actions/payment_actions";
 
 const mapStateToProps = (state, ownProps) => {
   const name = () => {
@@ -24,7 +25,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchFriends: () => dispatch(fetchFriends()),
-    fetchBills: () => dispatch(fetchBills())
+    fetchBills: () => dispatch(fetchBills()),
+    fetchPayments: () => dispatch(fetchPayments())
   };
 };
 

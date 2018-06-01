@@ -18,6 +18,7 @@ class MainContent extends React.Component {
   componentDidMount() {
     this.props.fetchFriends();
     this.props.fetchBills();
+    this.props.fetchPayments();
   }
 
   render() {

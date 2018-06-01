@@ -6,7 +6,7 @@ class Api::PaymentsController < ApplicationController
     payments = current_user.payer_payments + current_user.payee_payments
     @return_payments = payments.map do |payment|
       friendship = Friendship.find(payment.friendship_id)
-      temp = payment
+      temp = payment.to_h
       temp[:payer_id] = friendship.user1_id
       temp
     end

@@ -27,7 +27,7 @@ export const addPayment = payment => {
 
 export const fetchPayments = () => {
   return (dispatch) => {
-    return PaymentUtil.fetchPayments().then((payment) => {
+    return PaymentUtil.fetchPayments().then(({ payments }) => {
       return dispatch(receivePayments(payments));
     });
   };
