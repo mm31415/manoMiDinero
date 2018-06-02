@@ -3,15 +3,17 @@ import { withRouter } from "react-router";
 import { Expense } from "../expense/expense";
 import { fetchFriends } from "../../actions/friendship_actions";
 import { deleteBill, addEditBillId } from "../../actions/bill_actions";
-import { mapAndSortFriendBills } from "../../util/function_util";
+import { mapAndSortFriendExpenses } from "../../util/function_util";
 
 
 const mapStateToProps = (state, ownProps) => {
   const friendId = ownProps.match.params.friendId;
-  const friendBills = mapAndSortFriendBills(
-    Object.assign({}, state.entities.bills), friendId);
+  const friendExpenses = mapAndSortFriendExpenses(
+    Object.assign({}, state.entities.bills),
+    Object.assign({}, state.entities.payments),
+    friendId);
   return {
-    bills: friendBills,
+    expenses: friendExpenses,
     logged_in: state.session.id || false,
     users: state.entities.users
   };

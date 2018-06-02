@@ -2,32 +2,65 @@ export const combineDate = (date) => {
   return date.split("-").reduce((acc, curr) => acc + curr);
 };
 
-export const mapAndSortFriendBills = (bills_obj, friendId) => {
-  const friendBills = [];
+export const mapAndSortFriendExpenses = (bills_obj, payments_obj, friendId) => {
+  const friendExpenses = [];
   Object.values(bills_obj).forEach((value) => {
     if (value.splits[0].user_id == friendId ||
       value.splits[1].user_id == friendId) {
-      friendBills.push(value);
+      friendExpenses.push(value);
+    }
+  });
+  Object.values(payments_obj).forEach((value) => {
+    if (value.payee_id == friendId ||
+      value.payer_id == friendId) {
+      friendExpenses.push(value);
     }
   });
 
-  return friendBills.sort((a,b) => combineDate(b.date) - combineDate(a.date));
+  return friendExpenses.sort((a,b) => combineDate(b.date) - combineDate(a.date));
 };
 
-export const balance = (bills, userId) => {
+export const mapFriendExpenses = (bills_obj, payments_obj, friendId) => {
+  const friendExpenses = [];
+  Object.values(bills_obj).forEach((value) => {
+    if (value.splits[0].user_id == friendId ||
+      value.splits[1].user_id == friendId) {
+      friendExpenses.push(value);
+    }
+  });
+  Object.values(payments_obj).forEach((value) => {
+    if (value.payee_id == friendId ||
+      value.payer_id == friendId) {
+      friendExpenses.push(value);
+    }
+  });
+
+  return friendExpenses;
+};
+
+export const balance = (expenses, userId) => {
   let balance = 0.0;
-  bills.forEach((bill) => {
+  expenses.forEach((expense) => {
     let amount;
-    if (bill.splits.length !== 0) {
-      if (bill.splits[0].user_id === bill.payer_id) {
-        amount = bill.splits[1].amount;
-      } else {
-        amount = bill.splits[0].amount;
-      }
-      if (bill.payer_id === userId) {
+    if (expense.payee_id) {
+      amount = expense.amount;
+      if (expense.payer_id === userId) {
         balance += (amount - 0);
       } else {
         balance -= (amount - 0);
+      }
+    } else {
+      if (expense.splits.length !== 0) {
+        if (expense.splits[0].user_id === expense.payer_id) {
+          amount = expense.splits[1].amount;
+        } else {
+          amount = expense.splits[0].amount;
+        }
+        if (expense.payer_id === userId) {
+          balance += (amount - 0);
+        } else {
+          balance -= (amount - 0);
+        }
       }
     }
   });
