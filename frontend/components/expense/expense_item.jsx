@@ -34,6 +34,24 @@ const oweInfo = (props) => {
   }
 };
 
+const payInfo = (props) => {
+  if (props.payee.name === "you") {
+    return (
+      <div id="payee-div">
+        <h1>you received</h1>
+        <div id="ower">${parseFloat(props.expense.amount).toFixed(2)}</div>
+      </div>
+    );
+  } else {
+    return (
+      <div id="payer-div">
+        <h1>you paid</h1>
+        <div id="lender">${parseFloat(props.expense.amount).toFixed(2)}</div>
+      </div>
+    );
+  }
+};
+
 export const ExpenseItem = (props) => {
 
   const deleteExpense = (expense) => {
@@ -58,7 +76,17 @@ export const ExpenseItem = (props) => {
   const date = dateParse(props.expense.date.split("-"));
 
   if (props.expense.payee_id) {
-    return <li>This is where payment goes</li>;
+    return (
+      <li id="payment-item">
+        <div id="payment-item-left">
+          <img id="payment-img" src={window.staticImages.payment} />
+          {props.ower.name}&nbsp;paid&nbsp;{props.payee.name}&nbsp;${parseFloat(props.expense.amount).toFixed(2)}
+        </div>
+        <div id="payment-item-right">
+          {payInfo(props)}
+        </div>
+      </li>
+    );
   } else {
     return (
       <li id="expense-item" value={props.expense.id} onClick={handleEditBill} >
