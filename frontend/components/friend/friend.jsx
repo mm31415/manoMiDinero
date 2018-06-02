@@ -20,4 +20,4 @@ class Friend extends React.Component {
 
 };
 
-export default Friend;
+// export default Friend;

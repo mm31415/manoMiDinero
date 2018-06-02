@@ -8,7 +8,6 @@ const mapStateToProps = state => {
   const bills = Object.values(state.entities.bills);
   const payments = Object.values(state.entities.payments);
   let expenses = bills.concat(payments);
-  debugger
   return {
     expenses: expenses.sort(
       (a,b) => combineDate(b.date) - combineDate(a.date)),

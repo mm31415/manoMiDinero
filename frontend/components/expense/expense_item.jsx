@@ -44,7 +44,7 @@ const payInfo = (props) => {
     );
   } else {
     return (
-      <div id="payer-div">
+      <div id="payee-div">
         <h1>you paid</h1>
         <div id="lender">${parseFloat(props.expense.amount).toFixed(2)}</div>
       </div>
