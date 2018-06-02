@@ -17,7 +17,7 @@ const dateParse = (dateArr) => {
 };
 
 const oweInfo = (props) => {
-  if (props.payer.name === "you") {
+  if (props.payee.name === "you") {
     return (
       <li id="owe-li">
         <h1>you lent {props.ower.name.toLowerCase()}</h1>
@@ -27,7 +27,7 @@ const oweInfo = (props) => {
   } else {
     return (
       <li id="owe-li">
-        <h1>{props.payer.name.toLowerCase()} lent you</h1>
+        <h1>{props.payee.name.toLowerCase()} lent you</h1>
         <div id="ower">${parseFloat(props.ower.amount).toFixed(2)}</div>
       </li>
     );
@@ -36,11 +36,11 @@ const oweInfo = (props) => {
 
 export const ExpenseItem = (props) => {
 
-  const deleteExpense = (bill) => {
+  const deleteExpense = (expense) => {
     return (
       e => {
         e.preventDefault();
-        props.deleteBill(bill.id)
+        props.deleteBill(expense.id)
       }
     );
   };
@@ -55,26 +55,31 @@ export const ExpenseItem = (props) => {
     }
   };
 
-  const date = dateParse(props.bill.date.split("-"));
+  const date = dateParse(props.expense.date.split("-"));
 
-  return (
-    <li id="expense-item" value={props.bill.id} onClick={handleEditBill} >
-      <div id="expense-item-left">
-        <ul id="bill-date">
-          <li id="month">{date.month}</li>
-          <li id="day">{date.day}</li>
+  if (props.expense.payee_id) {
+    return <li>This is where payment goes</li>;
+  } else {
+    return (
+      <li id="expense-item" value={props.expense.id} onClick={handleEditBill} >
+        <div id="expense-item-left">
+          <ul id="bill-date">
+            <li id="month">{date.month}</li>
+            <li id="day">{date.day}</li>
+          </ul>
+          <img src={window.staticImages.bill} />
+          <h1 id="description">{props.expense.description}</h1>
+        </div>
+        <ul id="expense-item-right">
+          <li id="paid-li">
+            <h1>{props.payee.name.toLowerCase()} paid</h1>
+            <div id="paid">${parseFloat(props.expense.amount).toFixed(2)}</div>
+          </li>
+          {oweInfo(props)}
+          <Link to="/" id="delete-expense-btn" onClick={deleteExpense(props.expense)}><i className="fa fa-close"></i></Link>
         </ul>
-        <img src={window.staticImages.bill} />
-        <h1 id="description">{props.bill.description}</h1>
-      </div>
-      <ul id="expense-item-right">
-        <li id="paid-li">
-          <h1>{props.payer.name.toLowerCase()} paid</h1>
-          <div id="paid">${parseFloat(props.bill.amount).toFixed(2)}</div>
-        </li>
-        {oweInfo(props)}
-        <Link to="/" id="delete-expense-btn" onClick={deleteExpense(props.bill)}><i className="fa fa-close"></i></Link>
-      </ul>
-    </li>
-  );
+      </li>
+    );
+  }
+
 };

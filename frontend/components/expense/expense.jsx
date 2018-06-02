@@ -7,25 +7,40 @@ export const Expense = (props) => {
       return <Redirect to="/" />;
     }
 
-    const payerInfo = (bill, secondUser) => {
-      if (bill.payer_id === props.logged_in) {
-        return {
-          name: "you",
-          id: props.logged_in
-        };
+    const payeeInfo = (expense, secondUser) => {
+      if (expense.payee_id) {
+        if (expense.payee_id === props.logged_in) {
+          return {
+            name: "you",
+            id: props.logged_in
+          };
+        } else {
+          return secondUser;
+        }
       } else {
-        return secondUser;
+        if (expense.payer_id === props.logged_in) {
+          return {
+            name: "you",
+            id: props.logged_in
+          };
+        } else {
+          return secondUser;
+        }
       }
     };
 
-    const owerInfo = (bill, payer, secondUser) => {
+    const owerInfo = (expense, payee, secondUser) => {
       let amount;
-      if (bill.splits[0].user_id === payer.id) {
-        amount = bill.splits[1].amount;
+      if (expense.payee_id) {
+        amount = expense.amount;
       } else {
-        amount = bill.splits[0].amount;
+        if (expense.splits[0].user_id === payee.id) {
+          amount = expense.splits[1].amount;
+        } else {
+          amount = expense.splits[0].amount;
+        }
       }
-      if (payer.id !== props.logged_in) {
+      if (payee.id !== props.logged_in) {
         return {
           name: "you",
           amount: amount
@@ -38,28 +53,36 @@ export const Expense = (props) => {
       }
     };
 
-    const otherUser = (bill) => {
+    const otherUser = (expense) => {
       let otherUserId;
-      if (bill.splits[0].user_id === props.logged_in) {
-        otherUserId = bill.splits[1].user_id;
+      if (expense.payee_id) {
+        if (expense.payee_id === props.logged_in) {
+          otherUserId = expense.payer_id;
+        } else {
+          otherUserId = expense.payee_id;
+        }
       } else {
-        otherUserId = bill.splits[0].user_id;
+        if (expense.splits[0].user_id === props.logged_in) {
+          otherUserId = expense.splits[1].user_id;
+        } else {
+          otherUserId = expense.splits[0].user_id;
+        }
       }
       return props.users[otherUserId];
     };
 
-    const expenseItems = props.bills.map((bill) => {
-      const secondUser = otherUser(bill);
-      const payer = payerInfo(bill, secondUser);
-      const ower = owerInfo(bill, payer, secondUser);
-      return <ExpenseItem key={bill.id} bill={bill} payer={payer}
+    const expenseItems = props.expenses.map((expense) => {
+      const secondUser = otherUser(expense);
+      const payee = payeeInfo(expense, secondUser);
+      const ower = owerInfo(expense, payee, secondUser);
+      return <ExpenseItem key={expense.id} expense={expense} payee={payee}
         ower={ower}  deleteBill={props.deleteBill}
         addEditBillId={props.addEditBillId}
         removeEditBillId={props.removeEditBillId} />;
     });
 
     const emptyPage = () => {
-      if (props.bills.length < 1) {
+      if (props.expenses.length < 1) {
         return (
           <div id="empty-page">
             <img src={window.staticImages.empty} />

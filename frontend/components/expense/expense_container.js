@@ -5,10 +5,13 @@ import { deleteBill, addEditBillId  } from "../../actions/bill_actions";
 import { combineDate } from "../../util/function_util";
 
 const mapStateToProps = state => {
+  const bills = Object.values(state.entities.bills);
+  const payments = Object.values(state.entities.payments);
+  let expenses = bills.concat(payments);
+  debugger
   return {
-    bills: Object.values(state.entities.bills).
-      sort((a,b) => combineDate(b.date) - combineDate(a.date)),
-    payments: Object.values(state.entities.payments),
+    expenses: expenses.sort(
+      (a,b) => combineDate(b.date) - combineDate(a.date)),
     logged_in: state.session.id || false,
     users: state.entities.users
   };
@@ -24,3 +27,7 @@ const mapDispatchToProps = dispatch => {
 const expense = connect(mapStateToProps, mapDispatchToProps)(Expense);
 
 export default withRouter(expense);
+
+
+// bills: Object.values(state.entities.bills).
+//   sort((a,b) => combineDate(b.date) - combineDate(a.date)),
