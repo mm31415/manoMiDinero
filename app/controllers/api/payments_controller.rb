@@ -28,6 +28,7 @@ class Api::PaymentsController < ApplicationController
       render json: {
         id: payment.id, amount: payment.amount,
         payer_id: friendship.user1_id,
+        payee_id: friendship.user2_id,
         date: payment.date
       }, status: 200
     else
