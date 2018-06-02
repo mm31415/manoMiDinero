@@ -49,7 +49,7 @@ export const balance = (expenses, userId) => {
       } else {
         balance -= (amount - 0);
       }
-    } else {
+    } else if(expense.splits) {
       if (expense.splits.length !== 0) {
         if (expense.splits[0].user_id === expense.payer_id) {
           amount = expense.splits[1].amount;
