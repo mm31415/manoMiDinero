@@ -17,9 +17,6 @@ export const MainNav = (props) => {
       <li className={checkIfSelected("/main/dashboard")}>
         <Link to="/main/dashboard"><img id="logo" src={window.staticImages.cLogo} />&nbsp;Dashboard</Link>
       </li>
-      <li className={checkIfSelected("/main/activity")}>
-        <Link to="/main/activity"><i className="fa fa-flag-checkered"/>&nbsp;Recent activity</Link>
-      </li>
       <li className={checkIfSelected("/main/all")}>
         <Link to="/main/all"><i className="fa fa-list"/>&nbsp;All expences</Link>
       </li>

@@ -116,6 +116,7 @@
   border-bottom: 1px solid #E4E5E5;
   font-family: sans-serif;
   #payment-item-left {
+    font-size: 14px;
     display: flex;
     align-items: center;
     img {
@@ -126,9 +127,47 @@
     }
   }
   #payment-item-right {
+    width: 190px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     #payee-div {
       display: flex;
       align-items: center;
+      text-align: left;
+    }
+    h1 {
+      color: #0ABD99;
+      font-size: 12px;
+      text-align: right;
+      margin-right: 10px;
     }
   }
+}
+
+#payment-item:hover {
+  background: #EEEFEF;
+  cursor: pointer;
+  #description {
+    text-decoration: underline;
+  }
+  #delete-payment-btn {
+    visibility: visible;
+    background: #EEEFEF;
+    color: red;
+  }
+}
+
+#delete-payment-btn {
+  visibility: hidden;
+  margin-left: 10px;
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+#delete-payment-btn:hover {
+  i {
+    text-decoration: underline;
+  }
+  cursor: pointer;
 }

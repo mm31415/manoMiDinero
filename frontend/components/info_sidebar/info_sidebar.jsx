@@ -59,6 +59,10 @@ export const InfoSidebar = (props) => {
       <h1 id="info-header">{friendId ? "Your balance" : "Your total balance"}</h1>
       {balanceDisplay()}
       {deleteFriendButton()}
+      <span>
+        <a href="https://github.com/mm31415/splitWiseClone" target="_blank"><i class="fa fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/mark-martinez-62975b124/" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+      </span>
     </div>
   );
 }

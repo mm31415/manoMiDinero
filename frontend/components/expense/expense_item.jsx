@@ -58,7 +58,11 @@ export const ExpenseItem = (props) => {
     return (
       e => {
         e.preventDefault();
-        props.deleteBill(expense.id)
+        if (expense.payee_id) {
+          props.deletePayment(expense.id);
+        } else {
+          props.deleteBill(expense.id)
+        }
       }
     );
   };
@@ -80,10 +84,11 @@ export const ExpenseItem = (props) => {
       <li id="payment-item">
         <div id="payment-item-left">
           <img id="payment-img" src={window.staticImages.payment} />
-          {props.ower.name}&nbsp;paid&nbsp;{props.payee.name}&nbsp;${parseFloat(props.expense.amount).toFixed(2)}
+          <h1 id="description">{props.ower.name}&nbsp;paid&nbsp;{props.payee.name}&nbsp;${parseFloat(props.expense.amount).toFixed(2)}</h1>
         </div>
         <div id="payment-item-right">
           {payInfo(props)}
+          <Link to="/" id="delete-payment-btn" onClick={deleteExpense(props.expense)}><i className="fa fa-close"></i></Link>
         </div>
       </li>
     );

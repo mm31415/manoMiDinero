@@ -3,6 +3,14 @@
   font-family: sans-serif;
   margin-left: 20px;
   margin-top: 20px;
+  span {
+    font-size: 22px;
+    display: flex;
+    margin-top: 10px;
+    a{
+      margin-right: 10px;
+    }
+  }
 }
 
 #info-header{
