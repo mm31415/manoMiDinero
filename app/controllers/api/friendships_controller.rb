@@ -38,6 +38,9 @@ class Api::FriendshipsController < ApplicationController
       user2_id: current_user.id
       )
     bill_ids = friendship1.shared_bills.map { |share| share.bill_id }
+    bill_ids += friendship2.shared_bills.map { |share| share.bill_id }
+    payment_ids = friendship1.payments.map { |pay| pay.id }
+    payment_ids += friendship2.payments.map { |pay| pay.id }
     if friendship1.nil? || friendship2.nil?
       render json: { errors: ["Friendship does not exist"] }, status: 422
     else
@@ -45,7 +48,8 @@ class Api::FriendshipsController < ApplicationController
       friendship2.destroy
       render json: {
         friendId: friendship_params[:friend_id],
-        billIds: bill_ids }, status: 200
+        billIds: bill_ids,
+        paymentIds: payment_ids}, status: 200
     end
   end
 

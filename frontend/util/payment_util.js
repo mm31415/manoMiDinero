@@ -12,3 +12,10 @@ export const fetchPayments = () => {
     url: "api/payments"
   });
 };
+
+export const deletePayment = (id) => {
+  return $.ajax({
+    method: "DELETE",
+    url: `api/payments/${id}`
+  });
+};

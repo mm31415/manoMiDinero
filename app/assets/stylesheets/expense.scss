@@ -81,11 +81,13 @@
 #lender {
   color: #0ABD99;
   font-weight: bolder;
+  min-width: 71.41px;
 }
 
 #ower {
   color: red;
   font-weight: 700;
+  min-width: 71.41px;
 }
 
 #empty-page {
@@ -127,7 +129,6 @@
     }
   }
   #payment-item-right {
-    width: 190px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -135,6 +136,7 @@
       display: flex;
       align-items: center;
       text-align: left;
+      margin-right: 10px;
     }
     h1 {
       color: #0ABD99;
@@ -146,14 +148,10 @@
 }
 
 #payment-item:hover {
-  background: #EEEFEF;
-  cursor: pointer;
-  #description {
-    text-decoration: underline;
-  }
+  background: #F8F8F8;
   #delete-payment-btn {
     visibility: visible;
-    background: #EEEFEF;
+    background: #F8F8F8;
     color: red;
   }
 }
@@ -170,4 +168,16 @@
     text-decoration: underline;
   }
   cursor: pointer;
+}
+
+#month-li {
+  background: #EEEFEF;
+  border-bottom: 1px solid #E4E5E5;
+  padding: 2px 0px;
+  h1 {
+    color: #0ABD99;
+    font-size: 12px;
+    margin-left: 10px;
+    font-family: sans-serif;
+  }
 }

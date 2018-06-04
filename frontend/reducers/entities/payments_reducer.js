@@ -1,6 +1,7 @@
 import {
   RECEIVE_PAYMENT, RECEIVE_PAYMENTS
 } from "../../actions/payment_actions";
+import { REMOVE_FRIEND } from "../../actions/friendship_actions";
 import merge from "lodash/merge";
 
 export const PaymentsReducer = (oldState = {}, action) => {
@@ -14,6 +15,12 @@ export const PaymentsReducer = (oldState = {}, action) => {
       return tempState;
     case RECEIVE_PAYMENT:
       return merge({}, oldState, { [action.payment.id]: action.payment });
+    case REMOVE_FRIEND:
+      let newState = merge({}, oldState);
+      action.paymentIds.forEach((id) => {
+        delete newState[id]
+      });
+      return newState;
     default:
       return oldState;
   }

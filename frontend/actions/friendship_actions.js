@@ -24,7 +24,8 @@ const removeFriend = (resp) => {
   return {
     type: REMOVE_FRIEND,
     friendId: resp.friendId,
-    billIds: resp.billIds
+    billIds: resp.billIds,
+    paymentIds: resp.paymentIds
   };
 };
 

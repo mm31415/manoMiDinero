@@ -25,7 +25,7 @@ class PaymentModal extends React.Component{
       return (
         e => {
           const newState = merge({}, that.state, { friend: { id: null, [field]: e.currentTarget.value } });
-          that.setState({ friend: { [field]: e.currentTarget.value } });
+          that.setState(newState);
         }
       );
     } else if (field === "amount") {
