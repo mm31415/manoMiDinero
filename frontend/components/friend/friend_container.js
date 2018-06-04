@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Expense } from "../expense/expense";
-import { fetchFriends } from "../../actions/friendship_actions";
 import { deleteBill, addEditBillId } from "../../actions/bill_actions";
+import { deletePayment } from "../../actions/payment_actions";
 import { mapAndSortFriendExpenses } from "../../util/function_util";
 
 
@@ -21,9 +21,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchFriends: () => dispatch(fetchFriends()),
     deleteBill: (id) => dispatch(deleteBill(id)),
-    addEditBillId: (id) => dispatch(addEditBillId(id))
+    addEditBillId: (id) => dispatch(addEditBillId(id)),
+    deletePayment: (paymentId) => dispatch(deletePayment(paymentId))
   };
 };
 
