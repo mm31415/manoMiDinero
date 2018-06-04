@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import Dashboard from "./dashboard";
-import { fetchFriends } from "../../actions/friendship_actions";
 
 const mapStateToProps = state => {
   return {
@@ -11,7 +10,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchFriends: () => dispatch(fetchFriends())
   };
 };
 

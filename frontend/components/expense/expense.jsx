@@ -88,16 +88,6 @@ export const Expense = (props) => {
       return props.users[otherUserId];
     };
 
-    // const expenseItems = props.expenses.map((expense) => {
-    //   const secondUser = otherUser(expense);
-    //   const payee = payeeInfo(expense, secondUser);
-    //   const ower = owerInfo(expense, payee, secondUser);
-    //   return <ExpenseItem key={expense.id} expense={expense} payee={payee}
-    //     ower={ower}  deleteBill={props.deleteBill}
-    //     addEditBillId={props.addEditBillId}
-    //     removeEditBillId={props.removeEditBillId} />;
-    // });
-
     const expenseItems = [];
     for (let i = 0; i < props.expenses.length; i++) {
       const secondUser = otherUser(props.expenses[i]);
@@ -115,7 +105,8 @@ export const Expense = (props) => {
         <ExpenseItem key={props.expenses[i].id} expense={props.expenses[i]}
           payee={payee} ower={ower}  deleteBill={props.deleteBill}
           addEditBillId={props.addEditBillId}
-          removeEditBillId={props.removeEditBillId} />
+          removeEditBillId={props.removeEditBillId}
+          deletePayment={props.deletePayment} />
       );
       if (i + 1 < props.expenses.length) {
         const nextDate = dateParse(props.expenses[i + 1].date.split('-'));

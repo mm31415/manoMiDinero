@@ -11,7 +11,16 @@ class Dashboard extends React.Component {
 
     return (
       <div className="dashboard">
-          <h1>Hey guy, you're at the dashboard</h1>
+        <ul id="balances">
+          <li>
+            <h1>total balance</h1>
+          </li>
+          <li>
+            <h1>you owe</h1>
+          </li><li>
+            <h1>you are owed</h1>
+          </li>
+        </ul>
       </div>
     );
   }

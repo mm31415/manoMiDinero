@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 7px;
-  border-bottom: 1px solid #E4E5E5;
+  border-bottom: 1px solid #D8DADA;
   font-family: sans-serif;
 }
 
@@ -115,7 +115,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 3px 7px;
-  border-bottom: 1px solid #E4E5E5;
+  border-bottom: 1px solid #D8DADA;
   font-family: sans-serif;
   #payment-item-left {
     font-size: 14px;
@@ -148,10 +148,10 @@
 }
 
 #payment-item:hover {
-  background: #F8F8F8;
+  background: #FAFAFA;
   #delete-payment-btn {
     visibility: visible;
-    background: #F8F8F8;
+    background: #FAFAFA;
     color: red;
   }
 }
@@ -172,7 +172,7 @@
 
 #month-li {
   background: #EEEFEF;
-  border-bottom: 1px solid #E4E5E5;
+  border-bottom: 1px solid #D8DADA;
   padding: 2px 0px;
   h1 {
     color: #0ABD99;

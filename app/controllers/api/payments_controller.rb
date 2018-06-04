@@ -36,6 +36,15 @@ class Api::PaymentsController < ApplicationController
     end
   end
 
+  def destroy
+    payment = Payment.find(params[:id])
+    if payment.destroy
+      render json: { paymentId: payment.id }
+    else
+      render json: { errors: "Delete payment failed" }, status: 422
+    end
+  end
+
   private
 
   def payment_params

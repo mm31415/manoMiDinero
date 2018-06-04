@@ -1,0 +1,23 @@
+.dashboard {
+  #balances {
+    display: flex;
+    justify-content: space-around;
+    background: #EEEFEF;
+    padding: 10px 0px;
+    border-bottom: 1px solid #D8DADA;
+    li {
+      width: 100%;
+      text-align: center;
+      border-right: 1px solid #D8DADA;
+    }
+    li:last-of-type {
+      border-right: none;
+    }
+    h1 {
+      color: #0ABD99;
+      font-size: 12px;
+      margin-left: 10px;
+      font-family: sans-serif;
+    }
+  }
+}

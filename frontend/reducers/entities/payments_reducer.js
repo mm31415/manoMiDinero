@@ -1,11 +1,12 @@
 import {
-  RECEIVE_PAYMENT, RECEIVE_PAYMENTS
+  RECEIVE_PAYMENT, RECEIVE_PAYMENTS, REMOVE_PAYMENT
 } from "../../actions/payment_actions";
 import { REMOVE_FRIEND } from "../../actions/friendship_actions";
 import merge from "lodash/merge";
 
 export const PaymentsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
+  let newState = merge({}, oldState);
   switch(action.type) {
     case RECEIVE_PAYMENTS:
       let tempState = {};
@@ -15,8 +16,10 @@ export const PaymentsReducer = (oldState = {}, action) => {
       return tempState;
     case RECEIVE_PAYMENT:
       return merge({}, oldState, { [action.payment.id]: action.payment });
+    case REMOVE_PAYMENT:
+      delete newState[action.paymentId];
+      return newState;
     case REMOVE_FRIEND:
-      let newState = merge({}, oldState);
       action.paymentIds.forEach((id) => {
         delete newState[id]
       });

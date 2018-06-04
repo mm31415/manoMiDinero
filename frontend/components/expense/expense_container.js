@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Expense } from "./expense";
 import { deleteBill, addEditBillId  } from "../../actions/bill_actions";
+import { deletePayment } from "../../actions/payment_actions";
 import { combineDate } from "../../util/function_util";
 
 const mapStateToProps = state => {
@@ -19,7 +20,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     deleteBill: (id) => dispatch(deleteBill(id)),
-    addEditBillId: (id) => dispatch(addEditBillId(id))
+    addEditBillId: (id) => dispatch(addEditBillId(id)),
+    deletePayment: (paymentId) => dispatch(deletePayment(paymentId))
   };
 };
 

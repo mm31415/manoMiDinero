@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     resources :friendships, only: [:index, :create]
     resource :friendship, only: [:destroy]
     resources :bills, only: [:index, :create, :update, :destroy]
-    resources :payments, only: [:index, :create]
+    resources :payments, only: [:index, :create, :destroy]
   end
 end
