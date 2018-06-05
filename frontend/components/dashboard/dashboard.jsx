@@ -50,6 +50,53 @@ export const Dashboard = (props) => {
     return <h2 id="lender">${amount.toFixed(2)}</h2>;
   };
 
+  const listItem = (amount, friendName, friendId) => {
+    if (amount < 0) {
+      return (
+        <li key={friendId}>
+          <img src={window.staticImages.avatar}></img>
+          <div>
+            <h1>{friendName}</h1>
+            <h2 id="ower">you owe {(amount * -1).toFixed(2)}</h2>
+          </div>
+        </li>
+      );
+    } else {
+      return (
+        <li key={friendId}>
+          <img src={window.staticImages.avatar}></img>
+          <div>
+            <h1>{friendName}</h1>
+            <h2 id="lender">owes you {amount.toFixed(2)}</h2>
+          </div>
+        </li>
+      );
+    }
+  };
+
+  const dashList = (props) => {
+    const oweInfo = [];
+    const lenderInfo = [];
+    props.friendIds.forEach((id) => {
+      const amount = balance(props.friendExpenses[id], props.logged_in);
+      if (amount < 0) {
+        oweInfo.push(listItem(amount, props.users[id].name, id));
+      } else if (amount > 0) {
+        lenderInfo.push(listItem(amount, props.users[id].name, id));
+      }
+    });
+    return (
+      <div id="dash-list">
+        <ul id="owe-list">
+          {oweInfo}
+        </ul>
+        <ul id="lender-list">
+          {lenderInfo}
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div className="dashboard">
       <ul id="balances">
@@ -79,6 +126,7 @@ export const Dashboard = (props) => {
         </ul>
         <h1 id="head-right">YOU ARE OWED</h1>
       </nav>
+      {dashList(props)}
     </div>
   );
 

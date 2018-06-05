@@ -74,4 +74,22 @@
     }
 
   }
+
+  #dash-list {
+    display: flex;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    li {
+      display: flex;
+      align-items: center;
+    }
+    #owe-list {
+      width: 100%;
+    }
+    #lender-list {
+      width: 100%;
+    }
+  }
 }
