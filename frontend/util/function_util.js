@@ -27,7 +27,6 @@ export const mapAndSortFriendExpenses = (bills_obj, payments_obj, friendId) => {
 export const mapFriendExpenses = (bills_obj, payments_obj, friendId) => {
   const friendExpenses = [];
   Object.values(bills_obj).forEach((value) => {
-    console.log(value.splits)
     if (value.splits.length > 0) {
       if (value.splits[0].user_id == friendId ||
         value.splits[1].user_id == friendId) {
