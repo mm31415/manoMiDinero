@@ -65,7 +65,7 @@ export const Dashboard = (props) => {
       }
     }
     let amount = balance(lenderExpenses, props.logged_in);
-    return <h2 id="lender">${amount.toFixed(2)}</h2>;
+    return <h2 id="lender">${Math.abs(amount).toFixed(2)}</h2>;
   };
 
   const listItem = (amount, friendName, friendId) => {

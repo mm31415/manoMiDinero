@@ -27,7 +27,8 @@ end
 Bill.destroy_all
 BillSplit.destroy_all
 SharedBill.destroy_all
-5.times do
+
+30.times do
   amount = Faker::Commerce.price
   split1 = amount / 2.0
   split2 = amount - split1
@@ -39,7 +40,7 @@ SharedBill.destroy_all
     friend_id = User.all.shuffle.first.id
   end
   friendship_id = Friendship.find_by(user1_id: guest_user.id, user2_id: friend_id).id
-  
+
   bill = Bill.create(
     amount: amount,
     description: Faker::Food.dish,
@@ -64,5 +65,27 @@ SharedBill.destroy_all
     user_id: (payer_id == guest_user.id ? friend_id : guest_user.id)
   )
 
+end
 
+Payment.destroy_all
+10.times do
+  amount = Faker::Commerce.price
+  d = Faker::Date.between('2017-01-01', '2019-12-31');
+  payee_id = User.all.shuffle.first.id
+  if (payee_id == guest_user.id)
+    payer_id = User.all.shuffle.first.id
+  else
+    payer_id = guest_user.id
+  end
+  while (payee_id == payer_id ||
+    User.find(payee_id).bills.length < 1 ||
+    User.find(payer_id).bills.length < 1) do
+
+    payer_id = User.all.shuffle.first.id
+  end
+  friendship_id = Friendship.find_by(user1_id: payer_id, user2_id: payee_id).id
+
+  Payment.create(
+    amount: amount, date: "#{d.to_s}", friendship_id: friendship_id
+  )
 end

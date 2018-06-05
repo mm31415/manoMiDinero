@@ -5,15 +5,19 @@ export const combineDate = (date) => {
 export const mapAndSortFriendExpenses = (bills_obj, payments_obj, friendId) => {
   const friendExpenses = [];
   Object.values(bills_obj).forEach((value) => {
-    if (value.splits[0].user_id == friendId ||
-      value.splits[1].user_id == friendId) {
-      friendExpenses.push(value);
+    if (value.splits.length > 0) {
+      if (value.splits[0].user_id == friendId ||
+        value.splits[1].user_id == friendId) {
+        friendExpenses.push(value);
+      }
     }
   });
   Object.values(payments_obj).forEach((value) => {
-    if (value.payee_id == friendId ||
-      value.payer_id == friendId) {
-      friendExpenses.push(value);
+    if (value.payee_id !== undefined) {
+      if (value.payee_id == friendId ||
+        value.payer_id == friendId) {
+          friendExpenses.push(value);
+      }
     }
   });
 
