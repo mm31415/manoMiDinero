@@ -108,4 +108,37 @@
       width: 100%;
     }
   }
+
+  #dash-chart {
+    display: none;
+    font-family: sans-serif;
+    color: white;
+    ul {
+      width: 100%;
+    }
+    #owe-chart {
+      border-right: 1px solid #D8DADA;
+    }
+    li:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    #ower-chart-li {
+      float: right;
+      background: #E98C11;
+      text-align: right;
+      margin-left: 10px;
+      margin-right: 10px;
+      border-radius: 5px;
+      padding: 5px 3px;
+    }
+    #lender-chart-li {
+      background: #03D7AC;
+      text-align: left;
+      margin-right: 10px;
+      margin-left: 10px;
+      border-radius: 5px;
+      padding: 5px 3px;
+    }
+  }
 }
