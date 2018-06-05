@@ -120,6 +120,10 @@
     }
     #owe-chart {
       border-right: 1px solid #D8DADA;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      // justify-content: flex-end;
     }
     li {
       max-width: 220px;
@@ -130,7 +134,7 @@
       text-decoration: underline;
     }
     #ower-chart-li {
-      float: right;
+      // float: right;
       background: #E98C11;
       text-align: right;
       margin-left: 10px;

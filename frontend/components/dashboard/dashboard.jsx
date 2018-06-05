@@ -13,6 +13,20 @@ export const Dashboard = (props) => {
     props.history.push(`/main/friends/${e.currentTarget.value}`);
   };
 
+  const emptyPage = (props) => {
+    if (props.expenses.length < 1) {
+      return (
+        <div id="empty-page">
+          <img src={window.staticImages.empty} />
+          <ul>
+            <h1>You have not added any expenses yet</h1>
+            <h2>To add a new expense, click the orange “Add Bill” button.</h2>
+          </ul>
+        </div>
+      );
+    }
+  };
+
   const totalBalance = () => {
     const amount = balance(props.expenses, props.logged_in);
     if (amount < 0) {
@@ -196,6 +210,7 @@ export const Dashboard = (props) => {
         </ul>
         <h1 id="head-right">YOU ARE OWED</h1>
       </nav>
+      {emptyPage(props)}
       {dashList(props)}
       {dashChart(props)}
     </div>

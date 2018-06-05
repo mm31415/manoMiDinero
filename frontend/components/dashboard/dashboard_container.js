@@ -21,7 +21,7 @@ const mapStateToProps = state => {
         friend.id
       );
   });
-
+  
   return {
     expenses: expenses,
     friendExpenses: friendExpenses,
