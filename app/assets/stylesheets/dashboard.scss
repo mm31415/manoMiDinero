@@ -76,7 +76,8 @@
   }
 
   #dash-list {
-    display: flex;
+    // display: flex;
+    display: none;
     font-family: sans-serif;
     img {
       width: 40px;
@@ -110,7 +111,8 @@
   }
 
   #dash-chart {
-    display: none;
+    // display: none;
+    display: flex;
     font-family: sans-serif;
     color: white;
     ul {
@@ -118,6 +120,10 @@
     }
     #owe-chart {
       border-right: 1px solid #D8DADA;
+    }
+    li {
+      max-width: 220px;
+      margin-bottom: 5px;
     }
     li:hover {
       cursor: pointer;
