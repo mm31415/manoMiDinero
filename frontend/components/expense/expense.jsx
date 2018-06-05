@@ -32,7 +32,7 @@ export const Expense = (props) => {
         } else {
           return secondUser;
         }
-      } else if (expense.splits) {
+      } else if (expense.splits !== undefined) {
         if (expense.payer_id === props.logged_in) {
           return {
             name: "you",
@@ -48,7 +48,7 @@ export const Expense = (props) => {
       let amount;
       if (expense.payee_id) {
         amount = expense.amount;
-      } else if (expense.splits) {
+      } else {
         if (expense.splits[0].user_id === payee.id) {
           amount = expense.splits[1].amount;
         } else {
@@ -78,7 +78,7 @@ export const Expense = (props) => {
         } else {
           otherUserId = expense.payee_id;
         }
-      } else if (expense.splits) {
+      } else {
         if (expense.splits[0].user_id === props.logged_in) {
           otherUserId = expense.splits[1].user_id;
         } else {
