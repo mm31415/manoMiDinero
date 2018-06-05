@@ -21,6 +21,20 @@ class Dashboard extends React.Component {
             <h1>you are owed</h1>
           </li>
         </ul>
+        <nav id="dashboard-nav">
+          <h1 id="head-left">YOU OWE</h1>
+          <ul>
+            <li id="view-list">
+              <i className="fa fa-bars"></i>
+              view as list
+            </li>
+            <li id="view-chart">
+              <i className="fa fa-bar-chart"></i>
+              view chart
+            </li>
+          </ul>
+          <h1 id="head-right">YOU ARE OWED</h1>
+        </nav>
       </div>
     );
   }
