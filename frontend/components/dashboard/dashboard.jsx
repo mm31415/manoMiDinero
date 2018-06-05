@@ -57,7 +57,7 @@ export const Dashboard = (props) => {
           <img src={window.staticImages.avatar}></img>
           <div>
             <h1>{friendName}</h1>
-            <h2 id="ower">you owe {(amount * -1).toFixed(2)}</h2>
+            <h2 id="ower">you owe <em>${(amount * -1).toFixed(2)}</em></h2>
           </div>
         </li>
       );
@@ -67,7 +67,7 @@ export const Dashboard = (props) => {
           <img src={window.staticImages.avatar}></img>
           <div>
             <h1>{friendName}</h1>
-            <h2 id="lender">owes you {amount.toFixed(2)}</h2>
+            <h2 id="lender">owes you <em>${amount.toFixed(2)}</em></h2>
           </div>
         </li>
       );

@@ -77,16 +77,32 @@
 
   #dash-list {
     display: flex;
+    font-family: sans-serif;
     img {
       width: 40px;
       height: 40px;
+      margin-right: 10px;
     }
     li {
       display: flex;
       align-items: center;
+      padding: 3px 10px;
+    }
+    li:hover {
+      cursor: pointer;
+      background: #F8F8F8;
+    }
+    h2 {
+      font-size: 13px;
+      font-weight: normal;
+      em {
+        font-weight: 700;
+        font-size: 15px;
+      }
     }
     #owe-list {
       width: 100%;
+      border-right: 1px solid #D8DADA;
     }
     #lender-list {
       width: 100%;
