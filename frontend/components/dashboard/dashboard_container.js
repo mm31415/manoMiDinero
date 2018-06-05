@@ -11,8 +11,10 @@ const mapStateToProps = state => {
 
   const friends = merge({}, state.entities.users);
   delete friends[state.session.id];
-  const friendIds = Object.values(friends).map((fr) => fr.id);
-  const friendArr = Object.values(friends);
+  const friendArr = Object.values(friends).sort(
+    (a,b) => a.name.toLowerCase() > b.name.toLowerCase()
+  );
+  const friendIds = friendArr.map((fr) => fr.id);
   const friendExpenses = {};
   friendArr.forEach((friend) => {
     friendExpenses[friend.id] = mapFriendExpenses(
@@ -21,7 +23,7 @@ const mapStateToProps = state => {
         friend.id
       );
   });
-  
+
   return {
     expenses: expenses,
     friendExpenses: friendExpenses,

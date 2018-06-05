@@ -106,7 +106,7 @@ export const Dashboard = (props) => {
       }
     });
     return (
-      <div id="dash-list">
+      <div id="dash-list" className="show-dash-list-div">
         <ul id="owe-list">
           {oweInfo}
         </ul>
@@ -170,7 +170,7 @@ export const Dashboard = (props) => {
       }
     });
     return (
-      <div id="dash-chart">
+      <div id="dash-chart" className="hide-dash-chart-div">
         <ul id="owe-chart">
           {oweInfo}
         </ul>
@@ -179,6 +179,24 @@ export const Dashboard = (props) => {
         </ul>
       </div>
     );
+  };
+
+  const handleDashView = (e) => {
+    if (e.currentTarget.id === "view-list") {
+      if (e.currentTarget.className !== "show-dash-list") {
+        e.currentTarget.nextSibling.className = "hide-dash-chart";
+        e.currentTarget.className = "show-dash-list";
+        document.getElementById("dash-list").className = "show-dash-list-div";
+        document.getElementById("dash-chart").className = "hide-dash-list-div";
+      }
+    } else {
+      if (e.currentTarget.className !== "show-dash-chart") {
+        e.currentTarget.previousSibling.className = "hide-dash-list";
+        e.currentTarget.className = "show-dash-chart";
+        document.getElementById("dash-chart").className = "show-dash-chart-div";
+        document.getElementById("dash-list").className = "hide-dash-list-div";
+      }
+    }
   };
 
   return (
@@ -199,11 +217,11 @@ export const Dashboard = (props) => {
       <nav id="dashboard-nav">
         <h1 id="head-left">YOU OWE</h1>
         <ul>
-          <li id="view-list">
+          <li id="view-list" className="show-dash-list" onClick={handleDashView}>
             <i className="fa fa-bars"></i>
             view as list
           </li>
-          <li id="view-chart">
+          <li id="view-chart" className="hide-dash-chart" onClick={handleDashView}>
             <i className="fa fa-bar-chart"></i>
             view chart
           </li>
