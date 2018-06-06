@@ -15,9 +15,11 @@ class MainContent extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchFriends();
-    this.props.fetchBills();
-    this.props.fetchPayments();
+    if (this.props.logged_in) {
+        this.props.fetchFriends();
+        this.props.fetchBills();
+        this.props.fetchPayments();
+    }
   }
 
   render() {

@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 export const Header = (props) => {
 
   const handleLogout = () => {
+    const action = "logout";
     props.logout();
-    props.history.push('/login');
+    props.history.push('/login', action);
   };
 
   if (props.user === undefined) {

@@ -51,7 +51,7 @@ class SignUpForm extends React.Component {
         <img id="logo" src={window.staticImages.cLogo} />
         <form onSubmit={this.handleSubmit}>
           { (this.props.formType === "signup") ?
-            <h3>Introduce Yourself</h3> : <h3>Welcome to SplitWiseClone</h3> }
+            <h3>Introduce Yourself</h3> : <h3>Welcome to MANO!MIDINERO?</h3> }
           <SessionErrorsContainer />
           {
             (this.props.formType === "signup") &&
