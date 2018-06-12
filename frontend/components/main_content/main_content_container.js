@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
   };
   return {
     logged_in: state.session.id || false,
+    login_action: state.session.action || false,
     friendName: name()
   };
 };

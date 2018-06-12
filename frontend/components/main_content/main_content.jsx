@@ -15,7 +15,7 @@ class MainContent extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.logged_in) {
+    if (this.props.logged_in && this.props.login_action !== "Logging Out") {
         this.props.fetchFriends();
         this.props.fetchBills();
         this.props.fetchPayments();

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Header } from "./header";
-import { logout, resetSessionErrors } from "../../actions/session_actions";
+import { logout, resetSessionErrors, addLogout } from "../../actions/session_actions";
 import { withRouter } from "react-router";
 
 
@@ -17,7 +17,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout()),
-    resetSessionErrors: () => dispatch(resetSessionErrors())
+    resetSessionErrors: () => dispatch(resetSessionErrors()),
+    addLogout: () => dispatch(addLogout())
   };
 };
 

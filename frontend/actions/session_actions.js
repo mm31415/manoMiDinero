@@ -4,6 +4,8 @@ export const RECEIVE_USER = "RECEIVE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RESET_SESSION_ERRORS = "RESET_SESSION_ERRORS";
+export const ADD_LOGOUT = "ADD_LOGOUT";
+export const REMOVE_LOGOUT = "REMOVE_LOGOUT";
 
 const receiveUser = (user) => {
   return {
@@ -15,6 +17,12 @@ const receiveUser = (user) => {
 const logoutUser = () => {
   return {
     type: LOGOUT_USER,
+  };
+};
+
+export const addLogout = () => {
+  return {
+    type: ADD_LOGOUT,
   };
 };
 
