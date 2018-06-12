@@ -15,7 +15,6 @@ class MainContent extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     if (this.props.logged_in) {
         this.props.fetchFriends();
         this.props.fetchBills();
@@ -24,7 +23,6 @@ class MainContent extends React.Component {
   }
 
   render() {
-    debugger
     if (!this.props.logged_in) {
       if (this.props.match.path === "/main") {
         return <Redirect to="/login" />;

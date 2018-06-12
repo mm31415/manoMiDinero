@@ -250,13 +250,13 @@ class BillModal extends React.Component {
         <form id={"add-bill-form"}>
           <header id="add-bill-header">
             {this.props.formType === "addBill" ? "Add Bill" : "Edit Bill"}
-            <button id="close-btn" onClick={closeModal}>
+            <button className="close-btn" onClick={closeModal}>
               <i className="fa fa-close"></i></button>
           </header>
 
           <span id="enter-name">
             <h1>With <em>you</em> and:</h1>
-            <input type="hidden" id="friend-value"></input>
+            <input type="hidden" className="friend-value"></input>
             <input type="text" placeholder="Friend Name"
               value={this.state.friend.name}
               onChange={updateList}></input>
@@ -283,7 +283,7 @@ class BillModal extends React.Component {
           </span>
 
           <span id="dynamic-info">
-            <h1>Paid by&nbsp;<button id="change-payer-btn" onClick={this.changePayer}>{this.displayPayer()}</button>&nbsp;and split equally.</h1>
+            <h1>Paid by&nbsp;<button className="change-payer-btn" onClick={this.changePayer}>{this.displayPayer()}</button>&nbsp;and split equally.</h1>
             <h1>(${`${(this.state.bill.amount / 2).toFixed(2)}`}/person)</h1>
           </span>
 
