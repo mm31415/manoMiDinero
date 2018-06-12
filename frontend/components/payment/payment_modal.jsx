@@ -7,7 +7,7 @@ class PaymentModal extends React.Component{
     super(props)
     this.state = {
       payment: { amount: '', payer_id: this.props.currentUserId, payee_id: '', date: '' },
-      friend: { friend_id: '', name: '' }
+      friend: { id: '', name: '' }
     };
     this.setFriend =  this.setFriend.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,11 +47,14 @@ class PaymentModal extends React.Component{
 
   setFriend (e) {
     const newState = merge({}, this.state,
-      { payment: { payee_id: parseInt(e.currentTarget.value) || this.props.currentUserId } },
+      { payment: {
+        payer_id: this.props.currentUserId,
+        payee_id: parseInt(e.currentTarget.value) || this.props.currentUserId } },
       { friend: {
         id: parseInt(e.currentTarget.value),
         name: this.props.friends_obj[parseInt(e.currentTarget.value)].name
-      }});
+      }}
+    );
     this.setState(newState);
   }
 
@@ -86,8 +89,8 @@ class PaymentModal extends React.Component{
     e.preventDefault();
     let newState;
     if (this.state.payment.payer_id === this.state.friend.id) {
-      newState = merge({}, this.state,
-         { payment: { payer_id: this.props.currentUserId,
+      newState = merge({}, this.state, { payment: {
+           payer_id: this.props.currentUserId,
            payee_id: this.state.friend.id } }
        );
     } else {

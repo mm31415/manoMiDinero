@@ -2,6 +2,7 @@ import {
   RECEIVE_BILLS, RECEIVE_BILL,
   REMOVE_BILL } from "../../actions/bill_actions";
 import { REMOVE_FRIEND } from "../../actions/friendship_actions";
+import { LOGOUT_USER } from "../../actions/session_actions";
 import merge from 'lodash/merge';
 
 export const BillsReducer = (oldState = {}, action) => {
@@ -24,6 +25,8 @@ export const BillsReducer = (oldState = {}, action) => {
         delete newState[id]
       });
       return newState;
+    case LOGOUT_USER:
+      return {};
     default:
       return oldState;
   }

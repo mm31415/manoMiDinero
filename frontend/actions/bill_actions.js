@@ -55,7 +55,7 @@ export const resetBillErros = () => {
 };
 
 export const fetchBills = () => {
-  return (dispath) => {
+  return (dispatch) => {
     return BillUtil.fetchBills().then(({ bills }) => {
       return dispatch(receiveBills(bills));
     });

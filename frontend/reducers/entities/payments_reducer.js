@@ -2,6 +2,7 @@ import {
   RECEIVE_PAYMENT, RECEIVE_PAYMENTS, REMOVE_PAYMENT
 } from "../../actions/payment_actions";
 import { REMOVE_FRIEND } from "../../actions/friendship_actions";
+import { LOGOUT_USER } from "../../actions/session_actions";
 import merge from "lodash/merge";
 
 export const PaymentsReducer = (oldState = {}, action) => {
@@ -24,6 +25,8 @@ export const PaymentsReducer = (oldState = {}, action) => {
         delete newState[id]
       });
       return newState;
+    case LOGOUT_USER:
+      return {};
     default:
       return oldState;
   }
