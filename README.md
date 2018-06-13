@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# MANO!MIDINERO?
 
-Things you may want to cover:
+MANO!MIDINERO? is a full stack single page application that allows users to keep track of expenses with their friends.
 
-* Ruby version
+Backend: Ruby on Rails, PostgreSQL  
+Frontend: React, Redux, HTML5, CSS3
 
-* System dependencies
+[Live Link](https://manomidinero.herokuapp.com/#/)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Features
