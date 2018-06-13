@@ -1,12 +1,19 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
+
+
 
 
 export const InfoSidebar = (props) => {
   const friendId = props.location.pathname.split("/")[3] - 0;
+  
+  if (!!friendId && props.name === '') {
+    return <Redirect to="/" />;
+  }
 
   const handleDelete = () => {
       props.deleteFriend(friendId);
-      props.history.push("/");
+      // props.history.push("/");
   };
 
   const deleteFriendButton = () => {
