@@ -10,3 +10,5 @@ Frontend: React, Redux, HTML5, CSS3
 [Live Link](https://manomidinero.herokuapp.com/#/)
 
 ## Features
+
+### Bills
