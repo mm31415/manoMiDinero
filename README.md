@@ -9,6 +9,8 @@ Frontend: React, Redux, HTML5, CSS3, jQuery, Vanilla Javascript
 
 [Live Link](https://manomidinero.herokuapp.com/#/)
 
+![Image of Website](/app/assets/images/browser_sample.png)
+
 ## Features
 
 ### Bills
@@ -16,6 +18,9 @@ Frontend: React, Redux, HTML5, CSS3, jQuery, Vanilla Javascript
 Bill information is stored in two tables in the database (bills and bill_splits which is a joins table).  Two tables were needed in order to store both the information of the bill as well as the split amounts of each user associated to the bill.
 
 Users interact with a modal component when adding or editing bills.  The modal was a single component that was mapped with different props using Connect from the react-redux library.
+
+<img src="./app/assets/images/add_bill.png" alt="Add Bill Modal" width="50%" />
+<img src="./app/assets/images/edit_bill.png" alt="Edit Bill Modal" width="50%" />
 
 ### Payments
 
