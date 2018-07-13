@@ -18,7 +18,7 @@ export const MainNav = (props) => {
         <Link to="/main/dashboard"><img id="logo" src={window.staticImages.cLogo} />&nbsp;Dashboard</Link>
       </li>
       <li className={checkIfSelected("/main/all")}>
-        <Link to="/main/all"><i className="fa fa-list"/>&nbsp;All expences</Link>
+        <Link to="/main/all"><i className="fa fa-list"/>&nbsp;All expenses</Link>
       </li>
     </ul>
   );
